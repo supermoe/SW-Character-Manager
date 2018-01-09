@@ -46,6 +46,9 @@ function update(){
 	for (let i=0; i<5; i++) $("#wound"+i).removeClass("checked-wound");
 	$("#wound"+character.wounds).addClass("checked-wound");
 
+	//hindrances
+	$('#hindrance-pt-l').text(hindranceMax-hindranceCount())
+	if (hindranceMax-hindranceCount() <= 0) $('#hindrance-add-b').addClass("hidden")
 
     for (var i=0; i<attributes.length; i++){
         $(attributeLabels[i]).html(die[character.attributes[i]])
@@ -91,6 +94,14 @@ function levelUp(){
 	character.exp -= levelUpCost;
 }
 
+function hindranceCount(){
+	total = 0;
+	for (let i=0; i<hindrances.length; i++){
+		if (character.hindrances[i]) total += hindrances[i].type
+	}
+	return total;
+}
+
 //start
 
 for (let i=0; i<attributes.length; i++){
@@ -126,6 +137,13 @@ for (let i=0; i<skills.length; i++){
 			updateSkillSelector();
 		}
 	})
+}
+
+for (let i=0; i<hindrances.length; i++){
+    $("#hindrance-brow").before("<tr id='hindrance-row" + i + "'><td>" + hindrances[i].name + "<div class=hindrance-desc>" + hindrances[i].description + "</div></td></tr>");
+	hindranceRows.push('#hindrance-row' + i);
+	
+	$("#hindrance-select").append($("<tr class='hindrance-select-row'><td>" + hindrances[i].name + "</td><td>"+ hindrances[i].type +"</td><td class='hindrance-selector-desc'>" + hindrances[i].description + "</td><tr>").click(function(){step2HindranceSelector(i)}))
 }
 
 // Attribute selector --------------------------------------------
@@ -238,9 +256,32 @@ function addXPSelector(){
 	closeXPSelector();
 }
 
-for (let i=0; i<hindrances.length; i++){
-    $("#hindrance-brow").before("<tr id='hindrance-row" + i + "'><td>" + hindrances[i].name + "<div class=hindrance-desc>" + hindrances[i].description + "</div></td></tr>");
-    hindranceRows.push('#hindrance-row' + i);
+// Hindrance Selector
+function openHindranceSelector(){
+	$("#popup").removeClass("hidden")
+	$("#hindrance-selector").removeClass("hidden")
+	$("#hindrance-selector-step1").removeClass("hidden")
+	$("#hindrance-selector-step2").addClass("hidden")
+}
+function closeHindranceSelector(){
+	$("#popup").addClass("hidden")
+	$("#hindrance-selector").addClass("hidden")
+	$("#hindrance-selector-step1").addClass("hidden")
+	$("#hindrance-selector-step2").addClass("hidden")
+}
+function step2HindranceSelector(i){
+	if (hindranceMax - hindranceCount() - hindrances[i].type >= 0){
+		i = parseInt(i);
+		$("#hindrance-selector-step1").addClass("hidden")
+		$("#hindrance-selector-step2").removeClass("hidden")
+		$("#hindrance-selector-l").text(hindrances[i].name);
+		$("#hindrance-selector-add-b").off();
+		$("#hindrance-selector-add-b").click(function(){
+			character.hindrances[i] = true;
+			update();
+			closeHindranceSelector();
+		})
+	}
 }
 
 update();

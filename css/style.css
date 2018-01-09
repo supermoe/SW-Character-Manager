@@ -62,3 +62,18 @@ td{
 .checked-wound{
 	background: red !important;
 }
+
+.hindrance-selector-desc{
+	font-size: 12px;
+}
+#hindrance-select-wrapper{
+	overflow-y: scroll;
+	height: 200px;
+}
+.hindrance-select-row:hover{
+	background: pink;
+	cursor: pointer;
+}
+#hindrance-selector-l{
+	font-weight: bold;
+}
