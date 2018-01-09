@@ -143,7 +143,8 @@ for (let i=0; i<hindrances.length; i++){
     $("#hindrance-brow").before("<tr id='hindrance-row" + i + "'><td>" + hindrances[i].name + "<div class=hindrance-desc>" + hindrances[i].description + "</div></td></tr>");
 	hindranceRows.push('#hindrance-row' + i);
 	
-	$("#hindrance-select").append($("<tr class='hindrance-select-row'><td>" + hindrances[i].name + "</td><td>"+ hindrances[i].type +"</td><td class='hindrance-selector-desc'>" + hindrances[i].description + "</td><tr>").click(function(){step2HindranceSelector(i)}))
+	var ht = hindrances[i].type == MINOR ? "MINOR" : "MAJOR";
+	$("#hindrance-select").append($("<tr class='hindrance-select-row'><td>" + hindrances[i].name + "</td><td class='hindrance-selector-type'>" + ht + "</td><td class='hindrance-selector-desc'>" + hindrances[i].description + "</td><tr>").click(function(){step2HindranceSelector(i)}))
 }
 
 // Attribute selector --------------------------------------------

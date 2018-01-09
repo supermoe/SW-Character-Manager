@@ -63,7 +63,7 @@ td{
 	background: red !important;
 }
 
-.hindrance-selector-desc{
+.hindrance-selector-desc, .hindrance-selector-type{
 	font-size: 12px;
 }
 #hindrance-select-wrapper{
