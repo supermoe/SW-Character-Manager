@@ -1,0 +1,64 @@
+body{
+	font-family: sans-serif;
+}
+table{
+	width: 100%;
+}
+table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+td{
+    border: 1px solid black;
+}
+
+.hidden{
+    display: none !important;
+}
+
+.hindrance-desc{
+	font-size: 12px;
+	text-align: justify;
+}
+
+.button{
+	background: black;
+	cursor: pointer;
+	color: white;
+	display: inline-block;
+	border: 1px solid red;
+}
+
+#popup{
+	background: rgba(0,0,0,0.7);
+	position: absolute;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+}
+#popup>div{
+	background: white;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#wound-table>*{
+	text-align: center;
+}
+.wound-cell:hover{
+	background: pink;
+	cursor: pointer;
+}
+.checked-wound{
+	background: red !important;
+}

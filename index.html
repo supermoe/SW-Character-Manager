@@ -1,0 +1,117 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Character Manager</title>
+
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="rpg-font/css/rpg-awesome.css">
+    </head>
+    <body>
+        <table>
+            <tr>
+                <!-- Name -->
+                <td colspan=2><div>Unnamed</div></td>
+            </tr>
+            <tr>
+                <td>
+                    <!-- Exp -->
+                    <table>
+                        <tr><td><span id="exp-label">?</span>XP</td><td><div class="button" onclick="openXPSelector()">+</div><div id="levelup-b" class="button" onclick="openLevelUp()">Level Up</div></td></tr>
+                    </table>
+                    <!-- Wounds -->
+                    <table id="wound-table">
+                        <tr>
+                            <td class="wound-cell" id="wound0" onclick="wound(0)"><i class="ra ra-health"></i></td>
+                            <td class="wound-cell" id="wound1" onclick="wound(1)">1</td>
+                            <td class="wound-cell" id="wound2" onclick="wound(2)">2</td>
+                            <td class="wound-cell" id="wound3" onclick="wound(3)">3</td>
+                            <td class="wound-cell" id="wound4" onclick="wound(4)"><i class="ra ra-skull"></i></td>
+                        </tr>
+                    </table>
+                    <!-- Derived Attributes -->
+                    <table>
+                        <tr>
+                            <td>Pace:</td>
+                            <td id="pace-l"></td>
+                        </tr>
+                        <tr>
+                            <td>Parry:</td>
+                            <td id="parry-l"></td>
+                        </tr>
+                        <tr>
+                            <td>Toughness:</td>
+                            <td id="toughness-l"></td>
+                        </tr>
+                    </table>
+                    <!-- Attribute Panel -->
+                    <table>
+                        <tr><td colspan="2">Attribute Points:<span id="attribute-points-l"></span></td></tr>
+                        <tr id="attribute-brow"><td colspan="2"><div class="button" onclick="openAttributeSelector()">Increase</div></td></tr>
+                    </table>
+                    <!-- Skill Panel -->
+                    <table>
+                        <tr><td colspan="2">Skill Points:<span id="skill-points-l"></span></td></tr>
+                        <tr id="skill-brow"><td colspan="2"><div class="button" onclick="openSkillSelector()">Learn</div></td></tr>
+                    </table>
+                </td>
+                <td>
+                    <!-- Hindrances -->
+                    <table>
+                        <tr id="hindrance-brow"><td><div class="button" id="hindrance-b">Add</div></td></tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+		<div id="popup" class="hidden">
+            <!-- Attribute Selector -->
+			<div id="attribute-selector" class="hidden">
+				<table>
+					<tr><td colspan=3>Attribute Points:<span id="attribute-selector-available"></span></td></tr>
+					<tr id="attribute-selector-brow"><td colspan=3><div class="button" onclick="closeAttributeSelector()">Cancel</div><div class="button" onclick="attributeSelectorReset()">Reset</div><div id="attribute-selector-confirm-b" class="button">Confirm</div></td></tr>
+				</table>
+            </div>
+            
+            <!-- Skill Selector -->
+            <div id="skill-selector" class="hidden">
+				<table>
+                    <tr><td colspan=4>Skill Points:<span id="skill-selector-available"></span></td></tr>
+                    <tr>
+                        <td>Attribute</td>
+                        <td>Progress</td>
+                        <td>Cost</td>
+                    </tr>
+					<tr id="skill-selector-brow"><td colspan=4><div class="button" onclick="closeSkillSelector()">Cancel</div><div class="button" onclick="skillSelectorReset()">Reset</div><div id="skill-selector-confirm-b"class="button">Confirm</div></td></tr>
+				</table>
+            </div>
+            
+            <!-- Level Up -->
+            <div id="level-up" class="hidden">
+                <div>
+                    <div colspan=3>Choose an option to level up</div>
+                    <div class="button" onclick="edgeAdvance()">Gain 1<br>edge point</div><div class="button" onclick="skillAdvance()">Get 2<br>skill points</div><div class="button" onclick="attributeAdvance()">Gain 1<br>attribute point</div>
+                    <div>
+                        <div class="button" onclick="closeLevelUp()">Cancel</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- XP selector -->
+            <div>
+                <table id="xp-selector" class="hidden">
+                    <tr>
+                        <td><input id="xp-input" type="number"></td>
+                        <td>XP</td>
+                    </tr>
+                    <tr><td colspan=2><div class="button" onclick="closeXPSelector()">Cancel</div><div class="button" onclick="addXPSelector()">Add</div></td></tr>
+                </table>
+            </div>
+
+            <!-- Hindrance Selector -->
+		</div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="js/data.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>
