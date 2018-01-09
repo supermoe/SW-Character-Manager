@@ -6,6 +6,7 @@ paceDefault = 6;
 parryDefault = 2;
 toughnessDefault = 2;
 charismaDefault = 0;
+hindranceMax = 4;
 
 skills = [
     //AGILITY
@@ -88,7 +89,7 @@ MINOR = 1;
 MAJOR = 2;
 hindrances = [
     {
-		name:"AllThumbs", type:MAJOR,
+		name:"All Thumbs", type:MAJOR,
 		description:"-2 " + skills[7].name + "."
 	},
 	{
@@ -113,7 +114,7 @@ hindrances = [
 	},
 	{
 		name:"Bloodthirsty", type:MAJOR,
-		description:"Cannot useless than lethal force. Doesn't take prisoners."
+		description:"Cannot use less than lethal force. Doesn't take prisoners."
 	},
 	{
 		name:"Careful", type:MINOR,
