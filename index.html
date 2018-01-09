@@ -57,7 +57,7 @@
                 <td>
                     <!-- Hindrances -->
                     <table>
-                        <tr id="hindrance-brow"><td><div id="hindrance-add-b" class="button" onclick="openHindranceSelector()">Add</div></td></tr>
+                        <tr id="hindrance-brow"><td><div id="hindrance-add-b" class="button" onclick="openHindranceSelector()">Add</div><div id="hindrance-bonus-b" class="button" onclick="openBonusSelector()">Bonus</div></td></tr>
                     </table>
                 </td>
             </tr>
@@ -110,7 +110,7 @@
             <!-- Hindrance Selector -->
             <div id="hindrance-selector" class="hidden">
                 <div id="hindrance-selector-step1" class="hidden">
-                    <div>A MAJOR hindrance costs 2 points while a MINOR hindrance costs 1 point. You have <span id="hindrance-pt-l"></span> hindrance points left.</div>
+                    <div>You can take as many hindrances as you want but you receive at best 4 bonus points from them.<span id="hindrance-pt-l"></span>/4.</div>
                     <div id="hindrance-select-wrapper"><table id="hindrance-select">
                     </table></div>
                     <div><div class="button" onclick="closeHindranceSelector()">Cancel</div></div>
@@ -119,6 +119,20 @@
                     <div>Hindrances are permanent. Are you sure you want to add <span id="hindrance-selector-l"></span> to your character?</div>
                     <div><div class="button" onclick="closeHindranceSelector()">Cancel</div><div id="hindrance-selector-add-b" class="button">Add</div></div>
                 </div>
+            </div>
+
+            <!-- Bonus  Selector -->
+            <div id="bonus-selector" class="hidden">
+                <table>
+                    <tr><td colspan=3>Choose a bonus. <span id="hindrance-bonus-l"></span> points available.</span></td></tr>
+                    <tr><td>1</td><td>2</td><td>2</td></tr>
+                    <tr>
+                        <td><div class="button" onclick="skillBonus()">a skill point</div></td>
+                        <td><div class="button" onclick="edgeBonus()">an edge point</div></td>
+                        <td><div class="button" onclick="attributeBonus()">an attribute point</div></td>
+                    </tr>
+                    <tr><td colspan=3><div class="button" onclick="closeBonusSelector()">Cancel</div></td></tr>
+                </table>
             </div>
 		</div>
 

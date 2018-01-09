@@ -11,6 +11,7 @@ character = {
 	skillPoints: 10,
 	//hindrances
 	hindrances: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+	hindrancesUsed : 0,
 	//edges
 	edgesPoints: 1
 }
@@ -47,8 +48,11 @@ function update(){
 	$("#wound"+character.wounds).addClass("checked-wound");
 
 	//hindrances
-	$('#hindrance-pt-l').text(hindranceMax-hindranceCount())
+	$('#hindrance-pt-l').text(hindranceCount())
 	if (hindranceMax-hindranceCount() <= 0) $('#hindrance-add-b').addClass("hidden")
+	if (hindranceCount() - character.hindrancesUsed > 0) $('#hindrance-bonus-b').removeClass('hidden');
+	else $('#hindrance-bonus-b').addClass('hidden');
+	$('#hindrance-bonus-l').text(hindranceCount() - character.hindrancesUsed);
 
     for (var i=0; i<attributes.length; i++){
         $(attributeLabels[i]).html(die[character.attributes[i]])
@@ -143,7 +147,7 @@ for (let i=0; i<hindrances.length; i++){
     $("#hindrance-brow").before("<tr id='hindrance-row" + i + "'><td>" + hindrances[i].name + "<div class=hindrance-desc>" + hindrances[i].description + "</div></td></tr>");
 	hindranceRows.push('#hindrance-row' + i);
 	
-	var ht = hindrances[i].type == MINOR ? "MINOR" : "MAJOR";
+	var ht = hindrances[i].type //== MINOR ? "MINOR" : "MAJOR";
 	$("#hindrance-select").append($("<tr class='hindrance-select-row'><td>" + hindrances[i].name + "</td><td class='hindrance-selector-type'>" + ht + "</td><td class='hindrance-selector-desc'>" + hindrances[i].description + "</td><tr>").click(function(){step2HindranceSelector(i)}))
 }
 
@@ -271,7 +275,7 @@ function closeHindranceSelector(){
 	$("#hindrance-selector-step2").addClass("hidden")
 }
 function step2HindranceSelector(i){
-	if (hindranceMax - hindranceCount() - hindrances[i].type >= 0){
+	//if (hindranceMax - hindranceCount() - hindrances[i].type >= 0){
 		i = parseInt(i);
 		$("#hindrance-selector-step1").addClass("hidden")
 		$("#hindrance-selector-step2").removeClass("hidden")
@@ -282,6 +286,43 @@ function step2HindranceSelector(i){
 			update();
 			closeHindranceSelector();
 		})
+	//}
+}
+
+//bonus selector
+function openBonusSelector(){
+	$("#popup").removeClass("hidden")
+	$("#bonus-selector").removeClass("hidden")
+}
+function closeBonusSelector(){
+	$("#popup").addClass("hidden")
+	$("#bonus-selector").addClass("hidden")
+}
+function skillBonus(){
+	var cost = 1;
+	if (hindranceCount() - character.hindrancesUsed >= cost){ 
+		character.skillPoints++;
+		character.hindrancesUsed+=cost;
+		update();
+		closeBonusSelector();
+	}
+}
+function edgeBonus(){
+	var cost = 2; 
+	if (hindranceCount() - character.hindrancesUsed >= cost){
+		character.edgesPoints++;
+		character.hindrancesUsed+=cost;
+		update();
+		closeBonusSelector();
+	}
+}
+function attributeBonus(){
+	var cost = 2; 
+	if (hindranceCount() - character.hindrancesUsed >= cost) {
+		character.attributePoints++;
+		character.hindrancesUsed+=cost;
+		update();
+		closeBonusSelector();
 	}
 }
 
