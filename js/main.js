@@ -131,7 +131,7 @@ for (let i=0; i<skills.length; i++){
 
 	$("#skill-bump" + i).click(function(){
 		var cost = costOfBump(i, character.skills[i] + tempSkills.affected[i]+1)
-		if (character.skills[i] + tempSkills.affected[i] < die.length-1 && tempSkills.available > cost){
+		if (character.skills[i] + tempSkills.affected[i] < die.length-1 && tempSkills.available >= cost){
 			tempSkills.affected[i]++;
 			tempSkills.available -= cost;
 			updateSkillSelector();
