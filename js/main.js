@@ -50,6 +50,7 @@ function update(){
 	$("#wound"+character.wounds).addClass("checked-wound");
 
 	//hindrances
+	hindranceCount() > 0 ? $("#hindrance-null").addClass('hidden') : $("#hindrance-null").removeClass('hidden')
 	$('#hindrance-pt-l').text(hindranceCount())
 	if (hindranceMax-hindranceCount() <= 0) $('#hindrance-add-b').addClass("hidden")
 	if (hindranceCount() - character.hindrancesUsed > 0) $('#hindrance-bonus-b').removeClass('hidden');

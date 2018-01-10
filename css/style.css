@@ -77,3 +77,6 @@ td{
 #hindrance-selector-l{
 	font-weight: bold;
 }
+#hindrance-null, #edge-null{
+	color: gray;
+}
