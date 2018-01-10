@@ -13,13 +13,15 @@ character = {
 	hindrances: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
 	hindrancesUsed : 0,
 	//edges
-	edgesPoints: 1
+	edgesPoints: 1,
+	edges: [true, true, false, false, false, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
 }
 console.log(character.hindrances)
 attributeLabels = [];
 skillLabels = [];
 skillRows = [];
 hindranceRows = [];
+edgeRows = [];
 
 tempAttributes = {available:0, affected:[0,0,0,0,0]};
 tempAttributeLabels = [];
@@ -56,6 +58,18 @@ function update(){
 	if (hindranceCount() - character.hindrancesUsed > 0) $('#hindrance-bonus-b').removeClass('hidden');
 	else $('#hindrance-bonus-b').addClass('hidden');
 	$('#hindrance-bonus-l').text(hindranceCount() - character.hindrancesUsed);
+
+	//edges
+	edgeCount() > 0 ? $("#edge-null").addClass('hidden') : $("#edge-null").removeClass('hidden')
+	for (let i=0; i<edges.length; i++){
+		if (character.edges[i]) {
+			$(edgeRows[i]).removeClass("hidden");
+			if (edges[i].upgrades > -1) $(edgeRows[edges[i].upgrades]).addClass("hidden");
+		}
+		else {
+			$(edgeRows[i]).addClass("hidden");
+		}
+	}
 
     for (var i=0; i<attributes.length; i++){
         $(attributeLabels[i]).html(die[character.attributes[i]])
@@ -109,6 +123,12 @@ function hindranceCount(){
 	return total;
 }
 
+function edgeCount(){
+	total = 0;
+	for (let i=0; i<edges.length; i++) if (character.edges[i]) total++;
+	return total;
+}
+
 //start
 
 for (let i=0; i<attributes.length; i++){
@@ -152,6 +172,11 @@ for (let i=0; i<hindrances.length; i++){
 	
 	var ht = hindrances[i].type //== MINOR ? "MINOR" : "MAJOR";
 	$("#hindrance-select").append($("<tr class='hindrance-select-row'><td>" + hindrances[i].name + "</td><td class='hindrance-selector-type'>" + ht + "</td><td class='hindrance-selector-desc'>" + hindrances[i].description + "</td><tr>").click(function(){step2HindranceSelector(i)}))
+}
+
+for (let i=0; i<edges.length; i++){
+	$("#edge-brow").before("<tr id='edge-row" + i + "'><td>" + edges[i].name + "<div class=edge-desc>" + edges[i].description + "</div></td></tr>");
+	edgeRows.push('#edge-row' + i);
 }
 
 // Attribute selector --------------------------------------------

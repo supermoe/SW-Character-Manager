@@ -23,7 +23,7 @@ td{
     display: none !important;
 }
 
-.hindrance-desc{
+.hindrance-desc, .edge-desc{
 	font-size: 12px;
 	text-align: justify;
 }
