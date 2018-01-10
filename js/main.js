@@ -36,12 +36,14 @@ function update(){
 	if (character.exp >= levelUpCost) $('#levelup-b').removeClass("hidden");
 	else $('#levelup-b').addClass("hidden");
 
-	//pace, parry and toughness
+	//pace, parry, dodge, toughness and charisma
 	$("#pace-l").html(paceDefault);
 	var f = 0;
 	if (character.skills[12] >= 0) f = Math.floor((character.skills[12]*2+4)/2);
 	$("#parry-l").html(parryDefault + f);
+	$("#dodge-l").html(dodgeDefault);
 	$("#toughness-l").html(toughnessDefault + Math.floor((character.attributes[4]*2+4)/2));
+	$("#charisma-l").html(charismaDefault);
 
 	//wounds
 	for (let i=0; i<5; i++) $("#wound"+i).removeClass("checked-wound");

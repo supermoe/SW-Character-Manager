@@ -5,6 +5,7 @@ levelUpCost = 5;
 paceDefault = 6;
 parryDefault = 2;
 toughnessDefault = 2;
+dodgeDefault = 4;
 charismaDefault = 0;
 hindranceMax = 4;
 
