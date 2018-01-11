@@ -13,15 +13,21 @@ character = {
 	hindrances: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
 	hindrancesUsed : 0,
 	//edges
-	edgesPoints: 1,
+	edgePoints: 1,
 	edges: [true, true, false, false, false, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
 }
-console.log(character.hindrances)
 attributeLabels = [];
 skillLabels = [];
 skillRows = [];
 hindranceRows = [];
 edgeRows = [];
+edgeSelectorRows = [];
+
+reqid = 0;
+attributeReq = [];
+skillReq = [];
+edgeReq = [];
+levelReq = [];
 
 tempAttributes = {available:0, affected:[0,0,0,0,0]};
 tempAttributeLabels = [];
@@ -64,12 +70,17 @@ function update(){
 	for (let i=0; i<edges.length; i++){
 		if (character.edges[i]) {
 			$(edgeRows[i]).removeClass("hidden");
+			$(edgeSelectorRows[i]).addClass("hidden");
 			if (edges[i].upgrades > -1) $(edgeRows[edges[i].upgrades]).addClass("hidden");
 		}
 		else {
 			$(edgeRows[i]).addClass("hidden");
+			$(edgeSelectorRows[i]).removeClass("hidden");
 		}
 	}
+	$('#edge-points-l').text(character.edgePoints);
+	if (character.edgePoints > 0) $("#edge-add-b").removeClass("hidden")
+	else $("#edge-add-b").addClass("hidden")
 
     for (var i=0; i<attributes.length; i++){
         $(attributeLabels[i]).html(die[character.attributes[i]])
@@ -91,6 +102,23 @@ function update(){
 		else{
 			$(hindranceRows[i]).addClass('hidden');
 		}
+	}
+
+	for (let r of attributeReq){
+		if (character.attributes[r.attribute] < r.n) $(r.id).addClass("missing-req");
+		else $(r.id).removeClass("missing-req");
+	}
+	for (let r of skillReq){
+		if (character.skills[r.skill] < r.n) $(r.id).addClass("missing-req");
+		else $(r.id).removeClass("missing-req");
+	}
+	for (let r of edgeReq){
+		if (!character.edges[r.edge]) $(r.id).addClass("missing-req");
+		else $(r.id).removeClass("missing-req");
+	}
+	for (let r of levelReq){
+		if (character.level < r.level) $(r.id).addClass("missing-req");
+		else $(r.id).removeClass("missing-req");
 	}
 }
 
@@ -177,6 +205,30 @@ for (let i=0; i<hindrances.length; i++){
 for (let i=0; i<edges.length; i++){
 	$("#edge-brow").before("<tr id='edge-row" + i + "'><td>" + edges[i].name + "<div class=edge-desc>" + edges[i].description + "</div></td></tr>");
 	edgeRows.push('#edge-row' + i);
+
+	let reqs = "";
+	let loops = 0;
+	for (let r of edges[i].req_attribute){
+		if (loops>0) reqs += ", ";
+		reqs += "<span id='req"+reqid+"'>" + die[r[1]] + " " + attributes[r[0]] + "</span>";
+		attributeReq.push({id:"#req"+reqid++, attribute:r[0], n:r[1]});
+		loops++;
+	}
+	for (let r of edges[i].req_skill){
+		if (loops>0) reqs += ", ";
+		reqs += "<span id='req"+reqid+"'>" + die[r[1]] + " " + skills[r[0]].name + "</span>";
+		skillReq.push({id:"#req"+reqid++, skill:r[0], n:r[1]});
+		loops++;
+	}
+	if (edges[i].upgrades > -1){
+		if (loops>0) reqs += ", ";
+		reqs += "<span id='req"+reqid+"'>" + edges[edges[i].upgrades].name + "</span>";
+		edgeReq.push({id:"#req"+reqid++, edge:edges[i].upgrades});
+		loops++;
+	}
+	$("#edge-table").append($("<tr id='edge-selector-row"+i+"'><td>" + edges[i].name + "</td><td><span id='req"+reqid+"'>" + edges[i].req_level + "</span></td><td>" + reqs + "</td><td class='edge-selector-desc'>" + edges[i].description + "</td></tr>").click(function(){step2EdgeSelector(i)}));
+	edgeSelectorRows.push('#edge-selector-row' + i);
+	levelReq.push({id:"#req"+reqid++, level:edges[i].req_level});
 }
 
 // Attribute selector --------------------------------------------
@@ -256,7 +308,7 @@ function closeLevelUp(){
 	$("#level-up").addClass("hidden")
 }
 function edgeAdvance(){
-	character.edgesPoints++;
+	character.edgePoints++;
 	levelUp();
 	update();
 	closeLevelUp();
@@ -338,7 +390,7 @@ function skillBonus(){
 function edgeBonus(){
 	var cost = 2; 
 	if (hindranceCount() - character.hindrancesUsed >= cost){
-		character.edgesPoints++;
+		character.edgePoints++;
 		character.hindrancesUsed+=cost;
 		update();
 		closeBonusSelector();
@@ -351,6 +403,45 @@ function attributeBonus(){
 		character.hindrancesUsed+=cost;
 		update();
 		closeBonusSelector();
+	}
+}
+
+//edge-selector
+function openEdgeSelector(){
+	$("#popup").removeClass("hidden");
+	$("#edge-selector").removeClass("hidden");
+	$("#edge-selector-step1").removeClass("hidden");
+	$("#edge-selector-step2").addClass("hidden");
+}
+function closeEdgeSelector(){
+	$("#popup").addClass("hidden");
+	$("#edge-selector").addClass("hidden");
+}
+function isObtainableEdge(i){
+	if (character.level >= edges[i].req_level){
+		if (edges[i].upgrades >= 0) {
+			if (!character.edges[edges[i].upgrades]) return false;
+		}
+		for (let r of edges[i].req_attribute) {if (character.attributes[r[0]] < r[1]) return false};
+		for (let r of edges[i].req_skill) {if (character.skills[r[0]] < r[1]) return false};
+		return true;
+	}
+	else return false;
+}
+function step2EdgeSelector(i){
+	if (isObtainableEdge(i)) {
+		$("#edge-selector-step1").addClass("hidden");
+		$("#edge-selector-step2").removeClass("hidden");
+		$("#edge-selector-l").text(edges[i].name);
+		$("#edge-selector-add-b").off();
+		$("#edge-selector-add-b").click(function(){
+			if (character.edgePoints > 0){
+				character.edgePoints--;
+				character.edges[i] = true;
+				update();
+				closeEdgeSelector();
+			}
+		});
 	}
 }
 

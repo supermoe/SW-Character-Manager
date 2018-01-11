@@ -10,7 +10,7 @@ edges = [
     {
         name: "Acrobat",
         req_level: 0,
-        req_attribute: [[0, 2][3,1]],
+        req_attribute: [[0, 2], [3,1]],
         req_skill: [],
         upgrades: -1,
         description: ""
@@ -314,7 +314,7 @@ edges = [
     {
         name: "Thief",
         req_level: 0,
-        req_attribute: [[0,8]],
+        req_attribute: [[0,2]],
         req_skill: [],
         upgrades: -1,
         description: "+1 " + skills[13].name + ". +1 " + skills[2].name + ". +1 " + skills[0].name + "."

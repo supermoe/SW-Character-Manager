@@ -45,11 +45,17 @@ td{
 	right:0;
 }
 #popup>div{
-	background: white;
 	position: fixed;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	width: 90%;
+	text-align: center;
+}
+#popup>div>div, #popup>div>table{
+	background: white;
+	width: auto;
+	display: inline-block;
 }
 
 #wound-table>*{
@@ -63,20 +69,44 @@ td{
 	background: red !important;
 }
 
-.hindrance-selector-desc, .hindrance-selector-type{
+.hindrance-selector-desc, .edge-selector-desc, .hindrance-selector-type{
 	font-size: 12px;
 }
 #hindrance-select-wrapper{
 	overflow-y: scroll;
-	height: 200px;
+	height: 300px;
 }
 .hindrance-select-row:hover{
 	background: pink;
 	cursor: pointer;
 }
-#hindrance-selector-l{
+#hindrance-selector-l, #edge-selector-l{
 	font-weight: bold;
 }
 #hindrance-null, #edge-null{
 	color: gray;
+}
+
+#edge-selector-wrapper{
+	overflow-y: scroll;
+	max-height: 300px;
+}
+#edge-table{
+	border-collapse: separate;
+}
+#edge-table td{
+	box-sizing: border-box;
+}
+#edge-table th{
+	position: sticky;
+	top:0px;
+	background:grey;
+}
+#edge-table tr:hover{
+	background:pink;
+	cursor: pointer;
+}
+
+.missing-req{
+	color: red !important;
 }
