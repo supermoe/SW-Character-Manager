@@ -362,6 +362,11 @@ function step2HindranceSelector(i){
 		$("#hindrance-selector-l").text(hindrances[i].name);
 		$("#hindrance-selector-add-b").off();
 		$("#hindrance-selector-add-b").click(function(){
+			//elderly
+			if (i == 11) character.skillPoints += elderlySkillPoints;
+			//blind
+			if (i == 3) character.edgePoints++
+
 			character.hindrances[i] = true;
 			update();
 			closeHindranceSelector();

@@ -8,6 +8,7 @@ toughnessDefault = 2;
 dodgeDefault = 4;
 charismaDefault = 0;
 hindranceMax = 4;
+elderlySkillPoints = 4;
 
 skills = [
     //AGILITY
@@ -135,7 +136,7 @@ hindrances = [
 	},
 	{
 		name:"Elderly", type:MAJOR,
-		description:"-1 Pace, -2 " + attributes[3] + ". -2 " + attributes[4] + ". +3 Skill Points."
+		description:"-1 Pace, -2 " + attributes[3] + ". -2 " + attributes[4] + ". +4 Skill Points."
 	},
 	{
 		name:"Greedy", type:MAJOR,

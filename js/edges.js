@@ -13,7 +13,7 @@ edges = [
         req_attribute: [[0, 2], [3,1]],
         req_skill: [],
         upgrades: -1,
-        description: ""
+        description: "+2 to " + skills[13].name + ". +1 Parry if carrying few items."
     },
     {
         name: "Perceptive",
@@ -21,7 +21,7 @@ edges = [
         req_attribute: [],
         req_skill: [],
         upgrades: -1,
-        description: ""
+        description: "+2 " + skills[11].name + "."
     },
     {
         name: "Ambidextrous",
@@ -29,7 +29,7 @@ edges = [
         req_attribute: [[0, 2]],
         req_skill: [],
         upgrades: -1,
-        description: ""
+        description: "No penalty for using either hand."
     },
     {
         name: "Assassin",
@@ -37,7 +37,7 @@ edges = [
         req_attribute: [[0,2]],
         req_skill: [[2,2], [12, 1], [13, 1]],
         upgrades: -1,
-        description: ""
+        description: "+2 to damage when striking a foes unaware."
     },
     {
         name: "Attractive",
@@ -45,7 +45,7 @@ edges = [
         req_attribute: [[4,1]],
         req_skill: [],
         upgrades: -1,
-        description: ""
+        description: "Charisma +2."
     },
     {
         name: "Very Attractive",
@@ -53,7 +53,7 @@ edges = [
         req_attribute: [],
         req_skill: [],
         upgrades: 5,
-        description: ""
+        description: "Charisma +4."
     },
     {
         name: "Block",
@@ -61,7 +61,7 @@ edges = [
         req_attribute: [],
         req_skill: [[12,2]],
         upgrades: -1,
-        description: ""
+        description: "Parry +1."
     },
     {
         name: "Improved Block",
@@ -69,7 +69,7 @@ edges = [
         req_attribute: [],
         req_skill: [],
         upgrades: 7,
-        description: ""
+        description: "Parry +2."
     },
     {
         name: "Brawler",
@@ -77,7 +77,7 @@ edges = [
         req_attribute: [[3,2]],
         req_skill: [],
         upgrades: -1,
-        description: ""
+        description: "+2 to unarmed damage rolls."
     },
     {
         name: "Bruiser",
@@ -85,7 +85,7 @@ edges = [
         req_attribute: [],
         req_skill: [],
         upgrades: 9,
-        description: ""
+        description: "Unarmed damage die is a d8."
     },
     {
         name: "Brawny",
@@ -93,7 +93,7 @@ edges = [
         req_attribute: [[3,1], [4,1]],
         req_skill: [],
         upgrades: -1,
-        description: ""
+        description: "Toughness +1."
     },
     {
         name: "Charismatic",
@@ -101,7 +101,7 @@ edges = [
         req_attribute: [[2,2]],
         req_skill: [],
         upgrades: -1,
-        description: ""
+        description: "Charisma +2."
     },
     {
         name: "Combat Reflexes",
@@ -109,7 +109,7 @@ edges = [
         req_attribute: [],
         req_skill: [],
         upgrades: -1,
-        description: ""
+        description: "+2 to recover from Shaken."
     },
     {
         name: "Common Bond",
@@ -117,7 +117,7 @@ edges = [
         req_attribute: [[2,2]],
         req_skill: [],
         upgrades: -1,
-        description: ""
+        description: "May give " + benny_name + " to companions."
     },
     {
         name: "Counter",
@@ -125,7 +125,7 @@ edges = [
         req_attribute: [],
         req_skill: [[12,2]],
         upgrades: -1,
-        description: ""
+        description: "Free -2 " + skills[12].name + " attack when a foe misses against you."
     },
     {
         name: "Improved Counter",
@@ -133,23 +133,23 @@ edges = [
         req_attribute: [],
         req_skill: [],
         upgrades: 15,
-        description: ""
+        description: "Free " + skills[12].name + " attack when a foe misses against you."
     },
     {
-        name: "Dodge",
+        name: "Slippery",
         req_level: 4,
         req_attribute: [[0,2]],
         req_skill: [],
         upgrades: -1,
-        description: ""
+        description: "+1 dodge."
     },
     {
-        name: "Improved Dodge",
+        name: "Slippery 2",
         req_level: 8,
         req_attribute: [],
         req_skill: [],
         upgrades: 17,
-        description: ""
+        description: "+2 dodge."
     },
     {
         name: "Prepared",
@@ -173,7 +173,7 @@ edges = [
         req_attribute: [[4,2]],
         req_skill: [],
         upgrades: -1,
-        description: ""
+        description: "+2 to natural healing rolls."
     },
     {
         name: "Frenzy",
@@ -181,7 +181,7 @@ edges = [
         req_attribute: [],
         req_skill: [[12,3]],
         upgrades: -1,
-        description: ""
+        description: "Extra " + skills[12].name + " attack at -2."
     },
     {
         name: "Improved Frenzy",
@@ -189,7 +189,7 @@ edges = [
         req_attribute: [],
         req_skill: [],
         upgrades: 22,
-        description: ""
+        description: "Extra " + skills[12].name + " attack."
     },
     {
         name: "McGyver",
@@ -205,7 +205,7 @@ edges = [
         req_attribute: [],
         req_skill: [],
         upgrades: -1,
-        description: ""
+        description: "Additional d6 of damage when fighting very large enemies."
     },
     {
         name: "Hard to Kill",
@@ -213,7 +213,7 @@ edges = [
         req_attribute: [[2,2]],
         req_skill: [],
         upgrades: -1,
-        description: ""
+        description: "Ignore wound penalties when rolling " + attributes[4] + "."
     },
     {
         name: "Investigator",
@@ -221,7 +221,7 @@ edges = [
         req_attribute: [[1,2]],
         req_skill: [[11,2]],
         upgrades: -1,
-        description: ""
+        description: "+2 " + Awareness + " when searching."
     },
     {
         name: "Luck",
@@ -277,7 +277,7 @@ edges = [
         req_attribute: [[0,2]],
         req_skill: [],
         upgrades: -1,
-        description: ""
+        description: "May draw weapon as a free action."
     },
     {
         name: "Scavenger",
