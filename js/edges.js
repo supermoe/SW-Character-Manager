@@ -221,7 +221,7 @@ edges = [
         req_attribute: [[1,2]],
         req_skill: [[11,2]],
         upgrades: -1,
-        description: "+2 " + Awareness + " when searching."
+        description: "+2 " + skills[11].name + " when searching."
     },
     {
         name: "Luck",
