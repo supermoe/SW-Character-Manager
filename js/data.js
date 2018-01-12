@@ -155,8 +155,8 @@ hindrances = [
 		description:"Protects friends."
 	},
 	{
-		name:"Obese", type:MINOR,
-		description:"+1 Toughness. -1 Pace. -2 " + skills[13].name + "."
+		name:"Obese", type:MAJOR,
+		description:"+1 Toughness. -1 Pace. -1 dodge. -1 " + skills[13].name + "."
 	},
 	{
 		name:"One eyed", type:MAJOR,

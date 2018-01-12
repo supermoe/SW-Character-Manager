@@ -45,13 +45,11 @@ function update(){
 	else $('#levelup-b').addClass("hidden");
 
 	//pace, parry, dodge, toughness and charisma
-	$("#pace-l").html(paceDefault);
-	var f = 0;
-	if (character.skills[12] >= 0) f = Math.floor((character.skills[12]*2+4)/2);
-	$("#parry-l").html(parryDefault + f);
-	$("#dodge-l").html(dodgeDefault);
-	$("#toughness-l").html(toughnessDefault + Math.floor((character.attributes[4]*2+4)/2));
-	$("#charisma-l").html(charismaDefault);
+	FillPaceLabel();
+	FillParryLabel();
+	FillDodgeLabel();
+	FillToughnessLabel();
+	FillCharismaLabel();
 
 	//wounds
 	for (let i=0; i<5; i++) $("#wound"+i).removeClass("checked-wound");
@@ -155,6 +153,48 @@ function edgeCount(){
 	total = 0;
 	for (let i=0; i<edges.length; i++) if (character.edges[i]) total++;
 	return total;
+}
+
+function FillPaceLabel(){
+	console.log(character.hindrances[11]);
+	var elderly = character.hindrances[11] ? 1 : 0;
+	var obese = character.hindrances[16] ? 1 : 0;
+	var pace = paceDefault - elderly - obese;
+	$("#pace-l").html(pace);
+}
+
+function FillParryLabel(){
+	var f = 0;
+	if (character.skills[12] >= 0) f = Math.floor((character.skills[12]*2+4)/2);
+	var block = character.edges[7] ? (character.edges[8] ? 2 : 1) : 0
+	var parry = parryDefault + f + block;
+	$("#parry-l").html(parry);
+}
+
+function FillDodgeLabel(){
+	var obese = character.hindrances[16] ? 1 : 0;
+	var slippery = character.edges[17] ? (character.edges[18] ? 2 : 1) : 0
+	var dodge = dodgeDefault - obese + slippery;
+	$("#dodge-l").html(dodge);
+}
+
+function FillToughnessLabel(){
+	var vigor = Math.floor((character.attributes[4]*2+4)/2)
+	var small = character.hindrances[20] ? 1 : 0;
+	var obese = character.hindrances[16] ? 1 : 0;
+	var brawny = character.edges[11] ? 1 : 0;
+	var tough = character.edges[40] ? (character.edges[41] ? 2 : 1) : 0
+	var toughness = toughnessDefault + vigor + obese - small + brawny + tough;
+	$("#toughness-l").html(toughness);
+}
+
+function FillCharismaLabel(){
+	var oneeyed = character.hindrances[17] ? 1 : 0;
+	var ugly = character.hindrances[21] ? 2 : 0;
+	var attractive = character.edges[5] ? (character.edges[6] ? 4 : 2) : 0;
+	var cha = character.edges[12] ? 2 : 0;
+	var charisma = charismaDefault - ugly - oneeyed + attractive + cha;
+	$("#charisma-l").html(charisma);
 }
 
 //start

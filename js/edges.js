@@ -136,7 +136,7 @@ edges = [
         description: "Free " + skills[12].name + " attack when a foe misses against you."
     },
     {
-        name: "Slippery",
+        name: "Nimble",
         req_level: 4,
         req_attribute: [[0,2]],
         req_skill: [],
@@ -144,7 +144,7 @@ edges = [
         description: "+1 dodge."
     },
     {
-        name: "Slippery 2",
+        name: "Slippery",
         req_level: 8,
         req_attribute: [],
         req_skill: [],
