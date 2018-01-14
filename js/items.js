@@ -1,13 +1,13 @@
-type = {stackable:0, weapon:1, armor:2, other:3}
+type = {stackable:0, weapon:1, armor:2, other:3, craft:4}
 
 //inventory
 function updateInventory(){
-	$("#inventory-stackable").find(".item-row").remove()
+	$("#inventory-stackable").find(".item-row").remove();
 	for (let item of character.inventory.stackables){
-		$("#inventory-stackable").append("<tr class='item-row'><td>" + item.name + "</td><td>" + item.pcs + "</td></tr>")
+		$("#inventory-stackable").append("<tr class='item-row'><td>" + item.name + "</td><td>" + item.pcs + "</td></tr>");
 	}
 
-	$("#inventory-weapon").find(".item-row").remove()
+	$("#inventory-weapon").find(".item-row").remove();
 	for (let item of character.inventory.weapons){
 		var dmg = "";
 		var elems = 0;
@@ -26,17 +26,22 @@ function updateInventory(){
 			if (r != 0) range += "/"
 			range += item.range[r];
 		}
-		$("#inventory-weapon").append("<tr class='item-row'><td>" + item.name + "</td><td>" + dmg + "</td><td>" + twohanded + "</td><td>" + range + "</td><td>" + item.description + "</td></tr>")
+		$("#inventory-weapon").append("<tr class='item-row'><td>" + item.name + "</td><td>" + dmg + "</td><td>" + twohanded + "</td><td>" + range + "</td><td>" + item.description + "</td></tr>");
 	}
 
-	$("#inventory-armor").find(".item-row").remove()
+	$("#inventory-armor").find(".item-row").remove();
 	for (let item of character.inventory.armors){
-		$("#inventory-armor").append("<tr class='item-row'><td>" + item.name + "</td><td>" + item.armor + "</td><td>" + item.description + "</td></tr>")
+		$("#inventory-armor").append("<tr class='item-row'><td>" + item.name + "</td><td>" + item.armor + "</td><td>" + item.description + "</td></tr>");
 	}
 
-	$("#inventory-other").find(".item-row").remove()
+	$("#inventory-other").find(".item-row").remove();
 	for (let item of character.inventory.others){
-		$("#inventory-other").append("<tr class='item-row'><td>" + item.name + "</td><td>" + item.description + "</td></tr>")
+		$("#inventory-other").append("<tr class='item-row'><td>" + item.name + "</td><td>" + item.description + "</td></tr>");
+	}
+
+	$("#crafting-recipes").find(".craft-row").remove();
+	for (let item of character.inventory.crafts){
+		$("#crafting-recipes").append("<tr class='craft-row'><td>" + item.req + "</td><td>" + item.name + "</td></tr>");
 	}
 }
 
@@ -46,7 +51,7 @@ function addItem(json){
 		case type.stackable:
 			if (("name" in item && typeof item.name == 'string') &&
 			("pcs" in item && typeof item.pcs == 'number')){
-				for (let s of character.inventory.stackables){
+				for (var s of character.inventory.stackables){
 					item.name = item.name.toLowerCase();
 					if (s.name == item.name) {
 						s.pcs += item.pcs;
@@ -92,6 +97,24 @@ function addItem(json){
 				return "success : item added.";
 			}
 			break;
+		case type.craft:
+			if (("name" in item && typeof item.name == 'string') &&
+			("req" in item && typeof item.req == 'number') &&
+			("input" in item && typeof item.input == 'object' && item.input.length > 0) && 
+			("output" in item && typeof item.output == 'object')){
+				for (var craft of character.inventory.crafts){
+					if (craft.name == item.name) {
+						craft.input = item.input;
+						craft.output = item.output;
+						updateInventory();
+						return "success : crafting recipe updated.";
+					}
+				}
+				character.inventory.crafts.push(item);
+				updateInventory();
+				return "success : crafting recipe added.";
+			}
+			break;
 		default:
 			return "error : item has an invalid type.";
 	}
@@ -109,6 +132,17 @@ function importItem(){
 	addItem($("#importer-input").val());
 	closeItemImport();
 }
+
+function openInventory(){
+	$(".inv").removeClass("hidden");
+	$(".craft").addClass("hidden");
+	
+}
+function openCrafting(){
+	$(".inv").addClass("hidden");
+	$(".craft").removeClass("hidden");
+}
+openInventory();
 
 var poop = JSON.stringify({
 	type: type.stackable,
@@ -148,4 +182,20 @@ var key = JSON.stringify({
 	type: type.other,
 	name: "Prison Key",
 	description: "Key of the underground prison."
+});
+
+var recipe = JSON.stringify({
+	type: type.craft,
+	name: "Hi-Frequency Katana",
+	req: 0,
+	input: [{material: "poop", pcs: 5}],
+	output: {
+		type: type.weapon,
+		name: "Hi-Frequency Katana",
+		damage: {attribute:3, die:1, multiplier:1, flat:0},
+		twohanded: false,
+		range: [1],
+		mods: [],
+		description: "A katana vibrating at high frequency to cut through material like butter."
+	}
 });

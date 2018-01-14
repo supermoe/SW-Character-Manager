@@ -16,7 +16,7 @@ character = {
 	edgePoints: 1,
 	edges: [true, true, false, false, false, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
 	//inventory
-	inventory: {stackables:[], weapons:[], armors:[], others:[]}
+	inventory: {stackables:[], weapons:[], armors:[], others:[], crafts:[]}
 }
 attributeLabels = [];
 skillLabels = [];

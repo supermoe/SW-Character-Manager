@@ -9,8 +9,12 @@
 	<body>
 		<table>
 			<tr>
+				<!-- menu -->
+				<td colspan="2"><div class="button">Import Character</div><div class="button">Save</div><div class="button" onclick="openItemImport()">Import code</div></td>
+			</tr>
+			<tr>
 				<!-- Name -->
-				<td colspan=2><div>Unnamed</div></td>
+				<td colspan="2"><div>Unnamed</div></td>
 			</tr>
 			<tr>
 				<td>
@@ -76,9 +80,10 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2"><div>Inventory<br><div class="button" onclick="openItemImport()">Add</div></td>
+				<td colspan="2"><div class="Button" onclick="openInventory()">Inventory</div><div class="Button" onclick="openCrafting()">Crafting</div></td>
 			</tr>
-			<tr id="inventory-stackable-wrapper">
+			<!-- Inventory -->
+			<tr class="inv" id="inventory-stackable-wrapper">
 				<td colspan="2">
 					<table id="inventory-stackable">
 						<tr>
@@ -88,7 +93,7 @@
 					</table>
 				</td>
 			</tr>
-			<tr id="inventory-weapon-wrapper">
+			<tr class="inv" id="inventory-weapon-wrapper">
 				<td colspan="2">
 					<table id="inventory-weapon">
 						<tr>
@@ -101,7 +106,7 @@
 					</table>
 				</td>
 			</tr>
-			<tr id="inventory-armor-wrapper">
+			<tr class="inv" id="inventory-armor-wrapper">
 				<td colspan="2">
 					<table id="inventory-armor">
 						<tr>
@@ -112,16 +117,27 @@
 					</table>
 				</td>
 			</tr>
-			<tr id="inventory-others-wrapper">
-					<td colspan="2">
-						<table id="inventory-other">
-							<tr>
-								<th>Name</th>
-								<th>Description</th>
-							</tr>
-						</table>
-					</td>
-				</tr>
+			<tr class="inv" id="inventory-others-wrapper">
+				<td colspan="2">
+					<table id="inventory-other">
+						<tr>
+							<th>Name</th>
+							<th>Description</th>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<!-- Crafting -->
+			<tr class="craft">
+				<td colspan="2">
+					<table id="crafting-recipes">
+						<tr>
+							<th>Tinkering</th>
+							<th>Recipe</th>
+						</tr>
+					</table>
+				</td>
+			</tr>
 		</table>
 
 		<div id="popup" class="hidden">
@@ -218,10 +234,10 @@
 				</div>
 			</div>
 
-			<!-- item importer -->
+			<!-- code importer -->
 			<div id="item-importer" class="hidden">
 				<div>
-					<div>Paste an item code here</div>
+					<div>Paste a code here</div>
 					<div><input id="importer-input" type="text"></div>
 					<div class="button" onclick="closeItemImport()">Cancel</div>
 					<div class="button" onclick="importItem()">Add</div>
