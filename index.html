@@ -244,6 +244,16 @@
 				</div>
 			</div>
 
+			<!-- crafting window -->
+			<div id="crafting-window" class="hidden">
+				<table>
+					<tr><td colspan="2">Do you want to craft <span id="crafting-name-l"></span>?</td></tr>
+					<tr><th>Materials</th><th>Output</th></tr>
+					<tr><td id="crafting-input"></td><td id="crafting-output"></td></tr>
+					<tr><td colspan="2"><div class="button" onclick="closeCraftingWindow()">Cancel</div><div id="crafting-confirm-b" class="button">Craft</div></td></tr>
+				</table>
+			</div>
+
 		</div>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

@@ -41,7 +41,9 @@ function updateInventory(){
 
 	$("#crafting-recipes").find(".craft-row").remove();
 	for (let item of character.inventory.crafts){
-		$("#crafting-recipes").append("<tr class='craft-row'><td>" + item.req + "</td><td>" + item.name + "</td></tr>");
+		$("#crafting-recipes").append($("<tr class='craft-row'><td>" + item.req + "</td><td>" + item.name + "</td></tr>").click(function(){
+			openCraftingWindow(item);
+		}));
 	}
 }
 
@@ -103,7 +105,7 @@ function addItem(json){
 			("input" in item && typeof item.input == 'object' && item.input.length > 0) && 
 			("output" in item && typeof item.output == 'object')){
 				for (var craft of character.inventory.crafts){
-					if (craft.name == item.name) {
+					if (craft.name.toLowerCase() == item.name.toLowerCase()) {
 						craft.input = item.input;
 						craft.output = item.output;
 						updateInventory();
@@ -143,6 +145,85 @@ function openCrafting(){
 	$(".craft").removeClass("hidden");
 }
 openInventory();
+
+function openCraftingWindow(item){
+	$("#popup").removeClass("hidden");
+	$("#crafting-window").removeClass("hidden");
+	updateCraftingWindow(item);
+}
+function closeCraftingWindow(){
+	$("#popup").addClass("hidden");
+	$("#crafting-window").addClass("hidden");
+}
+function updateCraftingWindow(item){
+	$("#crafting-name-l").text(item.name);
+	$("#crafting-input").children().remove();
+	$("#crafting-output").children().remove();
+	for (let inp of item.input){
+		$("#crafting-input").append("<div>" + inp.pcs + " " + inp.material + "</div>");
+	}
+	switch (item.output.type){
+		case type.weapon:
+			$("#crafting-output").append("<div>" + item.output.name + "</div>");
+			var dmg = "";
+			var elems = 0;
+			if (item.output.damage.attribute >= 0) {dmg += attributes[item.output.damage.attribute]; elems++}
+			if (item.output.damage.die >= 0) {
+				dmg += elems > 0 ? " + " + item.output.damage.multiplier + die[item.output.damage.die] : item.output.damage.multiplier + die[item.output.damage.die];
+				elems++
+			}
+			if (item.output.damage.flat > 0) {
+				dmg += elems > 0 ? " + " + item.output.damage.flat : item.output.damage.flat;
+				elems++
+			}
+			var twohanded = item.output.twohanded ? "yes" : "no";
+			var range = ""
+			for (let r in item.output.range){
+				if (r != 0) range += "/"
+				range += item.output.range[r];
+			}
+			$("#crafting-output").append("<div>" + "damage: " + dmg + "</div>");
+			$("#crafting-output").append("<div>" + "2h: " + twohanded + "</div>");
+			$("#crafting-output").append("<div>" + "range: " + range + "</div>");
+			break;
+		case type.armor:
+			$("#crafting-output").append("<div>" + item.output.name + "</div>");
+			$("#crafting-output").append("<div>" + "armor: " + item.output.armor + "</div>");
+			break;
+		case stackable:
+			$("#crafting-output").append("<div>" + item.output.pcs + " " + item.output.name + "</div>");
+			break;
+	}
+
+	$("#crafting-confirm-b").off();
+	if (isCraftable(item)){
+		$("#crafting-confirm-b").click(function(){
+			for (let mat of item.input){
+				for (let stackable of character.inventory.stackables){
+					if (mat.material.toLowerCase() == stackable.name.toLowerCase()) stackable.pcs -= mat.pcs;
+				}
+			}
+			addItem(JSON.stringify(item.output));
+			closeCraftingWindow();
+			updateInventory();
+		});
+	}
+}
+function isCraftable(item){
+	for (let mat of item.input){
+		if (!isInInventory(mat.material, mat.pcs)) return false;
+	}
+	return true;
+}
+function isInInventory(name, pcs){
+	for (let stackable of character.inventory.stackables){
+		if (stackable.name.toLowerCase() == name.toLowerCase()){
+			if (stackable.pcs >= pcs) return true;
+			else return false;
+		} 
+	}
+	return false;
+}
 
 var poop = JSON.stringify({
 	type: type.stackable,
@@ -197,5 +278,19 @@ var recipe = JSON.stringify({
 		range: [1],
 		mods: [],
 		description: "A katana vibrating at high frequency to cut through material like butter."
+	}
+});
+
+var recipe2 = JSON.stringify({
+	type: type.craft,
+	name: "trenchcoat",
+	req: 0,
+	input: [{material: "poop", pcs: 5}],
+	output: {
+		type: type.armor,
+		name: "trenchcoat",
+		armor: 1,
+		mods: [],
+		description: "Brown trenchcoat."
 	}
 });
