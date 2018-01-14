@@ -7,14 +7,16 @@ character = {
     attributes: [0,0,0,0,0],
 	attributePoints: 5,
 	//skills
-	skills: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+	skills: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, -1],
 	skillPoints: 10,
 	//hindrances
 	hindrances: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
 	hindrancesUsed : 0,
 	//edges
 	edgePoints: 1,
-	edges: [true, true, false, false, false, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+	edges: [true, true, false, false, false, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+	//inventory
+	inventory: {stackables:[], weapons:[], armors:[], others:[]}
 }
 attributeLabels = [];
 skillLabels = [];
@@ -219,7 +221,7 @@ for (let i=0; i<skills.length; i++){
     $("#skill-brow").before("<tr id='skill-row" + i + "'><td>" + skills[i].name + ":" + "</td><td id='skill-l" + i + "'></td></tr>");
     skillLabels.push('#skill-l' + i);
 	skillRows.push('#skill-row' + i);
-	
+
 	$("#skill-selector-brow").before("<tr><td>" + skills[i].name + "</td><td>" + skillDie(character.skills[i]) + " -> <span id='temp-skill-l" + i + "'></span></td><td><span id='skill-cost" + i + "'></span></td><td><div id='skill-bump" + i + "' class='button'>+</div></td></tr>");
 	tempSkillLabels.push('#temp-skill-l' + i);
 	skillCostLabels.push('#skill-cost' + i);
@@ -237,7 +239,7 @@ for (let i=0; i<skills.length; i++){
 for (let i=0; i<hindrances.length; i++){
     $("#hindrance-brow").before("<tr id='hindrance-row" + i + "'><td>" + hindrances[i].name + "<div class=hindrance-desc>" + hindrances[i].description + "</div></td></tr>");
 	hindranceRows.push('#hindrance-row' + i);
-	
+
 	var ht = hindrances[i].type //== MINOR ? "MINOR" : "MAJOR";
 	$("#hindrance-select").append($("<tr class='hindrance-select-row'><td>" + hindrances[i].name + "</td><td class='hindrance-selector-type'>" + ht + "</td><td class='hindrance-selector-desc'>" + hindrances[i].description + "</td><tr>").click(function(){step2HindranceSelector(i)}))
 }
@@ -425,7 +427,7 @@ function closeBonusSelector(){
 }
 function skillBonus(){
 	var cost = 1;
-	if (hindranceCount() - character.hindrancesUsed >= cost){ 
+	if (hindranceCount() - character.hindrancesUsed >= cost){
 		character.skillPoints++;
 		character.hindrancesUsed+=cost;
 		update();
@@ -433,7 +435,7 @@ function skillBonus(){
 	}
 }
 function edgeBonus(){
-	var cost = 2; 
+	var cost = 2;
 	if (hindranceCount() - character.hindrancesUsed >= cost){
 		character.edgePoints++;
 		character.hindrancesUsed+=cost;
@@ -442,7 +444,7 @@ function edgeBonus(){
 	}
 }
 function attributeBonus(){
-	var cost = 2; 
+	var cost = 2;
 	if (hindranceCount() - character.hindrancesUsed >= cost) {
 		character.attributePoints++;
 		character.hindrancesUsed+=cost;

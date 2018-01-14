@@ -75,6 +75,53 @@
 					</table>
 				</td>
 			</tr>
+			<tr>
+				<td colspan="2"><div>Inventory<br><div class="button" onclick="openItemImport()">Add</div></td>
+			</tr>
+			<tr id="inventory-stackable-wrapper">
+				<td colspan="2">
+					<table id="inventory-stackable">
+						<tr>
+							<th>Name</th>
+							<th>Pcs</th>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr id="inventory-weapon-wrapper">
+				<td colspan="2">
+					<table id="inventory-weapon">
+						<tr>
+							<th>Name</th>
+							<th>Damage</th>
+							<th>2h</th>
+							<th>Range</th>
+							<th>Description</th>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr id="inventory-armor-wrapper">
+				<td colspan="2">
+					<table id="inventory-armor">
+						<tr>
+							<th>Name</th>
+							<th>Armor</th>
+							<th>Description</th>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr id="inventory-others-wrapper">
+					<td colspan="2">
+						<table id="inventory-other">
+							<tr>
+								<th>Name</th>
+								<th>Description</th>
+							</tr>
+						</table>
+					</td>
+				</tr>
 		</table>
 
 		<div id="popup" class="hidden">
@@ -171,11 +218,22 @@
 				</div>
 			</div>
 
+			<!-- item importer -->
+			<div id="item-importer" class="hidden">
+				<div>
+					<div>Paste an item code here</div>
+					<div><input id="importer-input" type="text"></div>
+					<div class="button" onclick="closeItemImport()">Cancel</div>
+					<div class="button" onclick="importItem()">Add</div>
+				</div>
+			</div>
+
 		</div>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="js/data.js"></script>
 		<script src="js/edges.js"></script>
 		<script src="js/main.js"></script>
+		<script src="js/items.js"></script>
 	</body>
 </html>

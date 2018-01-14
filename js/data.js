@@ -76,7 +76,7 @@ skills = [
     },
     //STRENGTH
     {
-        attribute:3,
+        attribute:0,
         name:'Melee',
         description:"One's talent with melee weapons."
     },
@@ -84,6 +84,11 @@ skills = [
         attribute:3,
         name:'Athletics',
         description:"One's prowess in athletics and acrobatics."
+    },
+	{
+        attribute:1,
+        name:'Barter',
+        description:"Your ability to make profits from commerce."
     }
 ];
 

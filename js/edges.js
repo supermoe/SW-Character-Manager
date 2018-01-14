@@ -391,4 +391,12 @@ edges = [
         upgrades: 47,
         description: "+2 Parry."
     },
+	{
+        name: "Connections",
+        req_level: 0,
+        req_attribute: [],
+        req_skill: [],
+        upgrades: 47,
+        description: "+2 " + skills[14]
+    },
 ]
