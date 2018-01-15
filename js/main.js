@@ -202,7 +202,7 @@ function FillCharismaLabel(){
 //start
 
 for (let i=0; i<attributes.length; i++){
-    $("#attribute-brow").before("<tr><td>" + attributes[i] + ":" + "</td><td id='attribute-l" + i + "'></td></tr>");
+    $("#attribute-brow").before("<tr><td>" + attributes[i] + ":" + "</td><td class='stat-label' id='attribute-l" + i + "'></td></tr>");
     attributeLabels.push('#attribute-l' + i);
 
 	$("#attribute-selector-brow").before("<tr><td>" + attributes[i] + "</td><td>" + die[character.attributes[i]] + " -> <span id='temp-attribute-l" + i + "'></span></td><td><div id='attribute-bump" + i + "' class='button'>+</div></td></tr>");
@@ -218,7 +218,7 @@ for (let i=0; i<attributes.length; i++){
 }
 
 for (let i=0; i<skills.length; i++){
-    $("#skill-brow").before("<tr id='skill-row" + i + "'><td>" + skills[i].name + ":" + "</td><td id='skill-l" + i + "'></td></tr>");
+    $("#skill-brow").before("<tr id='skill-row" + i + "'><td>" + skills[i].name + ":" + "</td><td class='stat-label' id='skill-l" + i + "'></td></tr>");
     skillLabels.push('#skill-l' + i);
 	skillRows.push('#skill-row' + i);
 
@@ -237,7 +237,7 @@ for (let i=0; i<skills.length; i++){
 }
 
 for (let i=0; i<hindrances.length; i++){
-    $("#hindrance-brow").before("<tr id='hindrance-row" + i + "'><td>" + hindrances[i].name + "<div class=hindrance-desc>" + hindrances[i].description + "</div></td></tr>");
+    $("#hindrance-brow").before("<tr id='hindrance-row" + i + "'><td><div class='hecell'>" + hindrances[i].name + "<div class=hindrance-desc>" + hindrances[i].description + "</div></div></td></tr>");
 	hindranceRows.push('#hindrance-row' + i);
 
 	var ht = hindrances[i].type //== MINOR ? "MINOR" : "MAJOR";
@@ -245,7 +245,7 @@ for (let i=0; i<hindrances.length; i++){
 }
 
 for (let i=0; i<edges.length; i++){
-	$("#edge-brow").before("<tr id='edge-row" + i + "'><td>" + edges[i].name + "<div class=edge-desc>" + edges[i].description + "</div></td></tr>");
+	$("#edge-brow").before("<tr id='edge-row" + i + "'><td><div class='hecell'>" + edges[i].name + "<div class=edge-desc>" + edges[i].description + "</div></div></td></tr>");
 	edgeRows.push('#edge-row' + i);
 
 	let reqs = "";

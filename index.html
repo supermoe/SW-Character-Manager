@@ -17,11 +17,13 @@
 				<td colspan="2"><div>Unnamed</div></td>
 			</tr>
 			<tr>
-				<td>
+				<td id="left-pane">
 					<!-- Exp -->
-					<table>
-						<tr><td><span id="exp-label">?</span>XP</td><td><div class="button" onclick="openXPSelector()">+</div><div id="levelup-b" class="button" onclick="openLevelUp()">Level Up</div></td></tr>
-					</table>
+					<div id="exp-wrapper">
+						<table>
+							<tr><td><span id="exp-label" class="stat-label">?</span>XP</td><td><div class="button" onclick="openXPSelector()">+</div><div id="levelup-b" class="button" onclick="openLevelUp()">Level Up</div></td></tr>
+						</table>
+					</div>
 					<!-- Wounds -->
 					<table id="wound-table">
 						<tr>
@@ -33,116 +35,110 @@
 						</tr>
 					</table>
 					<!-- Derived Attributes -->
-					<table>
-						<tr>
-							<td>Pace:</td>
-							<td><span id="pace-l"></span><span id="pace-modifier-l"></span></td>
-						</tr>
-						<tr>
-							<td>Parry:</td>
-							<td><span id="parry-l"></span><span id="parry-modifier-l"></span></td>
-						</tr>
-						<tr>
-							<td>Dodge:</td>
-							<td><span id="dodge-l"></span><span id="dodge-modifier-l"></span></td>
-						</tr>
-						<tr>
-							<td>Toughness:</td>
-							<td><span id="toughness-l"></span><span id="toughness-modifier-l"></span></td>
-						</tr>
-						<tr>
-							<td>Charisma:</td>
-							<td><span id="charisma-l"></span><span id="charisma-modifier-l"></span></td>
-						</tr>
-					</table>
+					<div id="derived-attributes">
+						<table>
+							<tr><td colspan="2" class="stat-title">Derived Attributes</td></tr>
+							<tr>
+								<td>Pace:</td>
+								<td><span id="pace-l" class="stat-label"></span><span id="pace-modifier-l"></span></td>
+							</tr>
+							<tr>
+								<td>Parry:</td>
+								<td><span id="parry-l" class="stat-label"></span><span id="parry-modifier-l"></span></td>
+							</tr>
+							<tr>
+								<td>Dodge:</td>
+								<td><span id="dodge-l" class="stat-label"></span><span id="dodge-modifier-l"></span></td>
+							</tr>
+							<tr>
+								<td>Toughness:</td>
+								<td><span id="toughness-l" class="stat-label"></span><span id="toughness-modifier-l"></span></td>
+							</tr>
+							<tr>
+								<td>Charisma:</td>
+								<td><span id="charisma-l" class="stat-label"></span><span id="charisma-modifier-l"></span></td>
+							</tr>
+						</table>
+					</div>
 					<!-- Attribute Panel -->
-					<table>
-						<tr><td colspan="2">Attribute Points:<span id="attribute-points-l"></span></td></tr>
-						<tr id="attribute-brow"><td colspan="2"><div class="button" onclick="openAttributeSelector()">Increase</div></td></tr>
-					</table>
+					<div id="attributes">
+						<table>
+							<tr><td colspan="2" class="stat-title">Main Attributes<span id="attribute-points-l"></span></td></tr>
+							<tr id="attribute-brow" class="brow"><td colspan="2"><div class="button" onclick="openAttributeSelector()">Increase</div></td></tr>
+						</table>
+					</div>
 					<!-- Skill Panel -->
-					<table>
-						<tr><td colspan="2">Skill Points:<span id="skill-points-l"></span></td></tr>
-						<tr id="skill-brow"><td colspan="2"><div class="button" onclick="openSkillSelector()">Learn</div></td></tr>
-					</table>
+					<div id="skills">
+						<table>
+							<tr><td colspan="2" class="stat-title">Skills<span id="skill-points-l"></span></td></tr>
+							<tr id="skill-brow" class="brow"><td colspan="2"><div class="button" onclick="openSkillSelector()">Learn</div></td></tr>
+						</table>
+					</div>
 				</td>
 				<td>
 					<!-- Hindrances -->
-					<table>
-						<tr id="hindrance-null"><td>No Hindrances</td></tr>
-						<tr id="hindrance-brow"><td><div id="hindrance-add-b" class="button" onclick="openHindranceSelector()">Add</div><div id="hindrance-bonus-b" class="button" onclick="openBonusSelector()">Bonus</div></td></tr>
-					</table>
+					<div id="hindrance-wrapper">
+						<table>
+							<tr id="hindrance-null"><td><div class="hecell">No Hindrances</div></td></tr>
+							<tr id="hindrance-brow" class="brow"><td><div id="hindrance-add-b" class="button" onclick="openHindranceSelector()">Add</div><div id="hindrance-bonus-b" class="button" onclick="openBonusSelector()">Bonus</div></td></tr>
+						</table>
+					</div>
 					<!-- Hindrances -->
-					<table>
-						<tr id="edge-null"><td>No Edges</td></tr>
-						<tr id="edge-brow"><td><div id="edge-add-b" class="button" onclick="openEdgeSelector()">Add</div></td></tr>
-					</table>
+					<div id="edge-wrapper">
+						<table>
+							<tr id="edge-null"><td><div class="hecell">No Edges</div></td></tr>
+							<tr id="edge-brow" class="brow"><td><div id="edge-add-b" class="button" onclick="openEdgeSelector()">Add</div></td></tr>
+						</table>
+					</div>
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2"><div class="Button" onclick="openInventory()">Inventory</div><div class="Button" onclick="openCrafting()">Crafting</div></td>
+				<td colspan="2" id='inv-tabs-wrapper'><div class="inv-tab" onclick="openInventory()">Inventory</div><div class="inv-tab" onclick="openCrafting()">Crafting</div></td>
 			</tr>
 			<!-- Inventory -->
 			<tr class="inv" id="inventory-stackable-wrapper">
 				<td colspan="2">
+					<div class='inv-cat'>Stackables</div>
 					<table id="inventory-stackable">
-						<tr>
-							<th></th>
-							<th>Name</th>
-							<th>Pcs</th>
-						</tr>
 					</table>
 				</td>
 			</tr>
 			<tr class="inv" id="inventory-weapon-wrapper">
 				<td colspan="2">
+					<div class='inv-cat'>Weapons</div>
 					<table id="inventory-weapon">
-						<tr>
-							<th></th>
-							<th>Name</th>
-							<th>Damage</th>
-							<th>2h</th>
-							<th>Range</th>
-							<th>Description</th>
-						</tr>
 					</table>
 				</td>
 			</tr>
 			<tr class="inv" id="inventory-armor-wrapper">
 				<td colspan="2">
+					<div class='inv-cat'>Armor</div>
 					<table id="inventory-armor">
-						<tr>
-							<th></th>
-							<th>Name</th>
-							<th>Armor</th>
-							<th>Description</th>
-						</tr>
 					</table>
 				</td>
 			</tr>
 			<tr class="inv" id="inventory-others-wrapper">
 				<td colspan="2">
+					<div class='inv-cat'>Others</div>
 					<table id="inventory-other">
-						<tr>
-							<th></th>
-							<th>Name</th>
-							<th>Description</th>
-						</tr>
 					</table>
 				</td>
 			</tr>
 			<!-- Crafting -->
 			<tr class="craft">
 				<td colspan="2">
-					<table id="crafting-recipes">
-						<tr>
-							<th></th>
-							<th>Tinkering</th>
-							<th>Recipe</th>
-						</tr>
+					<div class='inv-cat'>Tinkering</div>
+					<table id="crafting-recipes-tinkering">
 					</table>
 				</td>
 			</tr>
+			<tr class="craft">
+					<td colspan="2">
+						<div class='inv-cat'>Healing</div>
+						<table id="crafting-recipes-healing">
+						</table>
+					</td>
+				</tr>
 		</table>
 
 		<div id="popup" class="hidden">
@@ -153,7 +149,7 @@
 					<tr id="attribute-selector-brow"><td colspan=3><div class="button" onclick="closeAttributeSelector()">Cancel</div><div class="button" onclick="attributeSelectorReset()">Reset</div><div id="attribute-selector-confirm-b" class="button">Confirm</div></td></tr>
 				</table>
 			</div>
-			
+
 			<!-- Skill Selector -->
 			<div id="skill-selector" class="hidden">
 				<table>
@@ -166,7 +162,7 @@
 					<tr id="skill-selector-brow"><td colspan=4><div class="button" onclick="closeSkillSelector()">Cancel</div><div class="button" onclick="skillSelectorReset()">Reset</div><div id="skill-selector-confirm-b"class="button">Confirm</div></td></tr>
 				</table>
 			</div>
-			
+
 			<!-- Level Up -->
 			<div id="level-up" class="hidden">
 				<div>
@@ -270,6 +266,13 @@
 					<div>Send the following code.</div>
 					<div id="item-send-code"></div>
 					<div><div class="button" onclick="closeSendWindow()">Close</div></div>
+				</div>
+			</div>
+
+			<!-- trash window -->
+			<div id="trash" class="hidden">
+				<div>
+
 				</div>
 			</div>
 

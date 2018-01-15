@@ -24,10 +24,13 @@ function updateInventory(){
 	let i = 0;
 	$("#inventory-stackable").find(".item-row").remove();
 	for (let item of character.inventory.stackables){
-		$("#inventory-stackable").append("<tr class='item-row'><td class='item-cell-buttonss'></td><td>" + item.name + "</td><td>" + item.pcs + "</td></tr>");
+		$("#inventory-stackable").append($("<div class='item-row'></div>").append("<div class='item-cell'><div>Name</div><div>" + item.name + "</div></div>").append("<div class='item-cell'><div>Pcs</div><div>" + item.pcs + "</div></div>").append("<div class='item-brow'><div><div class='item-cell-buttonss'></div></div></div>"));
 		let bcells = $(".item-cell-buttonss").last();
 		bcells.append($("<div class='button'>Give</div>").click(function(){
 			openSendWindow(item);
+		}))
+		bcells.append($("<div class='button'>Trash</div>").click(function(){
+
 		}))
 		i++
 	}
@@ -52,10 +55,13 @@ function updateInventory(){
 			if (r != 0) range += "/"
 			range += item.range[r];
 		}
-		$("#inventory-weapon").append("<tr class='item-row'><td class='item-cell-buttonsw'></td><td>" + item.name + "</td><td>" + dmg + "</td><td>" + twohanded + "</td><td>" + range + "</td><td>" + item.description + "</td></tr>");
+		let $row = $("<div class='item-row'></div>").append("<div class='item-cell'><div>Name</div><div>" + item.name + "</div></div>")
+		.append("<div class='item-cell'><div>Damage</div><div>" + dmg + "</div></div>").append("<div class='item-cell'><div>2H</div><div>" + twohanded + "</div></div>").append("<div class='item-cell'><div>Range</div><div>" + range + "</div></div>").append("<div class='item-cell'><div>Description</div><div>" + item.description + "</div></div>").append("<div class='item-brow'><div><div class='item-cell-buttonsw'></div></div></div>")
+		$("#inventory-weapon").append($row);
 		let bcellw = $(".item-cell-buttonsw").last()
 		if (item.equipped){
-			bcellw.append($("<div class='button'>Unequip</div>").click(function(){
+			$row.addClass("equipped");
+			bcellw.append($("<div class='button'>Unnequip</i></div>").click(function(){
 				setEquippedWeapon(defaultWeapon);
 				updateInventory();
 			}))
@@ -69,16 +75,21 @@ function updateInventory(){
 		bcellw.append($("<div class='button'>Give</div>").click(function(){
 			openSendWindow(item);
 		}))
+		bcellw.append($("<div class='button'>Trash</div>").click(function(){
+
+		}))
 		i++
 	}
 
 	i = 0;
 	$("#inventory-armor").find(".item-row").remove();
 	for (let item of character.inventory.armors){
-		$("#inventory-armor").append("<tr class='item-row'><td class='item-cell-buttonsa'></td><td>" + item.name + "</td><td>" + item.armor + "</td><td>" + item.description + "</td></tr>");
+		let $row = $("<div class='item-row'></div>").append("<div class='item-cell'><div>Name</div><div>" + item.name + "</div></div>").append("<div class='item-cell'><div>Armor</div><div>" + item.armor + "</div></div>").append("<div class='item-cell'><div>Description</div><div>" + item.description + "</div></div>").append("<div class='item-brow'><div><div class='item-cell-buttonsa'></div></div></div>")
+		$("#inventory-armor").append($row);
 		let bcella = $(".item-cell-buttonsa").last()
 		if (item.equipped){
-			bcella.append($("<div class='button'>Unequip</div>").click(function(){
+			$row.addClass("equipped");
+			bcella.append($("<div class='button equipped'>Unequip</div>").click(function(){
 				setEquippedArmor(defaultArmor);
 				updateInventory();
 			}))
@@ -92,25 +103,41 @@ function updateInventory(){
 		bcella.append($("<div class='button'>Give</div>").click(function(){
 			openSendWindow(item);
 		}))
+		bcella.append($("<div class='button'>Trash</div>").click(function(){
+
+		}))
 		i++
 	}
 
 	i = 0;
 	$("#inventory-other").find(".item-row").remove();
 	for (let item of character.inventory.others){
-		$("#inventory-other").append("<tr class='item-row'><td class='item-cell-buttons'></td><td>" + item.name + "</td><td>" + item.description + "</td></tr>");
+		$("#inventory-other").append($("<div class='item-row'></div>").append("<div class='item-cell'><div>Name</div><div>" + item.name + "</div></div>").append("<div class='item-cell'><div>Description</div><div>" + item.description + "</div></div>").append("<div class='item-brow'><div><div class='item-cell-buttons'></div></div></div>"));
 		let bcell = $(".item-cell-buttons").last()
 		bcell.append($("<div class='button'>Give</div>").click(function(){
 			openSendWindow(item);
 		}))
+		bcell.append($("<div class='button'>Trash</div>").click(function(){
+
+		}))
 		i++
 	}
 
-	$("#crafting-recipes").find(".craft-row").remove();
+	$("#crafting-recipes-tinkering").find(".item-row").remove();
+	$("#crafting-recipes-healing").find(".item-row").remove();
 	for (let item of character.inventory.crafts){
-		$("#crafting-recipes").append($("<tr class='craft-row'><td></td><td>" + item.req + "</td><td>" + item.name + "</td></tr>").click(function(){
-			openCraftingWindow(item);
-		}));
+		if (item.reqTinker >= 0){
+			$("#crafting-recipes-tinkering").append($("<div class='item-row'></div>").append("<div class='item-cell'><div>Skill</div><div>" + die[item.reqTinker] + "</div></div>").append("<div class='item-cell'><div>Name</div><div>" + item.name + "</div></div>").click(function(){
+				openCraftingWindow(item);
+				console.log(item);
+			}));
+		}
+		if (item.reqHeal >= 0){
+			$("#crafting-recipes-healing").append($("<div class='item-row'></div>").append("<div class='item-cell'><div>Skill</div><div>" + die[item.reqHeal] + "</div></div>").append("<div class='item-cell'><div>Name</div><div>" + item.name + "</div></div>").click(function(){
+				openCraftingWindow(item);
+				console.log(item);
+			}));
+		}
 	}
 }
 
@@ -170,8 +197,9 @@ function addItem(json){
 			break;
 		case type.craft:
 			if (("name" in item && typeof item.name == 'string') &&
-			("req" in item && typeof item.req == 'number') &&
-			("input" in item && typeof item.input == 'object' && item.input.length > 0) && 
+			("reqTinker" in item && typeof item.reqTinker == 'number') &&
+			("reqHeal" in item && typeof item.reqHeal == 'number') &&
+			("input" in item && typeof item.input == 'object' && item.input.length > 0) &&
 			("output" in item && typeof item.output == 'object')){
 				for (var craft of character.inventory.crafts){
 					if (craft.name.toLowerCase() == item.name.toLowerCase()) {
@@ -227,7 +255,7 @@ function openSendWindow(item){
 		$('#item-send-input').val(pcs);
 		$("#send-item-l").text("" + pcs + " " + item.name);
 		clone.pcs = pcs;
-		
+
 		$("#item-send-input").on('input', function(){
 			pcs = parseInt($(this).val());
 			clone.pcs = pcs;
@@ -303,11 +331,15 @@ function importItem(){
 
 function openInventory(){
 	$(".inv").removeClass("hidden");
+	$(".inv-tab").first().addClass("inv-tab-active")
+	$(".inv-tab").last().removeClass("inv-tab-active")
 	$(".craft").addClass("hidden");
-	
+
 }
 function openCrafting(){
 	$(".inv").addClass("hidden");
+	$(".inv-tab").last().addClass("inv-tab-active")
+	$(".inv-tab").first().removeClass("inv-tab-active")
 	$(".craft").removeClass("hidden");
 }
 openInventory();
@@ -386,20 +418,20 @@ function isInInventory(name, pcs){
 		if (stackable.name.toLowerCase() == name.toLowerCase()){
 			if (stackable.pcs >= pcs) return true;
 			else return false;
-		} 
+		}
 	}
 	return false;
 }
 
 var poop = JSON.stringify({
 	type: type.stackable,
-	name: "poop",
+	name: "Poop",
 	pcs: 10
 });
 
 var sword = JSON.stringify({
 	type: type.weapon,
-	name: "sword",
+	name: "Sword",
 	damage: {attribute:3, die:0, multiplier:1, flat:0},
 	twohanded: false,
 	range: [1],
@@ -409,7 +441,7 @@ var sword = JSON.stringify({
 
 var gun = JSON.stringify({
 	type: type.weapon,
-	name: "pistol",
+	name: "Pistol",
 	damage: {attribute:-1, die:2, multiplier:1, flat:0},
 	twohanded: false,
 	range: [6,12],
@@ -419,7 +451,7 @@ var gun = JSON.stringify({
 
 var armor = JSON.stringify({
 	type: type.armor,
-	name: "trenchcoat",
+	name: "Trenchcoat",
 	armor: 1,
 	mods: [],
 	description: "Brown trenchcoat."
@@ -434,7 +466,8 @@ var key = JSON.stringify({
 var recipe = JSON.stringify({
 	type: type.craft,
 	name: "Hi-Frequency Katana",
-	req: 0,
+	reqTinker: 1,
+	reqHeal: -1,
 	input: [{material: "poop", pcs: 5}],
 	output: {
 		type: type.weapon,
@@ -443,14 +476,15 @@ var recipe = JSON.stringify({
 		twohanded: false,
 		range: [1],
 		mods: [],
-		description: "A katana vibrating at high frequency to cut through material like butter."
+		description: "A katana vibrating at high frequencies to cut through any material like butter."
 	}
 });
 
 var recipe2 = JSON.stringify({
 	type: type.craft,
 	name: "trenchcoat",
-	req: 0,
+	reqTinker: 0,
+	reqHeal: -1,
 	input: [{material: "poop", pcs: 5}],
 	output: {
 		type: type.armor,
