@@ -3,6 +3,7 @@ body{
 }
 table{
 	width: 100%;
+	empty-cells: show;
 }
 table, caption, tbody, tfoot, thead, tr, th, td {
     margin: 0;

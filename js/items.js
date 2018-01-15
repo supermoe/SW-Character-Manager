@@ -1,12 +1,35 @@
 type = {stackable:0, weapon:1, armor:2, other:3, craft:4}
 
+defaultArmor = {
+	type: type.armor,
+	name: "Naked",
+	equipped: true,
+	armor: 0,
+	mods: [],
+	description: "Naked."
+}
+defaultWeapon = {
+	type: type.weapon,
+	name: "Fist",
+	equipped: true,
+	damage: {attribute:3, die:-1, multiplier:0, flat:0},
+	twohanded: false,
+	range: [1],
+	mods: [],
+	description: "Bare fist."
+}
+
 //inventory
 function updateInventory(){
+	let i = 0;
 	$("#inventory-stackable").find(".item-row").remove();
 	for (let item of character.inventory.stackables){
-		$("#inventory-stackable").append("<tr class='item-row'><td>" + item.name + "</td><td>" + item.pcs + "</td></tr>");
+		$("#inventory-stackable").append("<tr class='item-row'><td class='item-cell-buttonss'></td><td>" + item.name + "</td><td>" + item.pcs + "</td></tr>");
+		let bcell = $(".item-cell-buttonss").last();
+		i++
 	}
 
+	i = 0;
 	$("#inventory-weapon").find(".item-row").remove();
 	for (let item of character.inventory.weapons){
 		var dmg = "";
@@ -26,22 +49,54 @@ function updateInventory(){
 			if (r != 0) range += "/"
 			range += item.range[r];
 		}
-		$("#inventory-weapon").append("<tr class='item-row'><td>" + item.name + "</td><td>" + dmg + "</td><td>" + twohanded + "</td><td>" + range + "</td><td>" + item.description + "</td></tr>");
+		$("#inventory-weapon").append("<tr class='item-row'><td class='item-cell-buttonsw'></td><td>" + item.name + "</td><td>" + dmg + "</td><td>" + twohanded + "</td><td>" + range + "</td><td>" + item.description + "</td></tr>");
+		let bcellw = $(".item-cell-buttonsw").last()
+		if (item.equipped){
+			bcellw.append($("<div class='button'>Unequip</div>").click(function(){
+				setEquippedWeapon(defaultWeapon);
+				updateInventory();
+			}))
+		}
+		else{
+			bcellw.append($("<div class='button'>Equip</div>").click(function(){
+				setEquippedWeapon(item);
+				updateInventory();
+			}))
+		}
+		i++
 	}
 
+	i = 0;
 	$("#inventory-armor").find(".item-row").remove();
 	for (let item of character.inventory.armors){
-		$("#inventory-armor").append("<tr class='item-row'><td>" + item.name + "</td><td>" + item.armor + "</td><td>" + item.description + "</td></tr>");
+		$("#inventory-armor").append("<tr class='item-row'><td class='item-cell-buttonsa'></td><td>" + item.name + "</td><td>" + item.armor + "</td><td>" + item.description + "</td></tr>");
+		let bcella = $(".item-cell-buttonsa").last()
+		if (item.equipped){
+			bcella.append($("<div class='button'>Unequip</div>").click(function(){
+				setEquippedArmor(defaultArmor);
+				updateInventory();
+			}))
+		}
+		else{
+			bcella.append($("<div class='button'>Equip</div>").click(function(){
+				setEquippedArmor(item);
+				updateInventory();
+			}))
+		}
+		i++
 	}
 
+	i = 0;
 	$("#inventory-other").find(".item-row").remove();
 	for (let item of character.inventory.others){
-		$("#inventory-other").append("<tr class='item-row'><td>" + item.name + "</td><td>" + item.description + "</td></tr>");
+		$("#inventory-other").append("<tr class='item-row'><td class='item-cell-buttons'></td><td>" + item.name + "</td><td>" + item.description + "</td></tr>");
+		let bcell = $(".item-cell-buttons").last()
+		i++
 	}
 
 	$("#crafting-recipes").find(".craft-row").remove();
 	for (let item of character.inventory.crafts){
-		$("#crafting-recipes").append($("<tr class='craft-row'><td>" + item.req + "</td><td>" + item.name + "</td></tr>").click(function(){
+		$("#crafting-recipes").append($("<tr class='craft-row'><td></td><td>" + item.req + "</td><td>" + item.name + "</td></tr>").click(function(){
 			openCraftingWindow(item);
 		}));
 	}
@@ -75,6 +130,7 @@ function addItem(json){
 			("range" in item && typeof item.range == 'object' && item.range.length > 0) &&
 			("mods" in item && typeof item.mods == 'object')){
 				character.inventory.weapons.push(item);
+				item.equipped = false;
 				updateInventory();
 				return "success : weapon added.";
 			}
@@ -86,6 +142,7 @@ function addItem(json){
 			("mods" in item && typeof item.mods == 'object') &&
 			("description" in item && typeof item.description == 'string')){
 				character.inventory.armors.push(item);
+				item.equipped = false;
 				updateInventory();
 				return "success : armor added.";
 			}
@@ -120,6 +177,28 @@ function addItem(json){
 		default:
 			return "error : item has an invalid type.";
 	}
+}
+
+function getEquippedArmor(){
+	for (let item of character.inventory.armors){
+		if (item.equipped) return item;
+	}
+	return defaultArmor;
+}
+function getEquippedWeapon(){
+	for (let item of character.inventory.weapons){
+		if (item.equipped) return item;
+	}
+	return defaultWeapon;
+}
+function setEquippedArmor(item){
+	getEquippedArmor().equipped = false;
+	item.equipped = true
+}
+function setEquippedWeapon(item){
+	getEquippedWeapon().equipped = false;
+	item.equipped = true
+	console.log(item);
 }
 
 function openItemImport(){

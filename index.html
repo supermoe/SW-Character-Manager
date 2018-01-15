@@ -87,6 +87,7 @@
 				<td colspan="2">
 					<table id="inventory-stackable">
 						<tr>
+							<th></th>
 							<th>Name</th>
 							<th>Pcs</th>
 						</tr>
@@ -97,6 +98,7 @@
 				<td colspan="2">
 					<table id="inventory-weapon">
 						<tr>
+							<th></th>
 							<th>Name</th>
 							<th>Damage</th>
 							<th>2h</th>
@@ -110,6 +112,7 @@
 				<td colspan="2">
 					<table id="inventory-armor">
 						<tr>
+							<th></th>
 							<th>Name</th>
 							<th>Armor</th>
 							<th>Description</th>
@@ -121,6 +124,7 @@
 				<td colspan="2">
 					<table id="inventory-other">
 						<tr>
+							<th></th>
 							<th>Name</th>
 							<th>Description</th>
 						</tr>
@@ -132,6 +136,7 @@
 				<td colspan="2">
 					<table id="crafting-recipes">
 						<tr>
+							<th></th>
 							<th>Tinkering</th>
 							<th>Recipe</th>
 						</tr>
@@ -252,6 +257,14 @@
 					<tr><td id="crafting-input"></td><td id="crafting-output"></td></tr>
 					<tr><td colspan="2"><div class="button" onclick="closeCraftingWindow()">Cancel</div><div id="crafting-confirm-b" class="button">Craft</div></td></tr>
 				</table>
+			</div>
+
+			<!-- item details -->
+			<div id="item-send" class="hidden">
+				<div>
+					<div>Are you sure you want to give away <span id="item-send-l">Item</span>?<div>
+					<div><div class="button">Cancel</div><div class="button">Give</div></div>
+				</div>
 			</div>
 
 		</div>
