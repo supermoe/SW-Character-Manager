@@ -259,11 +259,17 @@
 				</table>
 			</div>
 
-			<!-- item details -->
+			<!-- item send -->
 			<div id="item-send" class="hidden">
-				<div>
-					<div>Are you sure you want to give away <span id="item-send-l">Item</span>?<div>
-					<div><div class="button">Cancel</div><div class="button">Give</div></div>
+				<div id="item-send-step1">
+					<div>Give <span id="send-item-l">item</span> away?</div>
+					<div><input id="item-send-input" type="range" step="1"></div>
+					<div><div class="button" onclick="closeSendWindow()">Cancel</div><div id="item-send-confirm" class="button" onclick="sendWindowStep2()">Give</div></div>
+				</div>
+				<div id="item-send-step2">
+					<div>Send the following code.</div>
+					<div id="item-send-code"></div>
+					<div><div class="button" onclick="closeSendWindow()">Close</div></div>
 				</div>
 			</div>
 

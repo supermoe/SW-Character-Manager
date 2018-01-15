@@ -25,7 +25,10 @@ function updateInventory(){
 	$("#inventory-stackable").find(".item-row").remove();
 	for (let item of character.inventory.stackables){
 		$("#inventory-stackable").append("<tr class='item-row'><td class='item-cell-buttonss'></td><td>" + item.name + "</td><td>" + item.pcs + "</td></tr>");
-		let bcell = $(".item-cell-buttonss").last();
+		let bcells = $(".item-cell-buttonss").last();
+		bcells.append($("<div class='button'>Give</div>").click(function(){
+			openSendWindow(item);
+		}))
 		i++
 	}
 
@@ -63,6 +66,9 @@ function updateInventory(){
 				updateInventory();
 			}))
 		}
+		bcellw.append($("<div class='button'>Give</div>").click(function(){
+			openSendWindow(item);
+		}))
 		i++
 	}
 
@@ -83,6 +89,9 @@ function updateInventory(){
 				updateInventory();
 			}))
 		}
+		bcella.append($("<div class='button'>Give</div>").click(function(){
+			openSendWindow(item);
+		}))
 		i++
 	}
 
@@ -91,6 +100,9 @@ function updateInventory(){
 	for (let item of character.inventory.others){
 		$("#inventory-other").append("<tr class='item-row'><td class='item-cell-buttons'></td><td>" + item.name + "</td><td>" + item.description + "</td></tr>");
 		let bcell = $(".item-cell-buttons").last()
+		bcell.append($("<div class='button'>Give</div>").click(function(){
+			openSendWindow(item);
+		}))
 		i++
 	}
 
@@ -198,7 +210,82 @@ function setEquippedArmor(item){
 function setEquippedWeapon(item){
 	getEquippedWeapon().equipped = false;
 	item.equipped = true
-	console.log(item);
+}
+
+function openSendWindow(item){
+	$("#popup").removeClass("hidden");
+	$("#item-send").removeClass("hidden");
+	$("#item-send-step1").removeClass("hidden");
+	$("#item-send-step2").addClass("hidden");
+	var clone = JSON.parse(JSON.stringify(item));
+	var pcs = 1;
+	$("#send-item-l").text(item.name);
+	if (item.type == type.stackable) {
+		$('#item-send-input').removeClass('hidden');
+		$('#item-send-input').attr('min', 1);
+		$('#item-send-input').attr('max', item.pcs);
+		$('#item-send-input').val(pcs);
+		$("#send-item-l").text("" + pcs + " " + item.name);
+		clone.pcs = pcs;
+		
+		$("#item-send-input").on('input', function(){
+			pcs = parseInt($(this).val());
+			clone.pcs = pcs;
+			$("#send-item-l").text("" + pcs + " " + item.name);
+			$("#item-send-code").text(JSON.stringify(clone))
+		});
+	}
+	else $('#item-send-input').addClass('hidden');
+	$("#item-send-confirm").off();
+	switch(item.type){
+		case type.stackable:
+			$("#item-send-confirm").click(function(){
+				if (pcs >= item.pcs){
+					let i = character.inventory.stackables.indexOf(item);
+					character.inventory.stackables.splice(i, 1);
+				}
+				else {
+					item.pcs -= pcs;
+				}
+				updateInventory();
+			});
+			break;
+		case type.weapon:
+			clone.equipped = false;
+			$("#item-send-confirm").click(function(){
+				let i = character.inventory.weapons.indexOf(item);
+				character.inventory.weapons.splice(i, 1);
+				updateInventory();
+			});
+			break;
+		case type.armor:
+			clone.equipped = false;
+			$("#item-send-confirm").click(function(){
+				let i = character.inventory.armors.indexOf(item);
+				character.inventory.armors.splice(i, 1);
+				updateInventory();
+			});
+			break;
+		case type.other:
+			console.log(type);
+			$("#item-send-confirm").click(function(){
+				let i = character.inventory.others.indexOf(item);
+				character.inventory.others.splice(i, 1);
+				updateInventory();
+			});
+			break;
+	}
+	$("#item-send-code").text(JSON.stringify(clone))
+}
+function sendWindowStep2(){
+	$("#item-send-step1").addClass("hidden");
+	$("#item-send-step2").removeClass("hidden");
+}
+function closeSendWindow(){
+	$("#popup").addClass("hidden");
+	$("#item-send").addClass("hidden");
+	$("#item-send-step1").addClass("hidden");
+	$("#item-send-step2").addClass("hidden");
 }
 
 function openItemImport(){
