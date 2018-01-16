@@ -30,7 +30,7 @@ function updateInventory(){
 			openSendWindow(item);
 		}))
 		bcells.append($("<div class='button'>Trash</div>").click(function(){
-
+			openTrashWindow(item);
 		}))
 		i++
 	}
@@ -76,7 +76,7 @@ function updateInventory(){
 			openSendWindow(item);
 		}))
 		bcellw.append($("<div class='button'>Trash</div>").click(function(){
-
+			openTrashWindow(item);
 		}))
 		i++
 	}
@@ -104,7 +104,7 @@ function updateInventory(){
 			openSendWindow(item);
 		}))
 		bcella.append($("<div class='button'>Trash</div>").click(function(){
-
+			openTrashWindow(item);
 		}))
 		i++
 	}
@@ -118,7 +118,7 @@ function updateInventory(){
 			openSendWindow(item);
 		}))
 		bcell.append($("<div class='button'>Trash</div>").click(function(){
-
+			openTrashWindow(item);
 		}))
 		i++
 	}
@@ -421,6 +421,44 @@ function isInInventory(name, pcs){
 		}
 	}
 	return false;
+}
+
+function openTrashWindow(item){
+	$("#popup").removeClass("hidden");
+	$("#trash").removeClass("hidden");
+	$("#trash-confirm").off()
+	$("#trash-confirm").click(function(){
+		let i;
+		switch(item.type){
+			case type.stackable:
+				i = character.inventory.stackables.indexOf(item);
+				character.inventory.stackables.splice(i, 1);
+			break;
+			case type.weapon:
+				i = character.inventory.weapons.indexOf(item);
+				character.inventory.weapons.splice(i, 1);
+			break;
+			case type.armor:
+				i = character.inventory.armors.indexOf(item);
+				character.inventory.armors.splice(i, 1);
+			break;
+			case type.others:
+				i = character.inventory.others.indexOf(item);
+				character.inventory.others.splice(i, 1);
+			break;
+		}
+		updateInventory();
+		closeTrashWindow();
+	});
+	let pcs = "";
+	if (item.type == type.stackable){
+		pcs = item.pcs + " "
+	}
+	$("#trash-l").text(pcs + item.name);
+}
+function closeTrashWindow(){
+	$("#popup").addClass("hidden");
+	$("#trash").addClass("hidden");
 }
 
 var poop = JSON.stringify({
