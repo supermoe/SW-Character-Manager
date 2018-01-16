@@ -81,4 +81,4 @@ UNCOMPROMISING = {
 		{description: "Reroll damage once if you got less than half your attack skill die.",},
 	]
 }
-mods.push(CONCEALING);
+mods.push(UNCOMPROMISING);
