@@ -78,7 +78,7 @@ UNCOMPROMISING = {
 	type: type.weapon,
 	removeable: true,
 	levels: [
-		{description: "Reroll damage once if you got less than half your attack skill die.",},
+		{description: "Gain the ability to reroll damage once if you got less than half your attack skill die.",},
 	]
 }
 mods.push(UNCOMPROMISING);
