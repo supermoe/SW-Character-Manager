@@ -1,3 +1,5 @@
+type = {stackable:0, weapon:1, armor:2, other:3, craft:4}
+modLevels = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
 die = ["d4", "d6", "d8", "d10", "d12"];
 benny_name = "Undo";
 attributes = ["Agility", "Smarts", "Spirit", "Strength", "Vigor"];

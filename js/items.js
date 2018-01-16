@@ -1,5 +1,3 @@
-type = {stackable:0, weapon:1, armor:2, other:3, craft:4}
-
 defaultArmor = {
 	type: type.armor,
 	name: "Naked",
@@ -113,12 +111,7 @@ function updateInventory(){
 	$("#inventory-other").find(".item-row").remove();
 	for (let item of character.inventory.others){
 		let mod = getMod(item.id);
-		let level = "";
-		for (let j = 0; j<=item.level; j++){
-			level += "I";
-		}
-		console.log(mod);
-		$("#inventory-other").append($("<div class='item-row'></div>").append("<div class='item-cell'><div>Name</div><div>" + mod.name + " " + level + "</div></div>").append("<div class='item-cell'><div>Description</div><div>" + mod.levels[item.level].description + "</div></div>").append("<div class='item-brow'><div><div class='item-cell-buttons'></div></div></div>"));
+		$("#inventory-other").append($("<div class='item-row'></div>").append("<div class='item-cell'><div>Name</div><div>" + mod.name + " " + modLevels[item.level] + "</div></div>").append("<div class='item-cell'><div>Description</div><div>" + mod.levels[item.level].description + "</div></div>").append("<div class='item-brow'><div><div class='item-cell-buttons'></div></div></div>"));
 		let bcell = $(".item-cell-buttons").last()
 		bcell.append($("<div class='button'>Apply</div>").click(function(){
 			openModWindow(mod, item);
@@ -481,12 +474,18 @@ function closeTrashWindow(){
 function openModWindow(mod, modItem){
 	$("#popup").removeClass("hidden");
 	$("#mod-window").removeClass("hidden");
-	$("#mod-weapons-list").children().remove();
-	$("#mod-armors-list").children().remove();
-	for (let item of character.inventory.weapons){
+	$("#mod-item-list").children().remove();
+	$("#mod-l").text(mod.name + " " + modLevels[modItem.level]);
+	function createSlots(item){
+		let hasMod = false;
 		let $slots = $("<div></div>");
 		for (let slot of item.mods){
-			$slots.append($("<div class='mod-slot mod-slot-filled'></div>").click(function(){
+			let enabledClass = "";
+			if (slot.id.toLowerCase() == modItem.id.toLowerCase()) {
+				hasMod = true;
+				enabledClass = " mod-slot-enabled";
+			}
+			$slots.append($("<div class='mod-slot mod-slot-filled" + enabledClass + "'></div>").click(function(){
 				console.log("mod replaced");
 				let i = item.mods.indexOf(slot);
 				item.mods[i] = modItem;
@@ -496,40 +495,35 @@ function openModWindow(mod, modItem){
 				updateInventory();
 			}));
 		}
-		$slots.append($("<div class='mod-slot'></div>").click(function(){
-			console.log("mod added");
-			$(this).addClass("mod-slot-filled");
-			item.mods.push(modItem);
-			i = character.inventory.others.indexOf(modItem);
-			character.inventory.others.splice(i, 1);
-			closeModWindow();
-			updateInventory();
-		}));
-		$("#mod-weapons-list").append($("<tr><td>" + item.name + "</td></tr>").append($slots))
+		if (item.mods.length < modMax) {
+			$slots.append($("<div class='mod-slot'></div>").click(function(){
+				console.log("mod added");
+				$(this).addClass("mod-slot-filled");
+				item.mods.push(modItem);
+				i = character.inventory.others.indexOf(modItem);
+				character.inventory.others.splice(i, 1);
+				closeModWindow();
+				updateInventory();
+			}));
+		}
+		if (hasMod) {
+			$slots.children().not(".mod-slot-enabled").addClass('mod-slot-disabled').off();
+		}
+		else $slots.children().addClass("mod-slot-enabled");
+		return $slots;
 	}
-	for (let item of character.inventory.armors){
-		let $slots = $("<div></div>");
-		for (let slot of item.mods){
-			$slots.append($("<div class='mod-slot mod-slot-filled'></div>").click(function(){
-				console.log("mod replaced");
-				let i = item.mods.indexOf(slot);
-				item.mods[i] = modItem;
-				i = character.inventory.others.indexOf(modItem);
-				character.inventory.others.splice(i, 1);
-				closeModWindow();
-				updateInventory();
-			}));
+	if (mod.type == type.armor) {
+		for (let item of character.inventory.armors){
+			let $slots = createSlots(item);
+			$("#mod-item-list").append($("<tr><td>" + item.name + "</td></tr>").append($slots))
 		}
-		$slots.append($("<div class='mod-slot'></div>").click(function(){
-			console.log("mod added");
-			$(this).addClass("mod-slot-filled");
-			item.mods.push(modItem);
-			i = character.inventory.others.indexOf(modItem);
-			character.inventory.others.splice(i, 1);
-			closeModWindow();
-			updateInventory();
-		}));
-		$("#mod-armors-list").append($("<tr><td>" + item.name + "</td></tr>").append($slots))
+	}
+	if (mod.type == type.weapon) {
+		console.log('ab')
+		for (let item of character.inventory.weapons){
+			let $slots = createSlots(item);
+			$("#mod-item-list").append($("<tr><td>" + item.name + "</td></tr>").append($slots))
+		}
 	}
 }
 function closeModWindow(){
@@ -574,6 +568,26 @@ var armor = JSON.stringify({
 var mod = JSON.stringify({
 	type: type.other,
 	id: SHARP_BLADE.id,
+	level: 0
+});
+var mod2 = JSON.stringify({
+	type: type.other,
+	id: ERGONOMIC.id,
+	level: 0
+});
+var mod3 = JSON.stringify({
+	type: type.other,
+	id: LIGHT_ARMOR.id,
+	level: 0
+});
+var mod4 = JSON.stringify({
+	type: type.other,
+	id: HEAVY_ARMOR.id,
+	level: 0
+});
+var mod5 = JSON.stringify({
+	type: type.other,
+	id: BULLETPROOF.id,
 	level: 0
 });
 
