@@ -112,8 +112,17 @@ function updateInventory(){
 	i = 0;
 	$("#inventory-other").find(".item-row").remove();
 	for (let item of character.inventory.others){
-		$("#inventory-other").append($("<div class='item-row'></div>").append("<div class='item-cell'><div>Name</div><div>" + item.name + "</div></div>").append("<div class='item-cell'><div>Description</div><div>" + item.description + "</div></div>").append("<div class='item-brow'><div><div class='item-cell-buttons'></div></div></div>"));
+		let mod = getMod(item.id);
+		let level = "";
+		for (let j = 0; j<=item.level; j++){
+			level += "I";
+		}
+		console.log(mod);
+		$("#inventory-other").append($("<div class='item-row'></div>").append("<div class='item-cell'><div>Name</div><div>" + mod.name + " " + level + "</div></div>").append("<div class='item-cell'><div>Description</div><div>" + mod.levels[item.level].description + "</div></div>").append("<div class='item-brow'><div><div class='item-cell-buttons'></div></div></div>"));
 		let bcell = $(".item-cell-buttons").last()
+		bcell.append($("<div class='button'>Apply</div>").click(function(){
+			openModWindow(mod, item);
+		}))
 		bcell.append($("<div class='button'>Give</div>").click(function(){
 			openSendWindow(item);
 		}))
@@ -188,12 +197,14 @@ function addItem(json){
 			else return "error : item is missing a critical variable."
 			break;
 		case type.other:
-			if (("name" in item && typeof item.name == 'string')
-			&& ("description" in item && typeof item.description == 'string')){
+			if (("level" in item && typeof item.level == 'number') &&
+			("id" in item && typeof item.id == 'string') &&
+			(typeof getMod(item.id) != 'undefined')){
 				character.inventory.others.push(item);
 				updateInventory();
 				return "success : item added.";
 			}
+			else return "error : item is missing a critical variable.";
 			break;
 		case type.craft:
 			if (("name" in item && typeof item.name == 'string') &&
@@ -238,6 +249,12 @@ function setEquippedArmor(item){
 function setEquippedWeapon(item){
 	getEquippedWeapon().equipped = false;
 	item.equipped = true
+}
+
+function getMod(id){
+	let mod = undefined;
+	for (mod of mods) if (mod.id.toLowerCase() == id.toLowerCase()) break;
+	return mod;
 }
 
 function openSendWindow(item){
@@ -461,6 +478,65 @@ function closeTrashWindow(){
 	$("#trash").addClass("hidden");
 }
 
+function openModWindow(mod, modItem){
+	$("#popup").removeClass("hidden");
+	$("#mod-window").removeClass("hidden");
+	$("#mod-weapons-list").children().remove();
+	$("#mod-armors-list").children().remove();
+	for (let item of character.inventory.weapons){
+		let $slots = $("<div></div>");
+		for (let slot of item.mods){
+			$slots.append($("<div class='mod-slot mod-slot-filled'></div>").click(function(){
+				console.log("mod replaced");
+				let i = item.mods.indexOf(slot);
+				item.mods[i] = modItem;
+				i = character.inventory.others.indexOf(modItem);
+				character.inventory.others.splice(i, 1);
+				closeModWindow();
+				updateInventory();
+			}));
+		}
+		$slots.append($("<div class='mod-slot'></div>").click(function(){
+			console.log("mod added");
+			$(this).addClass("mod-slot-filled");
+			item.mods.push(modItem);
+			i = character.inventory.others.indexOf(modItem);
+			character.inventory.others.splice(i, 1);
+			closeModWindow();
+			updateInventory();
+		}));
+		$("#mod-weapons-list").append($("<tr><td>" + item.name + "</td></tr>").append($slots))
+	}
+	for (let item of character.inventory.armors){
+		let $slots = $("<div></div>");
+		for (let slot of item.mods){
+			$slots.append($("<div class='mod-slot mod-slot-filled'></div>").click(function(){
+				console.log("mod replaced");
+				let i = item.mods.indexOf(slot);
+				item.mods[i] = modItem;
+				i = character.inventory.others.indexOf(modItem);
+				character.inventory.others.splice(i, 1);
+				closeModWindow();
+				updateInventory();
+			}));
+		}
+		$slots.append($("<div class='mod-slot'></div>").click(function(){
+			console.log("mod added");
+			$(this).addClass("mod-slot-filled");
+			item.mods.push(modItem);
+			i = character.inventory.others.indexOf(modItem);
+			character.inventory.others.splice(i, 1);
+			closeModWindow();
+			updateInventory();
+		}));
+		$("#mod-armors-list").append($("<tr><td>" + item.name + "</td></tr>").append($slots))
+	}
+}
+function closeModWindow(){
+	$("#popup").addClass("hidden");
+	$("#mod-window").addClass("hidden");
+}
+
 var poop = JSON.stringify({
 	type: type.stackable,
 	name: "Poop",
@@ -495,10 +571,10 @@ var armor = JSON.stringify({
 	description: "Brown trenchcoat."
 });
 
-var key = JSON.stringify({
+var mod = JSON.stringify({
 	type: type.other,
-	name: "Prison Key",
-	description: "Key of the underground prison."
+	id: SHARP_BLADE.id,
+	level: 0
 });
 
 var recipe = JSON.stringify({

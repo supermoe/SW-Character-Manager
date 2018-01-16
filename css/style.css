@@ -303,3 +303,14 @@ td{
 .equipped{
 	background: #FF28AE !important;
 }
+
+.mod-slot{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	border: 2px solid #6FA8D5;
+	box-sizing: border-box;
+}
+.mod-slot-filled{
+	background: #C72376;
+}
