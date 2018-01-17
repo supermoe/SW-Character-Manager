@@ -279,15 +279,21 @@
 
 			<!-- mod window -->
 			<div id="mod-window" class="hidden">
-					<div>
-						<div>Choose a piece of equipment on which to apply <span id="mod-l">mod</span></div>
-						<table id="mod-item-list">
-						</table>
-						<div><div class="button" onclick="closeModWindow()">Cancel</div></div>
-					</div>
+				<div>
+					<div>Choose a piece of equipment on which to apply <span id="mod-l">mod</span></div>
+					<table id="mod-item-list">
+					</table>
+					<div><div class="button" onclick="closeModWindow()">Cancel</div></div>
 				</div>
+			</div>
 
-		</div>
+			<!-- Details Window -->
+			<div id="item-details" class="hidden">
+				<div>
+					<div id='item-details-wrapper'></div>
+					<div class='brow'><div class="button" onclick="closeItemDetails()">Cancel</div></div>
+				</div>
+			</div>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="js/data.js"></script>

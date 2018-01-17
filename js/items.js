@@ -82,6 +82,9 @@ function updateInventory(){
 				updateInventory();
 			}))
 		}
+		bcellw.append($("<div class='button'>Details</div>").click(function(){
+			openItemDetails(item);
+		}))
 		bcellw.append($("<div class='button'>Give</div>").click(function(){
 			openSendWindow(item);
 		}))
@@ -122,6 +125,9 @@ function updateInventory(){
 				updateInventory();
 			}))
 		}
+		bcella.append($("<div class='button'>Details</div>").click(function(){
+			openItemDetails(item);
+		}))
 		bcella.append($("<div class='button'>Give</div>").click(function(){
 			openSendWindow(item);
 		}))
@@ -554,6 +560,78 @@ function openModWindow(mod, modItem){
 function closeModWindow(){
 	$("#popup").addClass("hidden");
 	$("#mod-window").addClass("hidden");
+}
+
+function rangeToString(range){
+	let str = ""
+	for (let r of range){
+		if (str != "") str += "/";
+		str += r;
+	}
+	return str
+}
+function damageToString(damage){
+	var str = "";
+	var elems = 0;
+	if (damage.attribute >= 0) {str += attributes[damage.attribute]; elems++}
+	if (damage.die >= 0) {
+		str += elems > 0 ? " + " + damage.multiplier + die[damage.die] : damage.multiplier + die[damage.die];
+		elems++
+	}
+	if (damage.flat > 0) {
+		str += elems > 0 ? " + " + damage.flat : damage.flat;
+		elems++
+	}
+	return str;
+}
+
+function openItemDetails(item){
+	$("#popup").removeClass('hidden');
+	$("#item-details").removeClass('hidden');
+	let $root = $("#item-details-wrapper");
+	$root.children().remove()
+	$root.append("<div class='details-name'>" + item.name + "</div>");
+	switch(item.type){
+		case type.weapon:
+			let damage = damageToString(item.damage);
+			let twohanded = item.twohanded ? "Yes" : "No";
+			$primaryStats = $("<div class='details-main'></div>")
+			$primaryStats.append("<div class='details-l'><div>Damage</div><div>" + damage + "</div></div>");
+			$primaryStats.append("<div class='details-l'><div>2H</div><div>" + twohanded + "</div></div>");
+			$primaryStats.append("<div class='details-l'><div>Range</div><div>" + rangeToString(item.range) + "</div></div>");
+			let $description = $("<div class='details-l'><div>Description</div><div class='details-desc'>" + item.description + "</div></div>");
+			$root.append($primaryStats);
+			$root.append($description);
+			if (item.mods.length > 0){
+				$mods = $("<div class='details-mods'><div>Mods</div></div>");
+				for (mi of item.mods){
+					mod = getMod(mi.id);
+					$mods.append("<div class='details-mod'><div>" + mod.name + " " + modLevels[mi.level] + "</div><div>" + mod.levels[mi.level].description + "</div></div>");
+				}
+				$root.append($mods);
+			}
+		break;
+		case type.armor:
+			$stats = $("<div class='details-main'></div>")
+			$stats.append("<div class='details-l'><div>Armor</div><div>" + item.armor + "</div></div>")
+			$stats.append("<div class='details-l'><div>Description</div><div>" + item.description + "</div></div>")
+			$root.append($stats);
+			if (item.mods.length > 0){
+				$mods = $("<div class='details-mods'><div>Mods</div></div>");
+				for (mi of item.mods){
+					mod = getMod(mi.id);
+					$mods.append("<div class='details-mod'><div>" + mod.name + " " + modLevels[mi.level] + "</div><div>" + mod.levels[mi.level].description + "</div></div>");
+				}
+				$root.append($mods);
+			}
+		break;
+		default:
+			$root.append("not implemented yet");
+	}
+}
+function closeItemDetails(){
+	$("#popup").addClass('hidden');
+	$("#item-details").addClass('hidden');
 }
 
 var poop = JSON.stringify({
