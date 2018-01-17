@@ -305,49 +305,26 @@ td{
 }
 
 .mod-slot{
-	margin-right: 2px;
 	display: inline-block;
-	width: 20px;
-	height: 20px;
+	margin-left: 5px;
+	font-size: 12px;
 	box-sizing: border-box;
-	position: relative;
+	padding: 2px 3px;
 }
-.mod-slot{
-	margin-right: 10px;
-}
-.mod-slot-filled::after{
-	content: ".";
-	color: transparent;
-	display: block;
-	position: absolute;
-	top: 2px;
-	bottom: 2px;
-	left: 2px;
-	right: 2px;
-	background: white;
-}
-.mod-slot-filled.mod-slot-disabled::after{
-	background: #6FA8D5 !important;
-}
-.mod-slot-filled:hover::after{
+.mod-slot:first-child{
+	margin-left: 0 !important;
 }
 .mod-slot-disabled{
-	border: 2px dashed #6FA8D5;
+	border: 2px dashed white;
+	opacity: 0.5;
 }
 .mod-slot-enabled{
 	border: 2px solid white;
+	cursor: pointer;
 }
 .mod-slot-enabled:hover{
 	border: 2px solid #FF28AE;
 }
-.mod-slot-enabled:hover::after{
-	content: ".";
-	color: transparent;
-	display: block;
-	position: absolute;
-	top: 2px;
-	bottom: 2px;
-	left: 2px;
-	right: 2px;
-	background: #FF28AE;
+.mod-empty{
+	color: transparent !important;
 }

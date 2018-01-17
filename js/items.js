@@ -47,14 +47,26 @@ function updateInventory(){
 			dmg += elems > 0 ? " + " + item.damage.flat : item.damage.flat;
 			elems++
 		}
-		var twohanded = item.twohanded ? "yes" : "no";
+		var twohanded = item.twohanded ? "Yes" : "No";
 		var range = ""
 		for (let r in item.range){
 			if (r != 0) range += "/"
 			range += item.range[r];
 		}
+		//mods
+		let txt = "";
+		let l = 0;
+		for (let m of item.mods){
+			let mod = getMod(m.id);
+			if (l > 0) txt += ", ";
+			txt += mod.name + " " + modLevels[m.level];
+			l++;
+		}
+		if (item.mods.length == 0) txt = "No"
+		let $slots = $("<div>" + txt + "</div>")
+		//mods
 		let $row = $("<div class='item-row'></div>").append("<div class='item-cell'><div>Name</div><div>" + item.name + "</div></div>")
-		.append("<div class='item-cell'><div>Damage</div><div>" + dmg + "</div></div>").append("<div class='item-cell'><div>2H</div><div>" + twohanded + "</div></div>").append("<div class='item-cell'><div>Range</div><div>" + range + "</div></div>").append("<div class='item-cell'><div>Description</div><div>" + item.description + "</div></div>").append("<div class='item-brow'><div><div class='item-cell-buttonsw'></div></div></div>")
+		.append("<div class='item-cell'><div>Damage</div><div>" + dmg + "</div></div>").append("<div class='item-cell'><div>2H</div><div>" + twohanded + "</div></div>").append("<div class='item-cell'><div>Range</div><div>" + range + "</div></div>").append("<div class='item-cell'><div>Description</div><div>" + item.description + "</div></div>").append($("<div class='item-cell'><div>Mods</div></div>").append($slots)).append("<div class='item-brow'><div><div class='item-cell-buttonsw'></div></div></div>")
 		$("#inventory-weapon").append($row);
 		let bcellw = $(".item-cell-buttonsw").last()
 		if (item.equipped){
@@ -82,7 +94,19 @@ function updateInventory(){
 	i = 0;
 	$("#inventory-armor").find(".item-row").remove();
 	for (let item of character.inventory.armors){
-		let $row = $("<div class='item-row'></div>").append("<div class='item-cell'><div>Name</div><div>" + item.name + "</div></div>").append("<div class='item-cell'><div>Armor</div><div>" + item.armor + "</div></div>").append("<div class='item-cell'><div>Description</div><div>" + item.description + "</div></div>").append("<div class='item-brow'><div><div class='item-cell-buttonsa'></div></div></div>")
+		//mods
+		let txt = "";
+		let l = 0;
+		for (let m of item.mods){
+			let mod = getMod(m.id);
+			if (l > 0) txt += ", ";
+			txt += mod.name + " " + modLevels[m.level];
+			l++;
+		}
+		if (item.mods.length == 0) txt = "No"
+		let $slots = $("<div>" + txt + "</div>")
+		//mods
+		let $row = $("<div class='item-row'></div>").append("<div class='item-cell'><div>Name</div><div>" + item.name + "</div></div>").append("<div class='item-cell'><div>Armor</div><div>" + item.armor + "</div></div>").append("<div class='item-cell'><div>Description</div><div>" + item.description + "</div></div>").append($("<div class='item-cell'><div>Mods</div></div>").append($slots)).append("<div class='item-brow'><div><div class='item-cell-buttonsa'></div></div></div>")
 		$("#inventory-armor").append($row);
 		let bcella = $(".item-cell-buttonsa").last()
 		if (item.equipped){
@@ -480,12 +504,13 @@ function openModWindow(mod, modItem){
 		let hasMod = false;
 		let $slots = $("<div></div>");
 		for (let slot of item.mods){
+			let slotmod = getMod(slot.id);
 			let enabledClass = "";
 			if (slot.id.toLowerCase() == modItem.id.toLowerCase()) {
 				hasMod = true;
 				enabledClass = " mod-slot-enabled";
 			}
-			$slots.append($("<div class='mod-slot mod-slot-filled" + enabledClass + "'></div>").click(function(){
+			$slots.append($("<div class='mod-slot" + enabledClass + "'>" + slotmod.name + " " + modLevels[slot.level] + "</div>").click(function(){
 				console.log("mod replaced");
 				let i = item.mods.indexOf(slot);
 				item.mods[i] = modItem;
@@ -496,7 +521,7 @@ function openModWindow(mod, modItem){
 			}));
 		}
 		if (item.mods.length < modMax) {
-			$slots.append($("<div class='mod-slot'></div>").click(function(){
+			$slots.append($("<div class='mod-slot mod-empty'>...</div>").click(function(){
 				console.log("mod added");
 				$(this).addClass("mod-slot-filled");
 				item.mods.push(modItem);
