@@ -436,8 +436,9 @@ td{
 .attribute-selector-bcell .button{
 	font-size: 12px;
 }
-#attribute-selector .selector-title{
-	color: #6FA8D5 !important;
+.selector-title{
+	color: #6FA8D5;
+	padding-bottom: 10px;
 }
 #attribute-selector-available{
 	color: #FF28AE;
@@ -448,4 +449,44 @@ td{
 }
 #attribute-selector-brow .button{
 	margin-left: 10px;
+}
+
+/* skill window */
+.changed-l{
+	color: #FF28AE;
+}
+.unlearned-l{
+	color: #6FA8D5;
+}
+#skill-selector-brow{
+	text-align: right;
+}
+#skill-selector-brow .button{
+	margin-left: 10px;
+	margin-top: 10px;
+}
+.skill-selector-l{
+	box-sizing: border-box;
+	padding:3px 0;
+	padding-right: 10px;
+}
+#skill-selector-available{
+	color: #FF28AE;
+}
+.selector-header-row>td{
+	font-size: 12px;
+	opacity: 0.7;
+	padding: 0 10px;
+}
+.selector-header-row>td:first-child{
+	padding-left: 0;
+}
+.selector-change-l{
+	text-align: center;
+}
+.skill-cost{
+	text-align: center;
+}
+.skill-attribute{
+	color: #6FA8D5;
 }

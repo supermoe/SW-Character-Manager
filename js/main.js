@@ -128,7 +128,7 @@ function wound(value){
 };
 
 function skillDie(value){
-	if (value < 0) return "X";
+	if (value < 0) return "\u00D7";
 	else return die[value];
 }
 
@@ -205,7 +205,7 @@ for (let i=0; i<attributes.length; i++){
     $("#attribute-brow").before("<tr><td>" + attributes[i] + ":" + "</td><td class='stat-label' id='attribute-l" + i + "'></td></tr>");
     attributeLabels.push('#attribute-l' + i);
 
-	$("#attribute-selector-brow").before("<tr><td class='attribute-selector-l'>" + attributes[i] + "</td><td>" + die[character.attributes[i]] + " -> <span id='temp-attribute-l" + i + "'></span></td><td class='attribute-selector-bcell'><div id='attribute-bump" + i + "' class='button'>+</div></td></tr>");
+	$("#attribute-selector-brow").before("<tr><td class='attribute-selector-l'>" + attributes[i] + "</td><td><span class='selector-change-l' id='temp-attribute-l" + i + "'></span></td><td class='attribute-selector-bcell'><div id='attribute-bump" + i + "' class='button'>+</div></td></tr>");
 	tempAttributeLabels.push('#temp-attribute-l' + i);
 
 	$("#attribute-bump" + i).click(function(){
@@ -222,7 +222,7 @@ for (let i=0; i<skills.length; i++){
     skillLabels.push('#skill-l' + i);
 	skillRows.push('#skill-row' + i);
 
-	$("#skill-selector-brow").before("<tr><td>" + skills[i].name + "</td><td>" + skillDie(character.skills[i]) + " -> <span id='temp-skill-l" + i + "'></span></td><td><span id='skill-cost" + i + "'></span></td><td><div id='skill-bump" + i + "' class='button'>+</div></td></tr>");
+	$("#skill-selector-brow").before("<tr><td class='skill-selector-l'>" + skills[i].name + " <span class='skill-attribute'>" + attributes[skills[i].attribute] + "</span>" + "</td><td class='selector-change-l'><span id='temp-skill-l" + i + "'></span></td><td class='skill-cost'><span id='skill-cost" + i + "'></span></td><td class='skill-bump-cell attribute-selector-bcell'><div id='skill-bump" + i + "' class='button'>+</div></td></tr>");
 	tempSkillLabels.push('#temp-skill-l' + i);
 	skillCostLabels.push('#skill-cost' + i);
 
@@ -285,8 +285,10 @@ function closeAttributeSelector(){
 }
 function updateAttributeSelector(){
 	for (let i=0; i<attributes.length; i++){
-        $(tempAttributeLabels[i]).html(die[character.attributes[i]+tempAttributes.affected[i]]);
-    }
+		if (character.attributes[i] < (character.attributes[i] + tempAttributes.affected[i])) $(tempAttributeLabels[i]).addClass("changed-l")
+		else $(tempAttributeLabels[i]).removeClass("changed-l");
+		$(tempAttributeLabels[i]).html(die[character.attributes[i]] + " \u2192 " + (die[character.attributes[i] + tempAttributes.affected[i]]));
+  }
 	$("#attribute-selector-available").html(tempAttributes.available);
 }
 function attributeSelectorReset(){
@@ -318,7 +320,11 @@ function closeSkillSelector(){
 }
 function updateSkillSelector(){
 	for (let i=0; i<skills.length; i++){
-		$(tempSkillLabels[i]).html(skillDie(character.skills[i]+tempSkills.affected[i]));
+		if (character.skills[i] < character.skills[i]+tempSkills.affected[i]) $(tempSkillLabels[i]).addClass('changed-l');
+		else $(tempSkillLabels[i]).removeClass('changed-l');
+		if (character.skills[i]+tempSkills.affected[i] < 0) $(tempSkillLabels[i]).addClass('unlearned-l');
+		else $(tempSkillLabels[i]).removeClass('unlearned-l');
+		$(tempSkillLabels[i]).html(skillDie(character.skills[i]) + " \u2192 " + skillDie(character.skills[i]+tempSkills.affected[i]));
 		$(skillCostLabels[i]).html(costOfBump(i, character.skills[i]+tempSkills.affected[i]+1));
     }
 	$("#skill-selector-available").html(tempSkills.available);
