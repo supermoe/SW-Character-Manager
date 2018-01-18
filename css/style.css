@@ -388,3 +388,31 @@ td{
 	opacity: 0.7;
 	text-align: left;
 }
+
+/* Exp */
+#xp-selector>table{
+	padding: 20px;
+	border: 2px solid white;
+}
+#xp-input{
+	color: #FF28AE;
+	margin-right: 10px;
+	background: transparent;
+	border: 0;
+	outline: 0;
+	placeholder: "Input XP here";
+	text-align: center;
+	font-family: inherit;
+	font-size: 20px;
+	border-bottom:2px solid #FF28AE;
+	width: 100px;
+}
+#xp-input::-webkit-input-placeholder{
+	color: #FF28AE;
+}
+#xp-selector .brow{
+	padding-top: 10px;
+}
+#xp-selector .button{
+	margin-left: 10px;
+}
