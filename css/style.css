@@ -101,6 +101,8 @@ td{
 	background: #296190;
 	width: auto;
 	display: inline-block;
+	padding: 20px;
+	border: 2px solid white;
 }
 
 #wound-table>*{
@@ -335,6 +337,7 @@ td{
 /* item details */
 #item-details>div{
 	border: 2px solid white;
+	padding: 0 !important;
 }
 #item-details .button{
 	margin-right: 20px;
@@ -389,7 +392,7 @@ td{
 	text-align: left;
 }
 
-/* Exp */
+/* XP Selector */
 #xp-selector>table{
 	padding: 20px;
 	border: 2px solid white;
@@ -414,5 +417,35 @@ td{
 	padding-top: 10px;
 }
 #xp-selector .button{
+	margin-left: 10px;
+}
+
+/* Attributes Window */
+#attribute-selector table{
+	max-width: 250px;
+	white-space: nowrap;
+}
+.attribute-selector-l{
+	width: 100%;
+	box-sizing: border-box;
+	padding:3px 0;
+}
+.attribute-selector-bcell{
+	width: 1px;
+}
+.attribute-selector-bcell .button{
+	font-size: 12px;
+}
+#attribute-selector .selector-title{
+	color: #6FA8D5 !important;
+}
+#attribute-selector-available{
+	color: #FF28AE;
+}
+#attribute-selector-brow>td{
+	padding-top: 10px;
+	text-align: right;
+}
+#attribute-selector-brow .button{
 	margin-left: 10px;
 }

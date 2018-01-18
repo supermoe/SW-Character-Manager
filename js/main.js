@@ -205,7 +205,7 @@ for (let i=0; i<attributes.length; i++){
     $("#attribute-brow").before("<tr><td>" + attributes[i] + ":" + "</td><td class='stat-label' id='attribute-l" + i + "'></td></tr>");
     attributeLabels.push('#attribute-l' + i);
 
-	$("#attribute-selector-brow").before("<tr><td>" + attributes[i] + "</td><td>" + die[character.attributes[i]] + " -> <span id='temp-attribute-l" + i + "'></span></td><td><div id='attribute-bump" + i + "' class='button'>+</div></td></tr>");
+	$("#attribute-selector-brow").before("<tr><td class='attribute-selector-l'>" + attributes[i] + "</td><td>" + die[character.attributes[i]] + " -> <span id='temp-attribute-l" + i + "'></span></td><td class='attribute-selector-bcell'><div id='attribute-bump" + i + "' class='button'>+</div></td></tr>");
 	tempAttributeLabels.push('#temp-attribute-l' + i);
 
 	$("#attribute-bump" + i).click(function(){
