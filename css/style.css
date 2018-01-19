@@ -65,20 +65,10 @@ td{
 	color: white;
 }
 
-/*
-.button{
-	cursor: pointer;
-	color: white;
-	padding: 5px 10px;
-	color: #6FA8D5;
-	display: inline-block;
-	background: #03487F;
+#character-rightpane{
+	vertical-align: top;
+	padding-top: 13px;
 }
-.button:hover{
-	background: #FF28AE;
-	color: white;
-}
-*/
 
 #popup{
 	background: rgba(0,0,0,0.7);
