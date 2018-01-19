@@ -160,14 +160,18 @@ function updateInventory(){
 	for (let item of character.inventory.crafts){
 		if (item.reqTinker >= 0){
 			$("#crafting-recipes-tinkering").append($("<div class='item-row'></div>").append("<div class='item-cell'><div>Skill</div><div>" + die[item.reqTinker] + "</div></div>").append("<div class='item-cell'><div>Name</div><div>" + item.name + "</div></div>").click(function(){
-				openCraftingWindow(item);
-				console.log(item);
+				if (character.skills[7] >= item.reqTinker){
+					openCraftingWindow(item);
+					console.log(item);
+				}
 			}));
 		}
 		if (item.reqHeal >= 0){
 			$("#crafting-recipes-healing").append($("<div class='item-row'></div>").append("<div class='item-cell'><div>Skill</div><div>" + die[item.reqHeal] + "</div></div>").append("<div class='item-cell'><div>Name</div><div>" + item.name + "</div></div>").click(function(){
-				openCraftingWindow(item);
-				console.log(item);
+				if (character.skills[5] >= item.reqTinker){
+					openCraftingWindow(item);
+					console.log(item);
+				}
 			}));
 		}
 	}
