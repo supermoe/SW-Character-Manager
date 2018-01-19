@@ -579,3 +579,12 @@ td{
 #edge-table>div:not(.table-header):hover .missing-req{
 	color: rgba(255, 255, 255, 0.5) !important;
 }
+
+/* crafting tab */
+.craft .item-row{
+	cursor: pointer;
+}
+.craft .item-row:hover{
+	background: #FF28AE;
+
+}
