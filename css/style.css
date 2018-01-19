@@ -588,3 +588,34 @@ td{
 	background: #FF28AE;
 
 }
+
+/* mod application */
+#mod-window>div {
+	max-width: 400px;
+}
+
+#mod-item-list td{
+	padding:3px 0;
+}
+#mod-item-list td:first-child{
+	width: 100%;
+	box-sizing: border-box;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+#mod-item-list td:last-child{
+	width: 1px !important;
+	box-sizing: border-box;
+	text-align: right !important;
+	white-space: nowrap;
+}
+.mod-header>th{
+	font-weight: normal !important;
+	opacity: 0.7;
+	text-align: left;
+	font-size: 12px;
+	padding-bottom: 7px;
+}
+.mod-header>th:last-child{
+	text-align: right;
+}

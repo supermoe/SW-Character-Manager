@@ -510,9 +510,10 @@ function openModWindow(mod, modItem){
 	$("#mod-window").removeClass("hidden");
 	$("#mod-item-list").children().remove();
 	$("#mod-l").text(mod.name + " " + modLevels[modItem.level]);
+	$("#mod-item-list").append("<tr class='mod-header'><th>Equipment</th><th>Mods</th></tr>")
 	function createSlots(item){
 		let hasMod = false;
-		let $slots = $("<div></div>");
+		let $slots = $("<td></td>");
 		for (let slot of item.mods){
 			let slotmod = getMod(slot.id);
 			let enabledClass = "";
