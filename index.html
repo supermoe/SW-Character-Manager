@@ -188,14 +188,16 @@
 			<!-- Hindrance Selector -->
 			<div id="hindrance-selector" class="hidden">
 				<div id="hindrance-selector-step1" class="hidden">
-					<div>You can take as many hindrances as you want but you receive at best 4 bonus points from them.<span id="hindrance-pt-l"></span>/4.</div>
-					<div id="hindrance-select-wrapper"><table id="hindrance-select">
-					</table></div>
-					<div><div class="button" onclick="closeHindranceSelector()">Cancel</div></div>
+					<div class='he-header'>You can take as many hindrances as you want but you receive at best 4 bonus points from them.</div>
+					<div class='he-header'><span class='important-var'><span id="hindrance-pt-l"></span>/4</span> Bonus points.</div>
+					<div id="hindrance-select-wrapper"><div class='select-table' id="hindrance-select">
+						<div class='table-header'><div>Hindrance <span class='header-sublabel'>Bonus</span></Bonus></div><div>Description</div></div>
+					</div></div>
+					<div class='selector-brow'><div class="button" onclick="closeHindranceSelector()">Cancel</div></div>
 				</div>
 				<div id="hindrance-selector-step2" class="hidden">
-					<div>Hindrances are permanent. Are you sure you want to add <span id="hindrance-selector-l"></span> to your character?</div>
-					<div><div class="button" onclick="closeHindranceSelector()">Cancel</div><div id="hindrance-selector-add-b" class="button">Add</div></div>
+					<div>Hindrances are permanent. Are you sure you want to add <span class='important-var' id="hindrance-selector-l"></span> to your character?</div>
+					<div class='selector-brow'><div class="button" onclick="closeHindranceSelector()">Cancel</div><div id="hindrance-selector-add-b" class="button">Add</div></div>
 				</div>
 			</div>
 
@@ -216,22 +218,22 @@
 			<!-- edges selector -->
 			<div id="edge-selector" class="hidden">
 				<div id="edge-selector-step1">
-					<div>You can still take <span id="edge-points-l"></span> edge(s).</div>
+					<div class='he-header'>You can still take <span id="edge-points-l"></span> edge(s).</div>
 					<div id="edge-selector-wrapper">
-						<table id="edge-table">
-							<tr>
-								<th>Name</th>
-								<th>Lvl</th>
-								<th>Requirements</th>
-								<th>Effect</th>
-							</tr>
-						</table>
+						<div id="edge-table">
+							<div class='table-header'>
+								<div>Name</div>
+								<div>Lvl</div>
+								<div>Requirements</div>
+								<div>Effect</div>
+							</div>
+						</div>
 					</div>
-					<div><div class="button" onclick="closeEdgeSelector()">Cancel</div></div>
+					<div class='selector-brow'><div class="button" onclick="closeEdgeSelector()">Cancel</div></div>
 				</div>
 				<div id="edge-selector-step2">
-					<div>Edges are permanent. Are you sure you want to add <span id="edge-selector-l"></span> to your character?</div>
-					<div><div class="button" onclick="closeEdgeSelector()">Cancel</div><div id="edge-selector-add-b" class="button">Add</div></div>
+					<div>Edges are permanent. Are you sure you want to add <span class='important-var' id="edge-selector-l"></span> to your character?</div>
+					<div class='selector-brow'><div class="button" onclick="closeEdgeSelector()">Cancel</div><div id="edge-selector-add-b" class="button">Add</div></div>
 				</div>
 			</div>
 
@@ -295,11 +297,20 @@
 				</div>
 			</div>
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<!-- Insert this line above script imports  -->
+		<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+		<!-- normal script imports etc  -->
+		<script src="jquery.min.js"></script> 
+		<script src="jquery.min.js"></script>
 		<script src="js/data.js"></script>
 		<script src="js/edges.js"></script>
 		<script src="js/main.js"></script>
 		<script src="js/mods.js"></script>
-		<script src="js/items.js"></script>
+		<script src="js/items.js"></script>     
+
+		<!-- Insert this line after script imports -->
+		<script>if (window.module) module = window.module;</script>
+		
 	</body>
 </html>

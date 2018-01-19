@@ -241,7 +241,7 @@ for (let i=0; i<hindrances.length; i++){
 	hindranceRows.push('#hindrance-row' + i);
 
 	var ht = hindrances[i].type //== MINOR ? "MINOR" : "MAJOR";
-	$("#hindrance-select").append($("<tr class='hindrance-select-row'><td>" + hindrances[i].name + "</td><td class='hindrance-selector-type'>" + ht + "</td><td class='hindrance-selector-desc'>" + hindrances[i].description + "</td><tr>").click(function(){step2HindranceSelector(i)}))
+	$("#hindrance-select").append($("<div class='hindrance-select-row'><div>" + hindrances[i].name + " <span class='row-sublabel'>" + ht + "</span>" + "</div><div class='hindrance-selector-desc'>" + hindrances[i].description + "</div></div>").click(function(){step2HindranceSelector(i)}))
 }
 
 for (let i=0; i<edges.length; i++){
@@ -268,7 +268,7 @@ for (let i=0; i<edges.length; i++){
 		edgeReq.push({id:"#req"+reqid++, edge:edges[i].upgrades});
 		loops++;
 	}
-	$("#edge-table").append($("<tr id='edge-selector-row"+i+"'><td>" + edges[i].name + "</td><td><span id='req"+reqid+"'>" + edges[i].req_level + "</span></td><td>" + reqs + "</td><td class='edge-selector-desc'>" + edges[i].description + "</td></tr>").click(function(){step2EdgeSelector(i)}));
+	$("#edge-table").append($("<div id='edge-selector-row"+i+"'><div>" + edges[i].name + "</div><div><span id='req"+reqid+"'>" + edges[i].req_level + "</span></div><div>" + reqs + "</div><div class='edge-selector-desc'>" + edges[i].description + "</div></div>").click(function(){step2EdgeSelector(i)}));
 	edgeSelectorRows.push('#edge-selector-row' + i);
 	levelReq.push({id:"#req"+reqid++, level:edges[i].req_level});
 }
@@ -499,3 +499,4 @@ function step2EdgeSelector(i){
 }
 
 update();
+
