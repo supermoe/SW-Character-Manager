@@ -223,8 +223,7 @@ function addItem(json){
 			if (("name" in item && typeof item.name == 'string') &&
 			("pcs" in item && typeof item.pcs == 'number')){
 				for (var s of character.inventory.stackables){
-					item.name = item.name.toLowerCase();
-					if (s.name == item.name) {
+					if (s.name.toLowerCase() == item.name.toLowerCase()) {
 						s.pcs += item.pcs;
 						updateInventory();
 						return "success : item stacked."
