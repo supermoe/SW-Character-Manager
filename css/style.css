@@ -24,6 +24,7 @@ body{
 	background: #296190;
 	color: white;
 	margin: 30px;
+	overflow-x: hidden;
 }
 table{
 	width: 100%;
