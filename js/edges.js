@@ -397,6 +397,6 @@ edges = [
         req_attribute: [],
         req_skill: [],
         upgrades: 47,
-        description: "+2 " + skills[14]
+        description: "+2 " + skills[14].name
     },
 ]
