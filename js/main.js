@@ -7,7 +7,7 @@ character = {
     attributes: [0,0,0,0,0],
 	attributePoints: 5,
 	//skills
-	skills: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, -1],
+	skills: [-1,-1,-1,-1,-1,-1,-1,2,-1,-1,-1,-1,-1,-1, -1],
 	skillPoints: 10,
 	//hindrances
 	hindrances: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],

@@ -432,8 +432,13 @@ function updateCraftingWindow(item){
 			$("#crafting-output").append("<div>" + item.output.name + "</div>");
 			$("#crafting-output").append("<div>" + "armor: " + item.output.armor + "</div>");
 			break;
-		case stackable:
+		case type.stackable:
 			$("#crafting-output").append("<div>" + item.output.pcs + " " + item.output.name + "</div>");
+			break;
+		case type.other:
+			let mod = getMod(item.output.id)
+			$("#crafting-output").append("<div>" + mod.name  + " " +  modLevels[item.output.level] + "</div>");
+			$("#crafting-output").append("<div>" + mod.levels[item.output.level].description + "</div>");
 			break;
 	}
 
@@ -671,6 +676,19 @@ var armor = JSON.stringify({
 	armor: 1,
 	mods: [],
 	description: "Brown trenchcoat."
+});
+
+var recipe3 = JSON.stringify({
+	type: type.craft,
+	name: "Sharp Blade I",
+	reqTinker: 0,
+	reqHeal: -1,
+	input: [{material: "poop", pcs: 1}],
+	output: {
+		type: type.other,
+		id: SHARP_BLADE.id,
+		level: 0
+	}
 });
 
 var mod = JSON.stringify({
