@@ -1,10 +1,12 @@
 character = {
-	firstname: "unnamed",
+	firstname: "John",
+	lastname: "Doe",
+	nickname: "Nobody",
 	exp: 0,
 	level: 0,
 	wounds: 0,
 	//attributes
-    attributes: [0,0,0,0,0],
+  attributes: [0,0,0,0,0],
 	attributePoints: 5,
 	//skills
 	skills: [-1,-1,-1,-1,-1,-1,-1,2,-1,-1,-1,-1,-1,-1, -1],
@@ -41,6 +43,11 @@ skillCostLabels = [];
 function update(){
 	//exp
 	$("#exp-label").text(character.exp);
+
+	//names
+	$('#firstname-l').text(character.firstname);
+	$('#nickname-l').text(character.nickname == "" ? '' : '"'+character.nickname+'"');
+	$('#lastname-l').text(character.lastname);
 
 	//hide or show level up button
 	if (character.exp >= levelUpCost) $('#levelup-b').removeClass("hidden");
@@ -496,6 +503,26 @@ function step2EdgeSelector(i){
 			}
 		});
 	}
+}
+
+//renamer
+function openRename(){
+	$("#popup").removeClass("hidden");
+	$('#rename-window').removeClass('hidden');
+	$("#firstname-i").val(character.firstname);
+	$("#nickname-i").val(character.nickname);
+	$("#lastname-i").val(character.lastname);
+}
+function closeRename(){
+	$("#popup").addClass("hidden");
+	$('#rename-window').addClass('hidden');
+}
+function confirmRename(){
+	character.firstname = $("#firstname-i").val();
+	character.nickname = $("#nickname-i").val();
+	character.lastname = $("#lastname-i").val();
+	closeRename();
+	update();
 }
 
 update();

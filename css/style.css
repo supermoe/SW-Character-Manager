@@ -646,3 +646,100 @@ td{
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
+
+/* rename */
+#rename-window input{
+	width: 120px;
+	background: none;
+	border: none;
+	border-bottom: 2px solid #FF28AE;
+	color: #FF28AE;
+	outline: none;
+	font-size: 16px;
+	font-family: inherit;
+}
+#rename-window input:first-child{
+	text-align: right;
+}
+#rename-window input:nth-child(2){
+	width: 80px;
+	text-align: center;
+}
+#rename-window input:focus{
+	border-bottom: 2px solid white;
+	color: white;
+}
+.rename-input-row{
+	color: #6FA8D5;
+	font-size: 25px !important;
+	font-weight: bold;
+}
+
+/* HEADER */
+/* name */
+#firstname-l, #nickname-l, #lastname-l{
+}
+#firstname-l{
+	margin-right: 5px;
+}
+#lastname-l{
+	margin-left: 5px;
+}
+#nickname-l{
+	margin: 0 5px;
+	font-weight: normal;
+}
+.name-cell{
+	position: relative;
+	font-size: 40px;
+	font-weight: lighter;
+	text-align: center;
+	z-index: 0;
+	padding-bottom: 30px;
+}
+.name-cell:before{
+	z-index: -1;
+	background: #FF28AE;
+	color: transparent;
+	content: ".";
+	position: absolute;
+	top:0;
+	bottom:0;
+	right:-35px;
+	left:-35px;
+}
+
+#character-rightpane{
+	padding-top: 30px;
+}
+#left-pane{
+	padding-top: 17px;
+}
+
+/* menu */
+.menu-cell{
+	position: relative;
+	text-align: center;
+	padding-bottom: 13px;
+}
+.menu-cell:before{
+	z-index: -1;
+	background: #FF28AE;
+	color: transparent;
+	content: ".";
+	position: absolute;
+	top:-35px;
+	bottom:0;
+	right:-35px;
+	left:-35px;
+}
+.menu-cell .button{
+	margin-left: 10px;
+	border: 2px solid #C72376;
+	color: #C72376;
+}
+.menu-cell .button:hover{
+	background: white;
+	color: #C72376;
+	border: 2px solid white;
+}

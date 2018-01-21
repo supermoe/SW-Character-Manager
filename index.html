@@ -10,12 +10,14 @@
 		<table>
 			<tr>
 				<!-- menu -->
-				<td colspan="2"><div class="button">Import Character</div><div class="button">Save</div><div class="button" onclick="openItemImport()">Import code</div></td>
+				<td colspan="2" class='menu-cell'><div class="button">Import Character</div><div class="button">Save</div><div class="button" onclick="openItemImport()">Import code</div><div class="button" onclick="openRename()">Rename</div></td>
 			</tr>
 			<tr>
 				<!-- Name -->
-				<td colspan="2"><div>Unnamed</div></td>
+				<td class='name-cell' colspan="2"><div><span id='firstname-l'></span><span id='nickname-l'></span><span id='lastname-l'></span></div></td>
 			</tr>
+				<!-- Equipment -->
+			<tr><td colspan="2"></td></tr>
 			<tr>
 				<td id="left-pane">
 					<!-- Exp -->
@@ -297,6 +299,15 @@
 					<div class='brow'><div class="button" onclick="closeItemDetails()">Cancel</div></div>
 				</div>
 			</div>
+
+			<!-- Rename Window -->
+			<div id="rename-window" class="hidden">
+					<div>
+						<div class='he-header'>Rename your character.<br>You do not have to use every field.</div>
+						<div class='rename-input-row'><input id='firstname-i'> "<input id='nickname-i'>" <input id='lastname-i'></div>
+						<div class='brow'><div class="button" onclick="closeRename()">Cancel</div><div class="button" onclick="confirmRename()">Rename</div></div>
+					</div>
+				</div>
 
 		<!-- Insert this line above script imports  -->
 		<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
