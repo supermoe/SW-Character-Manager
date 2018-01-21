@@ -17,8 +17,13 @@
 				<td class='name-cell' colspan="2"><div><span id='firstname-l'></span><span id='nickname-l'></span><span id='lastname-l'></span></div></td>
 			</tr>
 				<!-- Equipment -->
-			<tr><td colspan="2"></td></tr>
-			<tr>
+			<tr><td colspan="2">
+				<div class='equipment-cell'>
+					<div><div class='ec-header'>Armor</div><div id='armor-container'></div></div>
+					<div><div class='ec-header'>Main hand</div><div id='mainhand-container'></div></div>
+					<div><div class='ec-header'>Off hand</div><div id='offhand-container'></div></div>
+				</div>
+			</td><tr>
 				<td id="left-pane">
 					<!-- Exp -->
 					<div id="exp-wrapper">
@@ -302,12 +307,12 @@
 
 			<!-- Rename Window -->
 			<div id="rename-window" class="hidden">
-					<div>
-						<div class='he-header'>Rename your character.<br>You do not have to use every field.</div>
-						<div class='rename-input-row'><input id='firstname-i'> "<input id='nickname-i'>" <input id='lastname-i'></div>
-						<div class='brow'><div class="button" onclick="closeRename()">Cancel</div><div class="button" onclick="confirmRename()">Rename</div></div>
-					</div>
+				<div>
+					<div class='he-header'>Rename your character.<br>You do not have to use every field.</div>
+					<div class='rename-input-row'><input id='firstname-i'> "<input id='nickname-i'>" <input id='lastname-i'></div>
+					<div class='brow'><div class="button" onclick="closeRename()">Cancel</div><div class="button" onclick="confirmRename()">Rename</div></div>
 				</div>
+			</div>
 
 		<!-- Insert this line above script imports  -->
 		<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>

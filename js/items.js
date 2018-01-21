@@ -18,7 +18,33 @@ defaultWeapon = {
 }
 
 //inventory
+function appendModList(item, container){
+	for (im of item.mods){
+		let mod = getMod(im.id);
+		container.append("<div class='eq-mod'>" + mod.levels[im.level].description + "</div>");
+	}
+}
+
 function updateInventory(){
+	$aContainer = $('#armor-container');
+	$mhContainer = $('#mainhand-container');
+	$ohContainer = $('#offhand-container');
+
+	let eArmor = getEquippedArmor();
+	$aContainer.children().remove();
+	$aContainer.append("<div>" + eArmor.armor + "</div>");
+	appendModList(eArmor, $aContainer)
+
+	let mainHand = getEquippedMHWeapon();
+	$mhContainer.children().remove();
+	$mhContainer.append("<div>" + damageToString(mainHand.damage) + "</div>");
+	appendModList(mainHand, $mhContainer);
+
+	let offHand = getEquippedOHWeapon();
+	$ohContainer.children().remove();
+	$ohContainer.append("<div>" + damageToString(offHand.damage) + "</div>");
+	appendModList(offHand, $ohContainer);
+
 	let i = 0;
 	$("#inventory-stackable").find(".item-row").remove();
 	for (let item of character.inventory.stackables){
@@ -69,16 +95,29 @@ function updateInventory(){
 		.append("<div class='item-cell'><div>Damage</div><div>" + dmg + "</div></div>").append("<div class='item-cell'><div>2H</div><div>" + twohanded + "</div></div>").append("<div class='item-cell'><div>Range</div><div>" + range + "</div></div>").append("<div class='item-cell'><div>Description</div><div>" + item.description + "</div></div>").append($("<div class='item-cell'><div>Mods</div></div>").append($slots)).append("<div class='item-brow'><div><div class='item-cell-buttonsw'></div></div></div>")
 		$("#inventory-weapon").append($row);
 		let bcellw = $(".item-cell-buttonsw").last()
-		if (item.equipped){
+		if (item.mhequipped){
 			$row.addClass("equipped");
-			bcellw.append($("<div class='button'>Unnequip</i></div>").click(function(){
-				setEquippedWeapon(defaultWeapon);
+			bcellw.append($("<div class='button'>Unnequip MH</i></div>").click(function(){
+				setEquippedMHWeapon(defaultWeapon);
 				updateInventory();
 			}))
 		}
 		else{
-			bcellw.append($("<div class='button'>Equip</div>").click(function(){
-				setEquippedWeapon(item);
+			bcellw.append($("<div class='button'>Equip MH</div>").click(function(){
+				setEquippedMHWeapon(item);
+				updateInventory();
+			}))
+		}
+		if (item.ohequipped){
+			$row.addClass("equipped");
+			bcellw.append($("<div class='button'>Unnequip OH</i></div>").click(function(){
+				setEquippedOHWeapon(defaultWeapon);
+				updateInventory();
+			}))
+		}
+		else{
+			bcellw.append($("<div class='button'>Equip OH</div>").click(function(){
+				setEquippedOHWeapon(item);
 				updateInventory();
 			}))
 		}
@@ -205,7 +244,8 @@ function addItem(json){
 			("range" in item && typeof item.range == 'object' && item.range.length > 0) &&
 			("mods" in item && typeof item.mods == 'object')){
 				character.inventory.weapons.push(item);
-				item.equipped = false;
+				item.ohequipped = false;
+				item.mhequipped = false;
 				updateInventory();
 				return "success : weapon added.";
 			}
@@ -263,9 +303,15 @@ function getEquippedArmor(){
 	}
 	return defaultArmor;
 }
-function getEquippedWeapon(){
+function getEquippedMHWeapon(){
 	for (let item of character.inventory.weapons){
-		if (item.equipped) return item;
+		if (item.mhequipped) return item;
+	}
+	return defaultWeapon;
+}
+function getEquippedOHWeapon(){
+	for (let item of character.inventory.weapons){
+		if (item.ohequipped) return item;
 	}
 	return defaultWeapon;
 }
@@ -273,9 +319,15 @@ function setEquippedArmor(item){
 	getEquippedArmor().equipped = false;
 	item.equipped = true
 }
-function setEquippedWeapon(item){
-	getEquippedWeapon().equipped = false;
-	item.equipped = true
+function setEquippedMHWeapon(item){
+	getEquippedMHWeapon().mhequipped = false;
+	if (getEquippedOHWeapon() == item) item.ohequipped = false;
+	item.mhequipped = true
+}
+function setEquippedOHWeapon(item){
+	getEquippedOHWeapon().ohequipped = false;
+	if (getEquippedMHWeapon() == item) item.mhequipped = false;
+	item.ohequipped = true
 }
 
 function getMod(id){
@@ -323,7 +375,8 @@ function openSendWindow(item){
 			});
 			break;
 		case type.weapon:
-			clone.equipped = false;
+			clone.ohequipped = false;
+			clone.mhequipped = false;
 			$("#item-send-confirm").click(function(){
 				let i = character.inventory.weapons.indexOf(item);
 				character.inventory.weapons.splice(i, 1);
@@ -748,3 +801,6 @@ var recipe2 = JSON.stringify({
 		description: "Brown trenchcoat."
 	}
 });
+
+
+updateInventory();
