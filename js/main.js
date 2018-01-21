@@ -46,7 +46,6 @@ function update(){
 	//hindrances
 	hindranceCount() > 0 ? $("#hindrance-null").addClass('hidden') : $("#hindrance-null").removeClass('hidden')
 	$('#hindrance-pt-l').text(hindranceCount())
-	if (hindranceMax-hindranceCount() <= 0) $('#hindrance-add-b').addClass("hidden")
 	if (hindranceCount() - character.hindrancesUsed > 0) $('#hindrance-bonus-b').removeClass('hidden');
 	else $('#hindrance-bonus-b').addClass('hidden');
 	$('#hindrance-bonus-l').text(hindranceCount() - character.hindrancesUsed);
