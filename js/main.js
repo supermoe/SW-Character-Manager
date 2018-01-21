@@ -525,5 +525,6 @@ function confirmRename(){
 	update();
 }
 
+new Clipboard('.cpy');
 update();
 

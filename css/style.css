@@ -675,6 +675,23 @@ td{
 	font-weight: bold;
 }
 
+/* sending */
+#item-send-code{
+	margin:0;
+	width: 300px;
+	height: 200px;
+	word-break: break-all;
+	overflow-wrap: break-word;
+	background: none;
+	outline: none;
+	border: 2px solid #6FA8D5;
+	color: #6FA8D5;
+	padding: 10px;
+	font-size: 12px;
+	font-family: Courier New, Courier, monospace;
+	text-align: left;
+}
+
 /* HEADER */
 /* name */
 #firstname-l, #nickname-l, #lastname-l{

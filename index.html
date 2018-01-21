@@ -267,14 +267,14 @@
 			<!-- item send -->
 			<div id="item-send" class="hidden">
 				<div id="item-send-step1">
-					<div>Give <span id="send-item-l">item</span> away?</div>
+					<div class='he-header'>Give <span id="send-item-l" class='important-var'>item</span> away?</div>
 					<div><input id="item-send-input" type="range" step="1"></div>
-					<div><div class="button" onclick="closeSendWindow()">Cancel</div><div id="item-send-confirm" class="button" onclick="sendWindowStep2()">Give</div></div>
+					<div class='selector-brow'><div class="button" onclick="closeSendWindow()">Cancel</div><div id="item-send-confirm" class="button" onclick="sendWindowStep2()">Give</div></div>
 				</div>
 				<div id="item-send-step2">
-					<div>Send the following code.</div>
+					<div class='he-header'>Send the following code.</div>
 					<div id="item-send-code"></div>
-					<div><div class="button" onclick="closeSendWindow()">Close</div></div>
+					<div class='selector-brow'><div class="button" onclick="closeSendWindow()">Close</div><div class="button cpy" data-clipboard-target="#item-send-code">Copy</div></div>
 				</div>
 			</div>
 
@@ -319,7 +319,7 @@
 
 		<!-- normal script imports etc  -->
 		<script src="jquery.min.js"></script> 
-		<script src="jquery.min.js"></script>
+		<script src="clipboard.min.js"></script>
 		<script src="js/data.js"></script>
 		<script src="js/edges.js"></script>
 		<script src="js/main.js"></script>
