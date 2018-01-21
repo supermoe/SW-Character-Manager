@@ -692,6 +692,27 @@ td{
 	text-align: left;
 }
 
+/* importing code */
+#item-importer input{
+	background: none;
+	outline: none;
+	border: none;
+	border-bottom: 2px solid #FF28AE;
+	color: #FF28AE;
+	font-family: "Roboto";
+	font-size: 12px;
+	text-align: center;
+	padding-bottom: 2px;
+}
+#item-importer input:focus{
+	border-bottom: 2px solid white;
+	color: white;
+}
+#item-importer input::-webkit-input-placeholder{
+	color:#FF28AE;
+	opacity: 0.7;
+}
+
 /* HEADER */
 /* name */
 #firstname-l, #nickname-l, #lastname-l{

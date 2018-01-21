@@ -416,6 +416,7 @@ function closeSendWindow(){
 function openItemImport(){
 	$("#popup").removeClass("hidden");
 	$("#item-importer").removeClass("hidden");
+	$("#importer-input").val("");
 }
 function closeItemImport(){
 	$("#popup").addClass("hidden");
