@@ -170,9 +170,6 @@ td{
 	background: #FF28AE !important;
 }
 
-#left-pane{
-	padding-right: 20px;
-}
 
 .stat-label{
 	color: #FF28AE;
@@ -752,13 +749,15 @@ td{
 }
 #left-pane{
 	padding-top: 17px;
+	padding-right: 20px;
+	width: 220px;
 }
 
 /* menu */
 .menu-cell{
 	position: relative;
 	text-align: center;
-	padding-bottom: 13px;
+	padding-bottom: 20px;
 }
 .menu-cell:before{
 	z-index: -1;
@@ -775,6 +774,7 @@ td{
 	margin-left: 10px;
 	border: 2px solid #C72376;
 	color: #C72376;
+	margin-top: 10px;
 }
 .menu-cell .button:hover{
 	background: white;
@@ -784,9 +784,9 @@ td{
 
 /* equipment */
 .equipment-cell>div{
-	width: 150px;
+	max-width: 150px;
 	border-right: 2px solid #FF28AE;
-	padding-right: 10px; 
+	padding: 0 10px; 
 	text-align: right;
 }
 .equipment-cell{
@@ -795,7 +795,9 @@ td{
 	padding: 30px 0;
 	display: flex;
 	flex-direction: row;
-	justify-content: space-evenly;
+	justify-content: center;
+	width: 100%;
+	box-sizing: border-box;
 }
 .equipment-cell:before{
 	z-index: -1;

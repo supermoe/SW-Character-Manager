@@ -10,7 +10,7 @@
 		<table>
 			<tr>
 				<!-- menu -->
-				<td colspan="2" class='menu-cell'><div class="button">Import Character</div><div class="button">Save</div><div class="button" onclick="openItemImport()">Import code</div><div class="button" onclick="openRename()">Rename</div></td>
+				<td colspan="2" class='menu-cell'><div id="character-new" class="button" onclick="openNewCharWarning()">New Character</div><div id="character-import" class="button">Import Character</div><div id="character-export" class="button">Save Character</div><div class="button" onclick="openItemImport()">Import code</div><div class="button" onclick="openRename()">Rename</div></td>
 			</tr>
 			<tr>
 				<!-- Name -->
@@ -23,7 +23,7 @@
 					<div><div class='ec-header'>Main hand</div><div id='mainhand-container'></div></div>
 					<div><div class='ec-header'>Off hand</div><div id='offhand-container'></div></div>
 				</div>
-			</td><tr>
+			</td></tr>
 				<td id="left-pane">
 					<!-- Exp -->
 					<div id="exp-wrapper">
@@ -309,9 +309,17 @@
 				<div>
 					<div class='he-header'>Rename your character.<br>You do not have to use every field.</div>
 					<div class='rename-input-row'><input id='firstname-i'> "<input id='nickname-i'>" <input id='lastname-i'></div>
-					<div class='brow'><div class="button" onclick="closeRename()">Cancel</div><div class="button" onclick="confirmRename()">Rename</div></div>
+					<div class='selector-brow'><div class="button" onclick="closeRename()">Cancel</div><div class="button" onclick="confirmRename()">Rename</div></div>
 				</div>
 			</div>
+
+			<!-- New Char Warning -->
+			<div id="new-char-warning" class="hidden">
+					<div>
+						<div class='he-header'>Everything since the last save will be lost. Do you want to create a new character?</div>
+						<div class='selector-brow'><div class="button" onclick="closeNewCharWarning()">Cancel</div><div class="button" onclick="newCharacter()">New Character</div></div>
+					</div>
+				</div>
 
 		<!-- Insert this line above script imports  -->
 		<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
@@ -323,7 +331,8 @@
 		<script src="js/edges.js"></script>
 		<script src="js/main.js"></script>
 		<script src="js/mods.js"></script>
-		<script src="js/items.js"></script>     
+		<script src="js/items.js"></script>  
+		<script src='js/fs.js'></script>   
 
 		<!-- Insert this line after script imports -->
 		<script>if (window.module) module = window.module;</script>

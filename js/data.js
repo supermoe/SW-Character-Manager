@@ -12,6 +12,8 @@ charismaDefault = 0;
 hindranceMax = 4;
 elderlySkillPoints = 4;
 
+defaultCharacter = '{"firstname":"John","lastname":"Doe","nickname":"Nobody","exp":0,"level":0,"wounds":0,"attributes":[0,0,0,0,0],"attributePoints":5,"skills":[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],"skillPoints":10,"hindrances":[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],"hindrancesUsed":0,"edgePoints":1,"edges":[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],"inventory":{"stackables":[],"weapons":[],"armors":[],"others":[],"crafts":[]}}';
+
 skills = [
     //AGILITY
     {

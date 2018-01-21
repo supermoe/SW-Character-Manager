@@ -1,25 +1,4 @@
-character = {
-	firstname: "John",
-	lastname: "Doe",
-	nickname: "Nobody",
-	exp: 0,
-	level: 0,
-	wounds: 0,
-	//attributes
-  attributes: [0,0,0,0,0],
-	attributePoints: 5,
-	//skills
-	skills: [-1,-1,-1,-1,-1,-1,-1,2,-1,-1,-1,-1,-1,-1, -1],
-	skillPoints: 10,
-	//hindrances
-	hindrances: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
-	hindrancesUsed : 0,
-	//edges
-	edgePoints: 1,
-	edges: [true, true, false, false, false, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
-	//inventory
-	inventory: {stackables:[], weapons:[], armors:[], others:[], crafts:[]}
-}
+character = JSON.parse(defaultCharacter);
 attributeLabels = [];
 skillLabels = [];
 skillRows = [];
@@ -165,7 +144,6 @@ function edgeCount(){
 }
 
 function FillPaceLabel(){
-	console.log(character.hindrances[11]);
 	var elderly = character.hindrances[11] ? 1 : 0;
 	var obese = character.hindrances[16] ? 1 : 0;
 	var pace = paceDefault - elderly - obese;
@@ -523,6 +501,22 @@ function confirmRename(){
 	character.lastname = $("#lastname-i").val();
 	closeRename();
 	update();
+}
+
+/* new character */
+function openNewCharWarning(){
+	$("#popup").removeClass("hidden");
+	$('#new-char-warning').removeClass('hidden');
+}
+function closeNewCharWarning(){
+	$("#popup").addClass("hidden");
+	$('#new-char-warning').addClass('hidden');
+}
+function newCharacter(){
+	character = JSON.parse(defaultCharacter);
+	closeNewCharWarning();
+	update();
+	updateInventory();
 }
 
 new Clipboard('.cpy');
