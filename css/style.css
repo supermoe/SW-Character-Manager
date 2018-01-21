@@ -381,6 +381,27 @@ td{
 	text-align: left;
 }
 
+/* Bonus window */
+.bonus-cost{
+	font-size: 12px;
+	color: #5E4B8C;
+	text-align: right;
+}
+#bonus-selector .choice{
+	margin-left: 10px;
+	margin-bottom: 5px;
+}
+#bonus-selector td:first-child>.choice{
+	margin-right: 0;
+}
+.bonus-brow{
+	text-align: right;
+	padding-top: 10px;
+}
+.bonus-header{
+	padding-bottom: 20px;
+}
+
 /* XP Selector */
 #xp-selector>table{
 	padding: 20px;
@@ -438,6 +459,14 @@ td{
 }
 #attribute-selector-brow .button{
 	margin-left: 10px;
+}
+
+/* level up*/
+#level-up .choice{
+	margin-right: 10px;
+}
+#level-up .choice:last-child{
+	margin-right: 0;
 }
 
 /* skill window */

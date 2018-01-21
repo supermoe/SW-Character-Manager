@@ -173,9 +173,9 @@
 			<!-- Level Up -->
 			<div id="level-up" class="hidden">
 				<div>
-					<div colspan=3>Choose an option to level up</div>
-					<div class="button" onclick="edgeAdvance()">Gain 1<br>edge point</div><div class="button" onclick="skillAdvance()">Get 2<br>skill points</div><div class="button" onclick="attributeAdvance()">Gain 1<br>attribute point</div>
-					<div>
+					<div colspan=3 class='he-header'>Choose an option to level up</div>
+					<div class="button choice" onclick="edgeAdvance()">Gain 1<br>edge point</div><div class="button choice" onclick="skillAdvance()">Gain 2<br>skill points</div><div class="button choice" onclick="attributeAdvance()">Gain 1<br>attribute point</div>
+					<div class='selector-brow'>
 						<div class="button" onclick="closeLevelUp()">Cancel</div>
 					</div>
 				</div>
@@ -211,14 +211,14 @@
 			<!-- Bonus  Selector -->
 			<div id="bonus-selector" class="hidden">
 				<table>
-					<tr><td colspan=3>Choose a bonus. <span id="hindrance-bonus-l"></span> points available.</span></td></tr>
-					<tr><td>1</td><td>2</td><td>2</td></tr>
+					<tr><td colspan=3 class='bonus-header'>Choose a bonus. <span id="hindrance-bonus-l"></span> points available.</span></td></tr>
 					<tr>
-						<td><div class="button" onclick="skillBonus()">a skill point</div></td>
-						<td><div class="button" onclick="edgeBonus()">an edge point</div></td>
-						<td><div class="button" onclick="attributeBonus()">an attribute point</div></td>
+						<td><div class="button choice" onclick="skillBonus()">a skill point</div></td>
+						<td><div class="button choice" onclick="edgeBonus()">an edge point</div></td>
+						<td><div class="button choice" onclick="attributeBonus()">an attribute point</div></td>
 					</tr>
-					<tr><td colspan=3><div class="button" onclick="closeBonusSelector()">Cancel</div></td></tr>
+					<tr class='bonus-cost'><td>for 1pt</td><td>for 2pts</td><td>for 2pts</td></tr>
+					<tr><td colspan=3 class='bonus-brow'><div class="button" onclick="closeBonusSelector()">Cancel</div></td></tr>
 				</table>
 			</div>
 
