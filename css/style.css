@@ -21,7 +21,7 @@
 body{
 	font-family: 'Roboto';
 	font-weight: normal;
-	background: #296190;
+	background: #1D1630;
 	color: white;
 	margin: 30px;
 	overflow-x: hidden;
@@ -56,13 +56,13 @@ td{
 	cursor: pointer;
 	color: white;
 	padding: 3px 6px;
-	color: #6FA8D5;
+	color: #5E4B8C;
 	display: inline-block;
-	border: 2px solid #6FA8D5;
+	border: 2px solid #5E4B8C;
 }
 .button:hover{
-	border: 2px solid #FF28AE;
-	background: #FF28AE;
+	border: 2px solid #E8338A;
+	background: #E8338A;
 	color: white;
 }
 
@@ -88,7 +88,7 @@ td{
 	text-align: center;
 }
 #popup>div>div, #popup>div>table{
-	background: #296190;
+	background: #1D1630;
 	width: auto;
 	display: inline-block;
 	padding: 20px;
@@ -99,7 +99,7 @@ td{
 	text-align: center;
 }
 .wound-cell:hover{
-	background: #C72376;
+	background: #AF155A;
 	cursor: pointer;
 }
 
@@ -139,7 +139,7 @@ td{
 }
 
 .missing-req{
-	color: #6FA8D5 !important;
+	color: #5E4B8C !important;
 }
 
 /* styling */
@@ -155,32 +155,32 @@ td{
 }
 #derived-attributes, #attributes, #skills{
 	padding: 13px 0;
-	border-top: 2px solid #03487F;
+	border-top: 2px solid #292247;
 }
 #exp-wrapper{
 	padding: 13px 0;
 }
 
 #wound-table{
-	border-top: 2px solid #03487F;
+	border-top: 2px solid #292247;
 }
 .wound-cell{
 	padding: 20px 10px;
 }
 .checked-wound{
-	background: #FF28AE !important;
+	background: #E8338A !important;
 }
 
 
 .stat-label{
-	color: #FF28AE;
+	color: #E8338A;
 }
 #edge-wrapper{
 	margin-top: 20px;
 }
 .hecell{
 	margin-bottom: 2px;
-	background: #6FA8D5;
+	background: #5E4B8C;
 	padding: 10px 12px;
 }
 .hecell>div{
@@ -189,7 +189,7 @@ td{
 }
 .stat-title{
 	text-align: left;
-	color: #6FA8D5;
+	color: #5E4B8C;
 	font-weight: normal;
 }
 .brow{
@@ -209,25 +209,25 @@ td{
 
 /* inventory */
 #inv-tabs-wrapper{
-	border-bottom: 2px solid #03487F;
+	border-bottom: 2px solid #AF155A;
 	padding-top: 10px;
 }
 .inv-tab{
 	display: inline-block;
 	cursor: pointer;
 	padding: 3px 6px;
-	border: 2px solid #03487F;
+	border: 2px solid #AF155A;
 	border-bottom: 0;
-	color: #03487F;
+	color: #AF155A;
 }
 .inv-tab-active{
-	background: #03487F;
+	background: #AF155A;
 	color: white;
 }
 .item-row{
 	position: relative;
 	display: flex;
-	background: #6FA8D5;
+	background: #5E4B8C;
 	flex-direction: row;
 	flex-wrap: wrap;
 	padding: 7px 7px;
@@ -247,7 +247,7 @@ td{
 .inv-cat{
 	padding-top: 15px;
 	padding-bottom: 5px;
-	color: #6FA8D5;
+	color: #5E4B8C;
 }
 .item-brow{
 	position: absolute;
@@ -272,10 +272,10 @@ td{
 	cursor: pointer;
 	color: white;
 	padding: 3px 6px;
-	color: #C72376;
+	color: #AF155A;
 	margin-right: 10px;
 	display: inline-block;
-	border: 2px solid #C72376;
+	border: 2px solid #AF155A;
 }
 .item-row:hover .item-brow{
 	background: rgba(255, 255, 255, 0.7);
@@ -284,13 +284,13 @@ td{
 	display: none;
 }
 .item-row .button:hover{
-	background: #FF28AE !important;
-	border: 2px solid #FF28AE;
+	background: #E8338A !important;
+	border: 2px solid #E8338A;
 	color: white;
 	height: auto;
 }
 .equipped{
-	background: #FF28AE !important;
+	background: #E8338A !important;
 }
 
 .mod-slot{
@@ -312,14 +312,14 @@ td{
 	cursor: pointer;
 }
 .mod-slot-enabled:hover{
-	border: 2px solid #FF28AE;
+	border: 2px solid #E8338A;
 }
 .mod-empty{
 	color: transparent !important;
 }
 
 .important-var{
-	color: #FF28AE;
+	color: #E8338A;
 }
 
 /* popups */
@@ -345,7 +345,7 @@ td{
 #item-details-wrapper>div:first-child{
 	margin-left: 10px;
 	margin-right: 10px;
-	color: #6FA8D5;
+	color: #5E4B8C;
 }
 .details-main{
 	display: flex;
@@ -368,9 +368,9 @@ td{
 	padding: 0 10px;
 }
 .details-mods>div:first-child{
-	border-top: 2px solid #03487F;
+	border-top: 2px solid #292247;
 	padding-top: 10px;
-	color: #6FA8D5;
+	color: #5E4B8C;
 }
 .details-mod{
 	margin-top: 10px;
@@ -387,7 +387,7 @@ td{
 	border: 2px solid white;
 }
 #xp-input{
-	color: #FF28AE;
+	color: #E8338A;
 	margin-right: 10px;
 	background: transparent;
 	border: 0;
@@ -396,11 +396,11 @@ td{
 	text-align: center;
 	font-family: inherit;
 	font-size: 20px;
-	border-bottom:2px solid #FF28AE;
+	border-bottom:2px solid #E8338A;
 	width: 100px;
 }
 #xp-input::-webkit-input-placeholder{
-	color: #FF28AE;
+	color: #E8338A;
 }
 #xp-selector .brow{
 	padding-top: 10px;
@@ -426,11 +426,11 @@ td{
 	font-size: 12px;
 }
 .selector-title{
-	color: #6FA8D5;
+	color: #5E4B8C;
 	padding-bottom: 10px;
 }
 #attribute-selector-available{
-	color: #FF28AE;
+	color: #E8338A;
 }
 #attribute-selector-brow>td{
 	padding-top: 10px;
@@ -442,10 +442,10 @@ td{
 
 /* skill window */
 .changed-l{
-	color: #FF28AE;
+	color: #E8338A;
 }
 .unlearned-l{
-	color: #6FA8D5;
+	color: #5E4B8C;
 }
 #skill-selector-brow{
 	text-align: right;
@@ -460,7 +460,7 @@ td{
 	padding-right: 10px;
 }
 #skill-selector-available{
-	color: #FF28AE;
+	color: #E8338A;
 }
 .selector-header-row>td{
 	font-size: 12px;
@@ -477,7 +477,7 @@ td{
 	text-align: center;
 }
 .skill-attribute{
-	color: #6FA8D5;
+	color: #5E4B8C;
 }
 
 /* hindrances window */
@@ -489,7 +489,7 @@ td{
 	margin-bottom: 10px;
 }
 #hindrance-select>div:not(.table-header):hover{
-	background: #FF28AE;
+	background: #E8338A;
 	color: white;
 }
 #hindrance-select>div{
@@ -497,7 +497,7 @@ td{
 	flex-wrap: nowrap;
 	align-items: center;
 	padding:5px 10px;
-	border-bottom: 2px solid #03487F;
+	border-bottom: 2px solid #292247;
 }
 #hindrance-select>div>div:first-child{
 	min-width:130px;
@@ -506,8 +506,8 @@ td{
 	text-align: justify;
 }
 .table-header{
-	border: 2px solid #6FA8D5 !important;
-	background: #6FA8D5;
+	border: 2px solid #5E4B8C !important;
+	background: #5E4B8C;
 	position: sticky;
 	top: 0px;
 	font-size: 12px !important;
@@ -519,7 +519,7 @@ td{
 	opacity: 0.5;
 }
 .row-sublabel{
-	color: #6FA8D5;
+	color: #5E4B8C;
 }
 #hindrance-select>div:not(.table):hover .row-sublabel{
 	color: rgba(255, 255, 255, 0.5);
@@ -543,7 +543,7 @@ td{
 	flex-wrap: nowrap;
 	align-items: center;
 	padding:5px 10px;
-	border-bottom: 2px solid #03487F;
+	border-bottom: 2px solid #292247;
 }
 #edge-table>div>div:first-child{
 	min-width:130px;
@@ -570,7 +570,7 @@ td{
 }
 
 #edge-table>div:not(.table-header):hover{
-	background: #FF28AE;
+	background: #E8338A;
 	color: white;
 	cursor: pointer;
 }
@@ -583,7 +583,7 @@ td{
 	cursor: pointer;
 }
 .craft .item-row:hover{
-	background: #FF28AE;
+	background: #E8338A;
 
 }
 
@@ -623,7 +623,7 @@ td{
 	padding-bottom: 10px;
 }
 .craft-th{
-	color: #6FA8D5;
+	color: #5E4B8C;
 	font-size: 16px;
 	font-weight: normal;
 	text-align: left;
@@ -650,8 +650,8 @@ td{
 	width: 120px;
 	background: none;
 	border: none;
-	border-bottom: 2px solid #FF28AE;
-	color: #FF28AE;
+	border-bottom: 2px solid #E8338A;
+	color: #E8338A;
 	outline: none;
 	font-size: 16px;
 	font-family: inherit;
@@ -668,7 +668,7 @@ td{
 	color: white;
 }
 .rename-input-row{
-	color: #6FA8D5;
+	color: #5E4B8C;
 	font-size: 25px !important;
 	font-weight: bold;
 }
@@ -682,8 +682,8 @@ td{
 	overflow-wrap: break-word;
 	background: none;
 	outline: none;
-	border: 2px solid #6FA8D5;
-	color: #6FA8D5;
+	border: 2px solid #5E4B8C;
+	color: #5E4B8C;
 	padding: 10px;
 	font-size: 12px;
 	font-family: Courier New, Courier, monospace;
@@ -695,8 +695,8 @@ td{
 	background: none;
 	outline: none;
 	border: none;
-	border-bottom: 2px solid #FF28AE;
-	color: #FF28AE;
+	border-bottom: 2px solid #E8338A;
+	color: #E8338A;
 	font-family: "Roboto";
 	font-size: 12px;
 	text-align: center;
@@ -707,7 +707,7 @@ td{
 	color: white;
 }
 #item-importer input::-webkit-input-placeholder{
-	color:#FF28AE;
+	color:#E8338A;
 	opacity: 0.7;
 }
 
@@ -735,7 +735,7 @@ td{
 }
 .name-cell:before{
 	z-index: -1;
-	background: #FF28AE;
+	background: #E8338A;
 	color: transparent;
 	content: ".";
 	position: absolute;
@@ -762,7 +762,7 @@ td{
 }
 .menu-cell:before{
 	z-index: -1;
-	background: #FF28AE;
+	background: #E8338A;
 	color: transparent;
 	content: ".";
 	position: absolute;
@@ -773,20 +773,20 @@ td{
 }
 .menu-cell .button{
 	margin-left: 10px;
-	border: 2px solid #C72376;
-	color: #C72376;
+	border: 2px solid #AF155A;
+	color: #AF155A;
 	margin-top: 10px;
 }
 .menu-cell .button:hover{
 	background: white;
-	color: #C72376;
+	color: #AF155A;
 	border: 2px solid white;
 }
 
 /* equipment */
 .equipment-cell>div{
 	max-width: 150px;
-	border-right: 2px solid #FF28AE;
+	border-right: 2px solid #E8338A;
 	padding: 0 10px; 
 	text-align: right;
 }
@@ -802,7 +802,7 @@ td{
 }
 .equipment-cell:before{
 	z-index: -1;
-	background: #C72376;
+	background: #AF155A;
 	color: transparent;
 	content: ".";
 	position: absolute;
@@ -817,7 +817,7 @@ td{
 .eq-mod{
 	font-size: 12px;
 	background: white;
-	color: #C72376;
+	color: #AF155A;
 	margin-top: 2px;
 	padding: 5px;
 }
