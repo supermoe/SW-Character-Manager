@@ -32,7 +32,14 @@ function updateInventory(){
 
 	let eArmor = getEquippedArmor();
 	$aContainer.children().remove();
-	$aContainer.append("<div>" + eArmor.armor + "</div>");
+	let protection = 0;
+	for (let im of getEquippedMHWeapon().mods){
+		if (im.id == PROTECTION.id) protection += im.level + 2;
+	}
+	for (let im of getEquippedOHWeapon().mods){
+		if (im.id == PROTECTION.id) protection += im.level + 2;
+	}
+	$aContainer.append("<div>" + (eArmor.armor + protection) + "</div>");
 	appendModList(eArmor, $aContainer)
 
 	let mainHand = getEquippedMHWeapon();
@@ -731,6 +738,20 @@ var gun = JSON.stringify({
 	range: [6,12],
 	mods: [],
 	description: "Crude pistol."
+});
+
+var shield = JSON.stringify({
+	type: type.weapon,
+	name: "Small shield",
+	damage: {attribute:-1, die:0, multiplier:1, flat:0},
+	twohanded: false,
+	range: [1],
+	mods: [{
+		type: type.other,
+		id: PROTECTION.id,
+		level: 0
+	}],
+	description: "Small shield."
 });
 
 var armor = JSON.stringify({

@@ -107,3 +107,16 @@ BLUNT = {
 	]
 }
 mods.push(BLUNT);
+
+PROTECTION = {
+	id : "protection",
+	name: "Protection",
+	type: type.weapon,
+	removeable: false,
+	levels: [
+		{description: "+2 Armor",},
+		{description: "+3 Armor",},
+		{description: "+4 Armor",},
+	]
+}
+mods.push(PROTECTION);
