@@ -196,7 +196,7 @@ hindrances = [
 attributeDesc = [
 	"Dexterity, nimbleness and accuracy. Also softcaps the " + skills[0].name + ", " + skills[1].name + ", " + skills[2].name + " and " + skills[12].name + " skills.",
 	"Intelligence, wisdom, problem solving and creativity. Also softcaps the " + skills[3].name + ", " + skills[4].name + ", " + skills[5].name + ", " + skills[6].name + ", " + skills[7].name + " and " + skills[14].name + " skills.",
-	"Willpower and self-control. Also softcaps the " + skills[8].name + ", " + skills[9].name + ", " + skills[10].name + " and " + skills[11].name + " skills.",
+	"Willpower and self-control. Used for <b>Unshake</b> rolls. Also softcaps the " + skills[8].name + ", " + skills[9].name + ", " + skills[10].name + " and " + skills[11].name + " skills.",
 	"Raw physical power and fitness, typically used for melee damage. Also softcaps the " + skills[13].name + " skill.",
-	"Endurance, resistance to pain and disease. Used for Soak rolls."
+	"Endurance, resistance to pain and disease. Used for <b>Soak</b> rolls."
 ];
