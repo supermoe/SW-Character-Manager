@@ -320,13 +320,17 @@ function setEquippedArmor(item){
 }
 function setEquippedMHWeapon(item){
 	getEquippedMHWeapon().mhequipped = false;
-	if (getEquippedOHWeapon() == item) item.ohequipped = false;
-	item.mhequipped = true
+	let oh = getEquippedOHWeapon();
+	if (oh == item) item.ohequipped = false;
+	if (item.twohanded || oh.twohanded) oh.ohequipped = false;
+	item.mhequipped = true;
 }
 function setEquippedOHWeapon(item){
 	getEquippedOHWeapon().ohequipped = false;
-	if (getEquippedMHWeapon() == item) item.mhequipped = false;
-	item.ohequipped = true
+	let mh = getEquippedMHWeapon();
+	if (mh == item) item.mhequipped = false;
+	if (item.twohanded || mh.twohanded) mh.mhequipped = false;
+	item.ohequipped = true;
 }
 
 function getMod(id){
@@ -707,7 +711,7 @@ var sword = JSON.stringify({
 	type: type.weapon,
 	name: "Sword",
 	damage: {attribute:3, die:0, multiplier:1, flat:0},
-	twohanded: false,
+	twohanded: true,
 	range: [1],
 	mods: [],
 	description: "A simple iron sword."
