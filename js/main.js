@@ -523,7 +523,8 @@ tippy('.a-row', {
   placement: 'right',
 	animation: 'shift-toward',
 	dynamicTitle: true,
-  arrow: true
+	arrow: true,
+	distance: 20
 })
 update();
 
