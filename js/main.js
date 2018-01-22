@@ -183,7 +183,7 @@ function FillCharismaLabel(){
 	var ugly = character.hindrances[21] ? 2 : 0;
 	var attractive = character.edges[5] ? (character.edges[6] ? 4 : 2) : 0;
 	var cha = character.edges[12] ? 2 : 0;
-	var charisma = charismaDefault - ugly - oneeyed + attractive + cha - woundPenalty();
+	var charisma = charismaDefault - ugly - oneeyed + attractive + cha;
 	$("#charisma-l").html(charisma);
 }
 
