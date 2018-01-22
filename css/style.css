@@ -850,3 +850,22 @@ td{
 	margin-top: 2px;
 	padding: 5px;
 }
+
+/* tooltips */
+.tippy-tooltip{
+	background: white;
+	color: #292247;
+	border-radius: 0;
+}
+.tippy-popper[x-placement^=right] .tippy-arrow{
+	border-right-color: white;
+}
+.tippy-popper[x-placement^=left] .tippy-arrow{
+	border-left-color: white;
+}
+.tippy-popper[x-placement^=top] .tippy-arrow{
+	border-top-color: white;
+}
+.tippy-popper[x-placement^=bottom] .tippy-arrow{
+	border-bottom-color: white;
+}

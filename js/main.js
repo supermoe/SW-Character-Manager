@@ -186,7 +186,7 @@ function FillCharismaLabel(){
 //start
 
 for (let i=0; i<attributes.length; i++){
-    $("#attribute-brow").before("<tr><td>" + attributes[i] + ":" + "</td><td class='stat-label' id='attribute-l" + i + "'></td></tr>");
+    $("#attribute-brow").before("<tr class='a-row' title='" + attributeDesc[i] + "'><td>" + attributes[i] + "</td><td class='stat-label' id='attribute-l" + i + "'></td></tr>");
     attributeLabels.push('#attribute-l' + i);
 
 	$("#attribute-selector-brow").before("<tr><td class='attribute-selector-l'>" + attributes[i] + "</td><td><span class='selector-change-l' id='temp-attribute-l" + i + "'></span></td><td class='attribute-selector-bcell'><div id='attribute-bump" + i + "' class='button'>+</div></td></tr>");
@@ -202,7 +202,7 @@ for (let i=0; i<attributes.length; i++){
 }
 
 for (let i=0; i<skills.length; i++){
-    $("#skill-brow").before("<tr id='skill-row" + i + "'><td>" + skills[i].name + ":" + "</td><td class='stat-label' id='skill-l" + i + "'></td></tr>");
+    $("#skill-brow").before("<tr id='skill-row" + i + "'><td>" + skills[i].name + "</td><td class='stat-label' id='skill-l" + i + "'></td></tr>");
     skillLabels.push('#skill-l' + i);
 	skillRows.push('#skill-row' + i);
 
@@ -519,5 +519,11 @@ function newCharacter(){
 }
 
 new Clipboard('.cpy');
+tippy('.a-row', {
+  placement: 'right',
+	animation: 'shift-toward',
+	dynamicTitle: true,
+  arrow: true
+})
 update();
 
