@@ -56,6 +56,7 @@ BULLETPROOF = {
 	removeable: true,
 	levels: [
 		{description: "+1 toughness when hit by ranged weapons.",},
+		{description: "+2 toughness when hit by ranged weapons.",},
 	]
 }
 mods.push(BULLETPROOF);
