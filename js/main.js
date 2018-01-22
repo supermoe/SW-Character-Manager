@@ -142,10 +142,14 @@ function edgeCount(){
 	return total;
 }
 
+function woundPenalty(){
+	return Math.min(character.wounds, 3);
+}
+
 function FillPaceLabel(){
 	var elderly = character.hindrances[11] ? 1 : 0;
 	var obese = character.hindrances[16] ? 1 : 0;
-	var pace = paceDefault - elderly - obese;
+	var pace = paceDefault - elderly - obese - woundPenalty();
 	$("#pace-l").html(pace);
 }
 
@@ -153,14 +157,14 @@ function FillParryLabel(){
 	var f = 0;
 	if (character.skills[12] >= 0) f = Math.floor((character.skills[12]*2+4)/2);
 	var block = character.edges[7] ? (character.edges[8] ? 2 : 1) : 0
-	var parry = parryDefault + f + block;
+	var parry = parryDefault + f + block - woundPenalty();
 	$("#parry-l").html(parry);
 }
 
 function FillDodgeLabel(){
 	var obese = character.hindrances[16] ? 1 : 0;
 	var slippery = character.edges[17] ? (character.edges[18] ? 2 : 1) : 0
-	var dodge = dodgeDefault - obese + slippery;
+	var dodge = dodgeDefault - obese + slippery - woundPenalty();
 	$("#dodge-l").html(dodge);
 }
 
@@ -170,7 +174,7 @@ function FillToughnessLabel(){
 	var obese = character.hindrances[16] ? 1 : 0;
 	var brawny = character.edges[11] ? 1 : 0;
 	var tough = character.edges[40] ? (character.edges[41] ? 2 : 1) : 0
-	var toughness = toughnessDefault + vigor + obese - small + brawny + tough;
+	var toughness = toughnessDefault + vigor + obese - small + brawny + tough - woundPenalty();
 	$("#toughness-l").html(toughness);
 }
 
@@ -179,7 +183,7 @@ function FillCharismaLabel(){
 	var ugly = character.hindrances[21] ? 2 : 0;
 	var attractive = character.edges[5] ? (character.edges[6] ? 4 : 2) : 0;
 	var cha = character.edges[12] ? 2 : 0;
-	var charisma = charismaDefault - ugly - oneeyed + attractive + cha;
+	var charisma = charismaDefault - ugly - oneeyed + attractive + cha - woundPenalty();
 	$("#charisma-l").html(charisma);
 }
 
