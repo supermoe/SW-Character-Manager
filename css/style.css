@@ -493,7 +493,7 @@ td{
 }
 .selector-header-row>td{
 	font-size: 12px;
-	opacity: 0.7;
+	color: #5E4B8C;
 	padding: 0 10px;
 }
 .selector-header-row>td:first-child{
