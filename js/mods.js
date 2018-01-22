@@ -88,7 +88,7 @@ SPREAD = {
 	id : "spread",
 	name: "spread",
 	type: type.weapon,
-	removeable: true,
+	removeable: false,
 	levels: [
 		{description: "+1 shooting per range threshold exceeded. +d4 damage per range threshold not exceeded.",},
 		{description: "+1 shooting per range threshold exceeded. +d6 damage per range threshold not exceeded.",},
