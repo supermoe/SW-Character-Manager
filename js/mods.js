@@ -86,7 +86,7 @@ mods.push(UNCOMPROMISING);
 
 SPREAD = {
 	id : "spread",
-	name: "spread",
+	name: "Spread",
 	type: type.weapon,
 	removeable: false,
 	levels: [
@@ -95,3 +95,15 @@ SPREAD = {
 	]
 }
 mods.push(SPREAD);
+
+BLUNT = {
+	id : "blunt",
+	name: "Blunt",
+	type: type.weapon,
+	removeable: true,
+	levels: [
+		{description: "+1 damage against enemies with at least 2 armor",},
+		{description: "+2 damage against enemies with at least 4 armor",},
+	]
+}
+mods.push(BLUNT);
