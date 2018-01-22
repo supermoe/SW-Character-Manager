@@ -336,7 +336,11 @@
 		<script src='js/fs.js'></script>   
 
 		<!-- Insert this line after script imports -->
-		<script>if (window.module) module = window.module;</script>
+		<script>
+		if (window.module) module = window.module;
+		update();
+		updateInventory();
+		</script>
 		
 	</body>
 </html>

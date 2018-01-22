@@ -19,7 +19,7 @@ defaultWeapon = {
 
 //inventory
 function appendModList(item, container){
-	for (im of item.mods){
+	for (let im of item.mods){
 		let mod = getMod(im.id);
 		container.append("<div class='eq-mod'>" + mod.levels[im.level].description + "</div>");
 	}
@@ -100,12 +100,14 @@ function updateInventory(){
 			bcellw.append($("<div class='button'>Unnequip MH</i></div>").click(function(){
 				setEquippedMHWeapon(defaultWeapon);
 				updateInventory();
+				update();
 			}))
 		}
 		else{
 			bcellw.append($("<div class='button'>Equip MH</div>").click(function(){
 				setEquippedMHWeapon(item);
 				updateInventory();
+				update();
 			}))
 		}
 		if (item.ohequipped){
@@ -113,12 +115,14 @@ function updateInventory(){
 			bcellw.append($("<div class='button'>Unnequip OH</i></div>").click(function(){
 				setEquippedOHWeapon(defaultWeapon);
 				updateInventory();
+				update();
 			}))
 		}
 		else{
 			bcellw.append($("<div class='button'>Equip OH</div>").click(function(){
 				setEquippedOHWeapon(item);
 				updateInventory();
+				update();
 			}))
 		}
 		bcellw.append($("<div class='button'>Details</div>").click(function(){
@@ -156,12 +160,14 @@ function updateInventory(){
 			bcella.append($("<div class='button equipped'>Unequip</div>").click(function(){
 				setEquippedArmor(defaultArmor);
 				updateInventory();
+				update();
 			}))
 		}
 		else{
 			bcella.append($("<div class='button'>Equip</div>").click(function(){
 				setEquippedArmor(item);
 				updateInventory();
+				update();
 			}))
 		}
 		bcella.append($("<div class='button'>Details</div>").click(function(){
@@ -805,6 +811,3 @@ var recipe2 = JSON.stringify({
 		description: "Brown trenchcoat."
 	}
 });
-
-
-updateInventory();

@@ -149,7 +149,17 @@ function woundPenalty(){
 function FillPaceLabel(){
 	var elderly = character.hindrances[11] ? 1 : 0;
 	var obese = character.hindrances[16] ? 1 : 0;
-	var pace = paceDefault - elderly - obese - woundPenalty();
+	let lightarmor = 0;
+	let heavyarmor = 0;
+	for (let im of getEquippedArmor().mods){
+		if (im.id.toLowerCase() == LIGHT_ARMOR.id.toLowerCase()) {
+			lightarmor = im.level + 1;
+		}
+		if (im.id.toLowerCase() == HEAVY_ARMOR.id.toLowerCase()) {
+			heavyarmor = im.level + 1;
+		}
+	}
+	var pace = paceDefault - elderly - obese - heavyarmor + lightarmor - woundPenalty();
 	$("#pace-l").html(pace);
 }
 
@@ -530,5 +540,4 @@ tippy('.a-row', {
 	arrow: true,
 	distance: 20
 })
-update();
 
