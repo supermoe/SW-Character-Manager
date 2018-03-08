@@ -120,3 +120,51 @@ PROTECTION = {
 	]
 }
 mods.push(PROTECTION);
+
+COOL_FACTOR = {
+	id : "cool_factor",
+	name: "Cool Factor",
+	type: type.weapon,
+	removeable: true,
+	levels: [
+		{description: "+1 charisma",},
+		{description: "+2 charisma",}
+	]
+}
+mods.push(COOL_FACTOR);
+
+STYLISH = {
+	id : "stylish",
+	name: "Stylish",
+	type: type.armor,
+	removeable: true,
+	levels: [
+		{description: "+1 charisma if clean",},
+		{description: "+2 charisma if clean",}
+	]
+}
+mods.push(STYLISH);
+
+COMPLEX = {
+	id : "complex",
+	name: "Complex",
+	type: type.weapon,
+	removeable: false,
+	levels: [
+		{description: "-2 to Attack rolls unless you have spent time maintening this weapon today",},
+		{description: "-1 to Attack rolls unless you have spent time maintening this weapon today",}
+	]
+}
+mods.push(COMPLEX);
+
+FEAR_FACTOR = {
+	id : "fear_factor",
+	name: "Fear Factor",
+	type: type.weapon,
+	removeable: true,
+	levels: [
+		{description: "+1 to Coercion rolls, +2 if bloody",},
+		{description: "+2 to Coercion rolls, +3 if bloody",}
+	]
+}
+mods.push(FEAR_FACTOR);
