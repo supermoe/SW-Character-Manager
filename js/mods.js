@@ -151,8 +151,8 @@ COMPLEX = {
 	type: type.weapon,
 	removeable: false,
 	levels: [
-		{description: "-2 to Attack rolls unless you have spent time maintening this weapon today",},
-		{description: "-1 to Attack rolls unless you have spent time maintening this weapon today",}
+		{description: "-2 to Attack rolls unless you have spent time maintaining this weapon today",},
+		{description: "-1 to Attack rolls unless you have spent time maintainning this weapon today",}
 	]
 }
 mods.push(COMPLEX);
