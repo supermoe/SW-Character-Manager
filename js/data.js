@@ -1,10 +1,12 @@
 type = {stackable:0, weapon:1, armor:2, other:3, craft:4}
 modLevels = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
 die = ["d4", "d6", "d8", "d10", "d12"];
+die_num = [4,6,8,10,12];
+str_half_die = ["2", "3", "4", "5", "6"];
 benny_name = "Reroll Token(s)";
 attributes = ["Agility", "Smarts", "Spirit", "Strength", "Vigor"];
 levelUpCost = 5;
-paceDefault = 6;
+paceDefault = 4;
 parryDefault = 2;
 toughnessDefault = 2;
 dodgeDefault = 4;

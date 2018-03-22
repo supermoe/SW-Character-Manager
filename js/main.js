@@ -40,8 +40,9 @@ function update(){
 	FillCharismaLabel();
 
 	//wounds
-	for (let i=0; i<5; i++) $("#wound"+i).removeClass("checked-wound");
-	$("#wound"+character.wounds).addClass("checked-wound");
+	//for (let i=0; i<5; i++) $("#wound"+i).removeClass("checked-wound");
+	$("#wound").text(die_num[character.attributes[4]]*3 - character.wounds);
+	$("#wound-max").text(die_num[character.attributes[4]]*3);
 
 	//hindrances
 	hindranceCount() > 0 ? $("#hindrance-null").addClass('hidden') : $("#hindrance-null").removeClass('hidden')
@@ -111,6 +112,14 @@ function wound(value){
 	character.wounds = value;
 	update();
 };
+function pluswound(){
+	character.wounds = Math.min(die_num[character.attributes[4]]*3, character.wounds+1);
+	update();
+};
+function minuswound(value){
+	character.wounds = Math.max(0, character.wounds-1);
+	update();
+};
 
 function skillDie(value){
 	if (value < 0) return "\u00D7";
@@ -143,7 +152,7 @@ function edgeCount(){
 }
 
 function woundPenalty(){
-	return Math.min(character.wounds, 3);
+	return 0; //Math.min(character.wounds, 3);
 }
 
 function FillPaceLabel(){
@@ -193,7 +202,17 @@ function FillCharismaLabel(){
 	var ugly = character.hindrances[21] ? 2 : 0;
 	var attractive = character.edges[5] ? (character.edges[6] ? 4 : 2) : 0;
 	var cha = character.edges[12] ? 2 : 0;
-	var charisma = charismaDefault - ugly - oneeyed + attractive + cha;
+	var cha_equip = 0
+	for (let m of getEquippedArmor().mods){
+		if (m.id == "stylish") cha_equip++;
+	}
+	for (let m of getEquippedMHWeapon().mods){
+		if (m.id == "cool_factor") cha_equip++;
+	}
+	for (let m of getEquippedOHWeapon().mods){
+		if (m.id == "cool_factor") cha_equip++;
+	}
+	var charisma = charismaDefault - ugly - oneeyed + attractive + cha + cha_equip;
 	$("#charisma-l").html(charisma);
 }
 

@@ -168,3 +168,57 @@ FEAR_FACTOR = {
 	]
 }
 mods.push(FEAR_FACTOR);
+
+POWER_INFUSION = {
+	id : "power_infusion",
+	name: "Power Infusion",
+	type: type.weapon,
+	removeable: true,
+	levels: [
+		{description: "Spend 5 cells to get +1 damage on this turn",},
+		{description: "Spend 15 cells to get +2 damage on this turn",},
+		{description: "Spend 30 cells to get +3 damage on this turn",}
+	]
+}
+mods.push(POWER_INFUSION);
+
+ACCURACY_INFUSION = {
+	id : "accuracy_infusion",
+	name: "Accuracy Infusion",
+	type: type.weapon,
+	removeable: true,
+	levels: [
+		{description: "Spend 5 cells to get +1 attack on this turn",},
+		{description: "Spend 10 cells to get +2 attack on this turn",},
+		{description: "Spend 20 cells to get +3 attack on this turn",}
+	]
+}
+mods.push(ACCURACY_INFUSION);
+
+ARMOR_INFUSION = {
+	id : "armor_infusion",
+	name: "Armor Infusion",
+	type: type.armor,
+	removeable: true,
+	levels: [
+		{description: "Spend 10 cells to get +2 armor on this turn",},
+		{description: "Spend 25 cells to get +3 armor on this turn",},
+		{description: "Spend 60 cells to get +4 armor on this turn",}
+	]
+}
+mods.push(ARMOR_INFUSION);
+
+OPTIMIZED_INFUSION_W = {
+	id : "optimized_infusion_w",
+	name: "Optimized Infusion (Weapon)",
+	type: type.weapon,
+	removeable: true,
+	levels: [
+		{description: "-2 infusion cost (Requires d4 Tinkering)",},
+		{description: "-4 infusion cost (Requires d6 Tinkering)",},
+		{description: "-6 infusion cost (Requires d8 Tinkering)",},
+		{description: "-8 infusion cost (Requires d10 Tinkering)",},
+		{description: "-10 infusion cost (Requires d12 Tinkering)",}
+	]
+}
+mods.push(OPTIMIZED_INFUSION_W);

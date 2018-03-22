@@ -653,7 +653,15 @@ function rangeToString(range){
 function damageToString(damage){
 	var str = "";
 	var elems = 0;
-	if (damage.attribute >= 0) {str += attributes[damage.attribute]; elems++}
+	
+	if (damage.attribute >= 0) {
+		if (damage.attribute == 3) {
+			str += "" + str_half_die[character.attributes[damage.attribute]] + "(" + attributes[damage.attribute] + ")";
+		}
+		else str += "" + die[character.attributes[damage.attribute]] + "(" + attributes[damage.attribute] + ")";
+		
+		elems++
+	}
 	if (damage.die >= 0) {
 		str += elems > 0 ? " + " + damage.multiplier + die[damage.die] : damage.multiplier + die[damage.die];
 		elems++

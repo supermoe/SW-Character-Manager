@@ -94,13 +94,26 @@ td{
 	padding: 20px;
 	border: 2px solid white;
 }
-
 #wound-table>*{
 	text-align: center;
+	font-size: 24;
 }
-.wound-cell:hover{
+.wound-button{
+	width: 55px;
+	padding: 8px 0 !important;
+}
+.wound-button:hover{
 	background: #AF155A;
 	cursor: pointer;
+}
+#wound-label{
+	color: #5E4B8C;
+	/*font-size: 16px;*/
+	font-weight: lighter;
+}
+#wound{
+	/*color: #E8338A;*/
+	font-weight: bold;
 }
 
 .hindrance-selector-desc, .edge-selector-desc{

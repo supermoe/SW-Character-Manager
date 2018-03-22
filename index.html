@@ -34,11 +34,9 @@
 					<!-- Wounds -->
 					<table id="wound-table">
 						<tr>
-							<td class="wound-cell" id="wound0" onclick="wound(0)"><i class="ra ra-health"></i></td>
-							<td class="wound-cell" id="wound1" onclick="wound(1)">1</td>
-							<td class="wound-cell" id="wound2" onclick="wound(2)">2</td>
-							<td class="wound-cell" id="wound3" onclick="wound(3)">3</td>
-							<td class="wound-cell" id="wound4" onclick="wound(4)"><i class="ra ra-skull"></i></td>
+							<td class="wound-minus wound-button" onclick="pluswound()">-</td>
+							<td class="wound-container"><span id="wound"></span><span id="wound-label"> / <span id="wound-max"></span></span></td>
+							<td class="wound-plus wound-button" onclick="minuswound()">+</td>
 						</tr>
 					</table>
 					<!-- Derived Attributes -->
