@@ -42,7 +42,8 @@ function update(){
 	//wounds
 	//for (let i=0; i<5; i++) $("#wound"+i).removeClass("checked-wound");
 	$("#wound").text(die_num[character.attributes[4]]*3 - character.wounds);
-	$("#wound-max").text(die_num[character.attributes[4]]*3);
+	var velderly = character.hindrances[11] ? 2 : 0;
+	$("#wound-max").text((die_num[character.attributes[4]]-velderly)*3);
 
 	//hindrances
 	hindranceCount() > 0 ? $("#hindrance-null").addClass('hidden') : $("#hindrance-null").removeClass('hidden')
@@ -192,8 +193,9 @@ function FillToughnessLabel(){
 	var small = character.hindrances[20] ? 1 : 0;
 	var obese = character.hindrances[16] ? 1 : 0;
 	var brawny = character.edges[11] ? 1 : 0;
+	var elderly = character.hindrances[11] ? 2 : 0;
 	var tough = character.edges[40] ? (character.edges[41] ? 2 : 1) : 0
-	var toughness = toughnessDefault + vigor + obese - small + brawny + tough - woundPenalty();
+	var toughness = toughnessDefault + vigor + obese - small + brawny + tough - elderly - woundPenalty();
 	$("#toughness-l").html(toughness);
 }
 
