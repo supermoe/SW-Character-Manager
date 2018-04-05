@@ -399,4 +399,20 @@ edges = [
         upgrades: -1,
         description: "+2 " + skills[14].name
     },
+    {
+        name: "Gallop",
+        req_level: 0,
+        req_attribute: [],
+        req_skill: [[13,2]],
+        upgrades: -1,
+        description: "Deal bonus damage depending on the distance tarveled this turn. Only once per fight."
+    },
+    {
+        name: "Tactician",
+        req_level: 0,
+        req_attribute: [[1,1]],
+        req_skill: [],
+        upgrades: -1,
+        description: "Add your " + attributes[1] + " die to your damage on your first turn if the party caught foes unaware."
+    },
 ]
