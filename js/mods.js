@@ -222,3 +222,29 @@ OPTIMIZED_INFUSION_W = {
 	]
 }
 mods.push(OPTIMIZED_INFUSION_W);
+
+CONFIDENCE = {
+	id : "confidence",
+	name: "Confidence",
+	type: type.weapon,
+	removeable: true,
+	levels: [
+		{description: "No wild die on attack, +1/+2 damage for 1h/2h respectively",},
+		{description: "No wild die on attack, +2/+4 damage for 1h/2h respectively",},
+	]
+}
+mods.push(CONFIDENCE_W);
+
+THRUST = {
+	id : "thrust",
+	name: "Thrust",
+	type: type.weapon,
+	removeable: true,
+	levels: [
+		{description: "No wild die on attack, +1 attack",},
+		{description: "No wild die on attack, +2 attack",},
+		{description: "No wild die on attack, +3 attack",},
+		{description: "No wild die on attack, +4 attack",},
+	]
+}
+mods.push(THRUST_W);
