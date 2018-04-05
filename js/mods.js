@@ -233,7 +233,7 @@ CONFIDENCE = {
 		{description: "No wild die on attack, +2/+4 damage for 1h/2h respectively",},
 	]
 }
-mods.push(CONFIDENCE_W);
+mods.push(CONFIDENCE);
 
 THRUST = {
 	id : "thrust",
@@ -247,4 +247,4 @@ THRUST = {
 		{description: "No wild die on attack, +4 attack",},
 	]
 }
-mods.push(THRUST_W);
+mods.push(THRUST);
